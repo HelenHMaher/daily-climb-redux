@@ -10,11 +10,12 @@ import {
 } from "react-router-dom";
 
 import { Navbar } from "./app/Navbar";
-import { Login } from "./components/users/Login";
+import { Login } from "./components/user/Login";
 import { WorkoutsList } from "./components/workouts/WorkoutsList";
+import { AddWorkoutForm } from "./components/workouts/AddWorkoutForm";
 import { SingleWorkoutPage } from "./components/workouts/SingleWorkoutPage";
 import { EditWorkoutPage } from "./components/workouts/EditWorkoutPage";
-import { UserPage } from "./components/users/UserPage";
+import { UserPage } from "./components/user/UserPage";
 import { News } from "./components/news";
 
 function App() {
@@ -36,7 +37,16 @@ function App() {
                   </React.Fragment>
                 )}
               />
-              <Route exact path="/workouts" component={WorkoutsList} />
+              <Route
+                exact
+                path="/workouts"
+                render={() => (
+                  <>
+                    <AddWorkoutForm />
+                    <WorkoutsList />
+                  </>
+                )}
+              />
               <Route
                 exact
                 path="/workouts/:workoutId"
