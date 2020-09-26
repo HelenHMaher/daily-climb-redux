@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
 const mongo = require("mongodb").MongoClient;
+const sessionApi = require("./sessionApi");
 
 mongo.connect(
   process.env.MONGO_URI,
@@ -28,6 +29,8 @@ mongo.connect(
       app.get("/", function (req, res, next) {
         res.sendFile(path.join(__dirname, "build", "index.html"));
       });
+
+      sessionApi(app, db);
 
       app.listen(process.env.PORT || 3000, () =>
         console.log("Server is running...")
