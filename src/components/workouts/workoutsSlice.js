@@ -4,11 +4,17 @@ import {
   createSelector,
   createEntityAdaptor,
 } from "@reduxjs/toolkit";
+import axios from "axios";
 
-/*export const addNewPost = createAsyncThunk('posts/addNewPost', async (initialPost) => {
-    const response;
-    return response.post
-})*/
+export const addNewWorkout = createAsyncThunk(
+  "workout/addNewWorkout",
+  async (initialWorkout) => {
+    const response = await axios.post("/api/session", {
+      workout: initialWorkout,
+    });
+    return response.post;
+  }
+);
 
 const workoutsSlice = createSlice({
   name: "workouts",
@@ -26,4 +32,4 @@ const workoutsSlice = createSlice({
   extraReducers: {},
 });
 
-export const { workoutUpdated } = workoutsSlice.actions;
+export const { workoutUpdated, addNewWorkout } = workoutsSlice.actions;
