@@ -15,6 +15,8 @@ import { WorkoutsList } from "./components/workouts/WorkoutsList";
 import { AddWorkoutForm } from "./components/workouts/AddWorkoutForm";
 import { SingleWorkoutPage } from "./components/workouts/SingleWorkoutPage";
 import { EditWorkoutPage } from "./components/workouts/EditWorkoutPage";
+import { WorkoutTypesList } from "./components/workoutTypes/WorkoutTypesList";
+import { WorkoutTypePage } from "./components/workoutTypes/WorkoutTypePage";
 import { UserPage } from "./components/user/UserPage";
 import { News } from "./components/news";
 
@@ -59,6 +61,12 @@ function App() {
               />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profile/:userId" component={UserPage} />
+              <Route exact path="/workoutTypes" component={WorkoutTypesList} />
+              <Route
+                exact
+                path="/workoutTypes/:workoutTypesId"
+                component={WorkoutTypePage}
+              />
               <Redirect to="/" />
             </Switch>
           </div>

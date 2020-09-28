@@ -9,6 +9,16 @@ const workoutTypesAdapter = createEntityAdapter();
 
 const initialState = workoutTypesAdapter.getInitialState();
 
+export const addNewWorkoutType = createAsyncThunk(
+  "workoutTypes/addNewWorkoutType",
+  async (initialWorkoutType) => {
+    const response = await axios.post("/api/workoutTypes", {
+      workoutType: initialWorkoutType,
+    });
+    return response.workoutType;
+  }
+);
+
 export const fetchWorkoutTypes = createAsyncThunk(
   "workoutTypes/fetchWorkoutTypes",
   async () => {
@@ -30,5 +40,5 @@ export default workoutTypesSlice.reducer;
 
 export const {
   selectAll: selectAllWorkoutTypes,
-  selectById: selectAllWorkoutTypesById,
+  selectById: selectWorkoutTypeById,
 } = workoutTypesAdapter.getSelectors((state) => state.workoutTypes);
