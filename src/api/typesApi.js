@@ -2,17 +2,17 @@ const ObjectId = require("mongodb").ObjectId;
 
 module.exports = function (app, db) {
   app
-    .route("/api/workoutType/")
+    .route("/api/workoutTypes/")
 
     .post((req, res) => {
       const workoutType = {
-        name: req.body.name,
+        workoutType: req.body.name,
       };
       db.collection("workoutTypes").insertOne(workoutType, (err, doc) => {
         if (err) res.json(`could not update: ${err}`);
         const entry = {
           _id: doc.insertedId,
-          name: workoutType.name,
+          name: workoutType.workoutType.name,
         };
         console.log(entry);
         res.redirect("/");
@@ -25,18 +25,18 @@ module.exports = function (app, db) {
         .toArray((err, workoutTypes) => {
           if (err) return res.json(`could not find entries: ${err}`);
           const workoutTypesArray = workoutTypes.map((entry) => {
-            let workoutType = {
+            let type = {
               _id: entry._id,
-              name: entry.name,
+              name: entry.workoutType.name,
             };
-            return workoutType;
+            return type;
           });
           res.json(workoutTypesArray);
         });
     });
 
   app
-    .route("/api/workoutType/:id")
+    .route("/api/workoutTypes/:id")
 
     .post(function (req, res) {
       const workoutId = req.params.id;

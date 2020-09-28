@@ -12,10 +12,10 @@ const initialState = workoutTypesAdapter.getInitialState();
 export const addNewWorkoutType = createAsyncThunk(
   "workoutTypes/addNewWorkoutType",
   async (initialWorkoutType) => {
-    const response = await axios.post("/api/workoutTypes", {
-      workoutType: initialWorkoutType,
+    const response = await axios.post("/api/workoutTypes/", {
+      name: initialWorkoutType,
     });
-    return response.workoutType;
+    return response.name;
   }
 );
 
@@ -23,6 +23,7 @@ export const fetchWorkoutTypes = createAsyncThunk(
   "workoutTypes/fetchWorkoutTypes",
   async () => {
     const response = await axios.get("/api/workoutTypes/");
+    console.log(response);
     return response.workoutTypes;
   }
 );

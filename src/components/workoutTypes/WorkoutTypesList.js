@@ -8,7 +8,9 @@ export const WorkoutTypesList = () => {
 
   const renderedWorkoutTypes = workoutTypes.map((workoutTypes) => (
     <li key={workoutTypes.id}>
-      <Link to={`/workoutTypes/${workoutTypes.id}`}>{workoutTypes.name}</Link>
+      <Link to={`/workoutTypes/${workoutTypes.id}`}>
+        {workoutTypes.workoutType.name}
+      </Link>
     </li>
   ));
 
