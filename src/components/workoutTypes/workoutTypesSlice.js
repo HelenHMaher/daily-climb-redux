@@ -31,4 +31,4 @@ export default workoutTypesSlice.reducer;
 export const {
   selectAll: selectAllWorkoutTypes,
   selectById: selectAllWorkoutTypesById,
-} = workoutTypesAdapter.getSelectors((state) => state.users);
+} = workoutTypesAdapter.getSelectors((state) => state.workoutTypes);

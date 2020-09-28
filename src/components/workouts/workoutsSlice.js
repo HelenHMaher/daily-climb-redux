@@ -1,24 +1,41 @@
 import {
   createSlice,
   createAsyncThunk,
+  createEntityAdapter,
   createSelector,
-  createEntityAdaptor,
 } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const workoutsAdapter = createEntityAdapter({
+  sortComparer: (a, b) => b.date.localeCompare(a.date),
+});
+
+const initialState = workoutsAdapter.getInitialState({
+  status: "idle",
+  error: null,
+});
+
 export const addNewWorkout = createAsyncThunk(
-  "workout/addNewWorkout",
+  "workouts/addNewWorkout",
   async (initialWorkout) => {
-    const response = await axios.post("/api/session", {
+    const response = await axios.post("/api/workouts", {
       workout: initialWorkout,
     });
     return response.post;
   }
 );
 
+export const fetchWorkouts = createAsyncThunk(
+  "workouts/fetchWorkouts",
+  async () => {
+    const response = await axios.get("/api/workouts");
+    return response.workouts;
+  }
+);
+
 const workoutsSlice = createSlice({
   name: "workouts",
-  initialState: { status: "idle", error: null },
+  initialState,
   reducers: {
     workoutUpdated(state, action) {
       const { id, title, content } = action.payload;
@@ -29,7 +46,34 @@ const workoutsSlice = createSlice({
       }
     },
   },
-  extraReducers: {},
+  extraReducers: {
+    [fetchWorkouts.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [fetchWorkouts.fulfilled]: (state, action) => {
+      state.status = "succeeded";
+      workoutsAdapter.upsertMany(state, action.payload);
+    },
+    [fetchWorkouts.rejected]: (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    },
+    [addNewWorkout.fulfilled]: workoutsAdapter.addOne,
+  },
 });
 
-export const { workoutUpdated } = workoutsSlice.actions;
+export const { workoutAdded, workoutUpdated } = workoutsSlice.actions;
+
+export default workoutsSlice.reducer;
+
+export const {
+  selectAll: selectAllWorkouts,
+  selectById: selectWorkoutsById,
+  selectIds: selectWorkoutIds,
+} = workoutsAdapter.getSelectors((state) => state.workouts);
+
+export const selectWorkoutsByWorkoutType = createSelector(
+  [selectAllWorkouts, (state, workoutTypeId) => workoutTypeId],
+  (workouts, workoutTypeId) =>
+    workouts.filter((workouts) => workouts.workoutType === workoutTypeId)
+);
