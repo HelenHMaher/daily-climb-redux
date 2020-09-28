@@ -15,7 +15,7 @@ export const addNewWorkoutType = createAsyncThunk(
     const response = await axios.post("/api/workoutTypes/", {
       name: initialWorkoutType,
     });
-    return response.name;
+    return response;
   }
 );
 
@@ -23,8 +23,7 @@ export const fetchWorkoutTypes = createAsyncThunk(
   "workoutTypes/fetchWorkoutTypes",
   async () => {
     const response = await axios.get("/api/workoutTypes/");
-    console.log(response);
-    return response.workoutTypes;
+    return response;
   }
 );
 

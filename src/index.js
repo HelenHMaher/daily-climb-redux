@@ -4,6 +4,9 @@ import App from "./App";
 import store from "./app/store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
+import { fetchWorkoutTypes } from "./components/workoutTypes/workoutTypesSlice";
+
+store.dispatch(fetchWorkoutTypes());
 
 ReactDOM.render(
   <React.StrictMode>
