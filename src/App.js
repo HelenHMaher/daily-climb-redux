@@ -16,6 +16,7 @@ import { AddWorkoutForm } from "./components/workouts/AddWorkoutForm";
 import { SingleWorkoutPage } from "./components/workouts/SingleWorkoutPage";
 import { EditWorkoutPage } from "./components/workouts/EditWorkoutPage";
 import { WorkoutTypesList } from "./components/workoutTypes/WorkoutTypesList";
+import { AddWorkoutTypeForm } from "./components/workoutTypes/AddWorkoutTypeForm";
 import { WorkoutTypePage } from "./components/workoutTypes/WorkoutTypePage";
 import { UserPage } from "./components/user/UserPage";
 import { News } from "./components/news";
@@ -61,7 +62,16 @@ function App() {
               />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profile/:userId" component={UserPage} />
-              <Route exact path="/workoutTypes" component={WorkoutTypesList} />
+              <Route
+                exact
+                path="/workoutTypes"
+                render={() => (
+                  <>
+                    {" "}
+                    <AddWorkoutTypeForm /> <WorkoutTypesList />{" "}
+                  </>
+                )}
+              />
               <Route
                 exact
                 path="/workoutTypes/:workoutTypesId"
