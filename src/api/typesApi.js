@@ -26,8 +26,8 @@ module.exports = function (app, db) {
           if (err) return res.json(`could not find entries: ${err}`);
           const workoutTypesArray = workoutTypes.map((entry) => {
             let type = {
-              _id: entry._id,
-              name: entry.workoutType.name,
+              id: entry["_id"],
+              name: entry["workoutType"]["name"],
             };
             return type;
           });

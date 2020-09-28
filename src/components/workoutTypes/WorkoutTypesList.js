@@ -6,11 +6,9 @@ import { selectAllWorkoutTypes } from "./workoutTypesSlice";
 export const WorkoutTypesList = () => {
   const workoutTypes = useSelector(selectAllWorkoutTypes);
 
-  const renderedWorkoutTypes = workoutTypes.map((workoutTypes) => (
-    <li key={workoutTypes.id}>
-      <Link to={`/workoutTypes/${workoutTypes.id}`}>
-        {workoutTypes.workoutType.name}
-      </Link>
+  const renderedWorkoutTypes = workoutTypes.map((workoutType) => (
+    <li key={workoutType.id}>
+      <Link to={`/workoutTypes/${workoutType.id}`}>{workoutType.name}</Link>
     </li>
   ));
 
