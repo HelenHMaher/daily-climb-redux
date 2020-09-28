@@ -12,8 +12,6 @@ export const WorkoutTypesList = () => {
     </li>
   ));
 
-  console.log(renderedWorkoutTypes);
-
   return (
     <section>
       <h2>Workout Types</h2>

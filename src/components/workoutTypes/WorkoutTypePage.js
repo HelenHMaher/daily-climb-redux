@@ -21,6 +21,8 @@ export const WorkoutTypePage = ({ match }) => {
     </li>
   ));
 
+  console.log(workoutType);
+
   return (
     <section>
       <h2>{workoutType.name}</h2>

@@ -74,7 +74,7 @@ function App() {
               />
               <Route
                 exact
-                path="/workoutTypes/:workoutTypesId"
+                path="/workoutTypes/:workoutTypeId"
                 component={WorkoutTypePage}
               />
               <Redirect to="/" />
