@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
 const mongo = require("mongodb").MongoClient;
-const sessionApi = require("./sessionApi");
+const sessionApi = require("./src/api/sessionApi");
 
 mongo.connect(
   process.env.MONGO_URI,

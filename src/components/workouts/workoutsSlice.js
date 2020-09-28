@@ -32,4 +32,4 @@ const workoutsSlice = createSlice({
   extraReducers: {},
 });
 
-export const { workoutUpdated, addNewWorkout } = workoutsSlice.actions;
+export const { workoutUpdated } = workoutsSlice.actions;
