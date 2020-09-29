@@ -40,23 +40,21 @@ module.exports = function (app, db) {
 
   app
     .route("/api/workoutTypes/:id")
-
+    //update entry possibly?//
     .post(function (req, res) {
       const workoutId = req.params.id;
-      const comment = req.body.comment;
-      db.collection("session").findAndModify(
+      const workoutType = { workoutType: req.body.workoutType };
+      db.collection("workoutTypes").findAndModify(
         { _id: new ObjectId(workoutId) },
         {},
-        { $inc: { num_of_comments: 1 }, $push: { comments: comment } },
         { new: true, upsert: false },
         (err, data) => {
           if (err) res.json(`could not update ${workoutId} ${err}`);
-          const workout = {
-            _id: data.value._id,
-            title: data.value.workout_title,
-            comments: data.value.comments,
+          const entry = {
+            name: workoutType.workoutType.name,
+            description: workoutType.workoutType.description,
           };
-          res.json(workout);
+          res.json(entry);
         }
       );
     })
