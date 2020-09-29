@@ -34,9 +34,12 @@ const workoutTypesSlice = createSlice({
   name: "workoutTypes",
   initialState,
   reducers: {
+    //need to create Thunk for this to update database//
     workoutTypeUpdated(state, action) {
       const { id, name, description } = action.payload;
-      const existingWorkoutType = state.entities[id];
+      const existingWorkoutType = state.entities.undefined.find(
+        (workoutType) => workoutType.id === id
+      );
       if (existingWorkoutType) {
         existingWorkoutType.name = name;
         existingWorkoutType.description = description;
@@ -50,7 +53,7 @@ const workoutTypesSlice = createSlice({
 
 export const {
   workoutTypeAdded,
-  workoutTypeUdated,
+  workoutTypeUpdated,
 } = workoutTypesSlice.actions;
 
 export default workoutTypesSlice.reducer;

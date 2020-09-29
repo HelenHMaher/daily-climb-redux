@@ -22,7 +22,7 @@ export const EditWorkoutTypeForm = ({ match }) => {
   const onSaveWorkoutTypeClicked = async () => {
     if (name && description) {
       dispatch(workoutTypeUpdated({ id: workoutTypeId, name, description }));
-      history.pushState(`/workoutTypes/${workoutTypeId}`);
+      history.push(`/workoutTypes/${workoutTypeId}`);
     }
   };
 
