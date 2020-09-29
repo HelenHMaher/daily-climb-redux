@@ -46,8 +46,7 @@ export const AddWorkoutTypeForm = () => {
           onChange={onNameChanged}
         />
         <label htmlFor="workoutTypeDescription">Description</label>
-        <input
-          type="text"
+        <textarea
           id="workoutTypeDescription"
           name="workoutTypeDescription"
           value={description}
@@ -56,7 +55,7 @@ export const AddWorkoutTypeForm = () => {
         <button
           type="button"
           onClick={onSaveWorkoutTypeClicked}
-          disalbe={!canSave}
+          disable={!canSave}
         >
           Save Workout Type
         </button>

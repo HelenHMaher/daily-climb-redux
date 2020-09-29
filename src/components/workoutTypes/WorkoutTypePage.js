@@ -27,6 +27,9 @@ export const WorkoutTypePage = ({ match }) => {
     <section>
       <h2>{workoutType.name}</h2>
       <p className="workoutTypeDescription">{workoutType.description}</p>
+      <Link to={`/editWorkoutTypes/${workoutTypeId}`} className="button">
+        Edit Workout Type
+      </Link>
       <ul>{workoutTitles}</ul>
     </section>
   );
