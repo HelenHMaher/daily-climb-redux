@@ -6,13 +6,14 @@ module.exports = function (app, db) {
 
     .post((req, res) => {
       const workoutType = {
-        workoutType: req.body.name,
+        workoutType: req.body.workoutType,
       };
       db.collection("workoutTypes").insertOne(workoutType, (err, doc) => {
         if (err) res.json(`could not update: ${err}`);
         const entry = {
           _id: doc.insertedId,
           name: workoutType.workoutType.name,
+          description: workoutType.workoutType.description,
         };
         console.log(entry);
         res.redirect("/");
@@ -25,9 +26,11 @@ module.exports = function (app, db) {
         .toArray((err, workoutTypes) => {
           if (err) return res.json(`could not find entries: ${err}`);
           const workoutTypesArray = workoutTypes.map((entry) => {
+            let description = entry["workoutType"]["description"];
             let type = {
               id: entry["_id"],
               name: entry["workoutType"]["name"],
+              description: description ? description : "",
             };
             return type;
           });

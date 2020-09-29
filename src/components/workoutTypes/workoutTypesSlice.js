@@ -16,7 +16,7 @@ export const addNewWorkoutType = createAsyncThunk(
   "workoutTypes/addNewWorkoutType",
   async (initialWorkoutType) => {
     const response = await axios.post("/api/workoutTypes/", {
-      name: initialWorkoutType,
+      workoutType: initialWorkoutType,
     });
     return response;
   }

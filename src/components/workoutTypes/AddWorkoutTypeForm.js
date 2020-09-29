@@ -6,10 +6,12 @@ import { addNewWorkoutType } from "./workoutTypesSlice";
 
 export const AddWorkoutTypeForm = () => {
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [addRequestStatus, setAddRequestStatus] = useState("idle");
 
   const dispatch = useDispatch();
   const onNameChanged = (e) => setName(e.target.value);
+  const onDescriptionChanged = (e) => setDescription(e.target.value);
 
   const canSave = name && addRequestStatus === "idle";
 
@@ -17,9 +19,12 @@ export const AddWorkoutTypeForm = () => {
     if (canSave) {
       try {
         setAddRequestStatus("pending");
-        const resultAction = await dispatch(addNewWorkoutType({ name }));
+        const resultAction = await dispatch(
+          addNewWorkoutType({ name, description })
+        );
         unwrapResult(resultAction);
         setName("");
+        setDescription("");
       } catch (err) {
         console.error("Failed to save workout type:", err);
       } finally {
@@ -39,6 +44,14 @@ export const AddWorkoutTypeForm = () => {
           name="workoutTypeName"
           value={name}
           onChange={onNameChanged}
+        />
+        <label htmlFor="workoutTypeDescription">Description</label>
+        <input
+          type="text"
+          id="workoutTypeDescription"
+          name="workoutTypeDescription"
+          value={description}
+          onChange={onDescriptionChanged}
         />
         <button
           type="button"
