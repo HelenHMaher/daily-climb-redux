@@ -7,7 +7,10 @@ import axios from "axios";
 
 const workoutTypesAdapter = createEntityAdapter();
 
-const initialState = workoutTypesAdapter.getInitialState();
+const initialState = workoutTypesAdapter.getInitialState({
+  status: "idle",
+  error: null,
+});
 
 export const addNewWorkoutType = createAsyncThunk(
   "workoutTypes/addNewWorkoutType",
@@ -38,7 +41,14 @@ const workoutTypesSlice = createSlice({
 
 export default workoutTypesSlice.reducer;
 
-export const {
+export const selectAllWorkoutTypes = (state) => state.workoutTypes.entities;
+
+export const selectWorkoutTypeById = (state, workoutTypeId) =>
+  state.workoutTypes.entities.undefined.find(
+    (workoutType) => workoutType.id === workoutTypeId
+  );
+
+/*export const {
   selectAll: selectAllWorkoutTypes,
   selectById: selectWorkoutTypeById,
-} = workoutTypesAdapter.getSelectors((state) => state.workoutTypes);
+} = workoutTypesAdapter.getSelectors((state) => state.workoutTypes);*/
