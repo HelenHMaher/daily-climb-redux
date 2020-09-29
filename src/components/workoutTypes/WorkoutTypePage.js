@@ -8,7 +8,7 @@ import { selectWorkoutsByWorkoutType } from "../workouts/workoutsSlice";
 export const WorkoutTypePage = ({ match }) => {
   const { workoutTypeId } = match.params;
   const workoutType = useSelector((state) =>
-    selectWorkoutTypeById(state, workoutTypeId)
+    state.workoutTypes.find((workoutType) => workoutType.id === workoutTypeId)
   );
 
   const workoutsForWorkoutType = useSelector((state) =>
@@ -25,7 +25,7 @@ export const WorkoutTypePage = ({ match }) => {
 
   return (
     <section>
-      <h2>{workoutType.name}</h2>
+      <h2>Name: {workoutType.name}</h2>
       <ul>{workoutTitles}</ul>
     </section>
   );
