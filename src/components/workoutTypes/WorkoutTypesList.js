@@ -10,6 +10,9 @@ export const WorkoutTypesList = () => {
   const renderedWorkoutTypes = workoutTypes.undefined.map((workoutType) => (
     <li key={workoutType.id}>
       <Link to={`/workoutTypes/${workoutType.id}`}>{workoutType.name}</Link>
+      <p className="workoutTypeDescription">
+        {workoutType.description.substring(0, 100)}
+      </p>
     </li>
   ));
 

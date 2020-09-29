@@ -25,7 +25,8 @@ export const WorkoutTypePage = ({ match }) => {
 
   return (
     <section>
-      <h2>Name: {workoutType.name}</h2>
+      <h2>{workoutType.name}</h2>
+      <p className="workoutTypeDescription">{workoutType.description}</p>
       <ul>{workoutTitles}</ul>
     </section>
   );
