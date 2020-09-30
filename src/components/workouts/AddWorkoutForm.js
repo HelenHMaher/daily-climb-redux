@@ -41,7 +41,7 @@ export const AddWorkoutForm = () => {
     }
   };
 
-  const workoutTypeOptions = workoutTypes.map((workoutType) => (
+  const workoutTypeOptions = workoutTypes.undefined.map((workoutType) => (
     <option key={workoutType.id} value={workoutType.id}>
       {workoutType.name}
     </option>
