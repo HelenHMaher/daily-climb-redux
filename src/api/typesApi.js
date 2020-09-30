@@ -5,16 +5,10 @@ module.exports = function (app, db) {
     .route("/api/workoutTypes/")
 
     .post((req, res) => {
-      const workoutType = {
-        workoutType: req.body.workoutType,
-      };
-      db.collection("workoutTypes").insertOne(workoutType, (err, doc) => {
+      const workoutType = req.body.workoutType;
+      db.collection("workoutTypes").insertOne(workoutType, (err, data) => {
         if (err) res.json(`could not update: ${err}`);
-        const entry = {
-          name: workoutType.workoutType.name,
-          description: workoutType.workoutType.description,
-        };
-        console.log(entry);
+        console.log(data.ops);
         res.redirect("/");
       });
     })
@@ -25,10 +19,10 @@ module.exports = function (app, db) {
         .toArray((err, workoutTypes) => {
           if (err) return res.json(`could not find entries: ${err}`);
           const workoutTypesArray = workoutTypes.map((entry) => {
-            let description = entry["workoutType"]["description"];
+            let description = entry["description"];
             let type = {
               id: entry["_id"],
-              name: entry["workoutType"]["name"],
+              name: entry["name"],
               description: description ? description : "",
             };
             return type;
@@ -42,16 +36,17 @@ module.exports = function (app, db) {
 
     .post(function (req, res) {
       const workoutId = req.params.id;
-      const workoutType = { workoutType: req.body.workoutType };
-      db.collection("workoutTypes").findAndModify(
+      const workoutType = req.body.workoutType;
+      db.collection("workoutTypes").findOneAndUpdate(
+        { _id: new ObjectId(workoutId) },
         {
-          query: { _id: new ObjectId(workoutId) },
-          update: {
-            name: workoutType.workoutType.name,
-            description: workoutType.workoutType.description,
+          $set: {
+            name: workoutType.name,
+            description: workoutType.description,
           },
-          new: true,
-          upsert: false,
+        },
+        {
+          returnNewDocument: true,
         },
         (err, data) => {
           if (err) res.json(`could not update ${workoutId} ${err}`);

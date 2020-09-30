@@ -31,7 +31,7 @@ export const EditWorkoutTypeForm = ({ match }) => {
   };
 
   const onDeleteWorkoutTypeClicked = async () => {
-    dispatch(deleteWorkoutType());
+    dispatch(deleteWorkoutType({ id: workoutTypeId }));
   };
 
   return (
