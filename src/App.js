@@ -60,7 +60,7 @@ function App() {
               />
               <Route
                 exact
-                path="/editWorkouts/:workoutId"
+                path="/editWorkout/:workoutId"
                 component={EditWorkoutPage}
               />
               <Route exact path="/login" component={Login} />

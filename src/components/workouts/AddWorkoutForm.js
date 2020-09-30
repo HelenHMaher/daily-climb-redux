@@ -59,7 +59,7 @@ export const AddWorkoutForm = () => {
           value={name}
           onChange={onNameChanged}
         />
-        <label htmlFor="workoutType">Workout Type"</label>
+        <label htmlFor="workoutType">Workout Type</label>
         <select
           id="workoutType"
           value={workoutTypeId}
