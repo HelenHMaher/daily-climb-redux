@@ -40,7 +40,7 @@ module.exports = function (app, db) {
 
   app
     .route("/api/workoutTypes/:id")
-    //update entry possibly?//
+
     .post(function (req, res) {
       const workoutId = req.params.id;
       const workoutType = { workoutType: req.body.workoutType };
@@ -61,13 +61,13 @@ module.exports = function (app, db) {
 
     .delete(function (req, res) {
       const workoutId = req.params.id;
-      db.collection("session").findOneAndDelete(
+      db.collection("workoutTypes").findOneAndDelete(
         { _id: new ObjectId(workoutId) },
-        (err, doc) => {
+        (err, data) => {
           if (err) {
-            res.send(`could not delete ${workoutId} ${err}`);
+            res.json(`could not delete ${workoutId} ${err}`);
           } else {
-            doc.value
+            data.value
               ? res.json(`delete successful`)
               : res.json(`no workout exists`);
           }

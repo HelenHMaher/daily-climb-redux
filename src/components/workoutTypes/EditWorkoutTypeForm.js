@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { workoutTypeUpdated, selectWorkoutTypeById } from "./workoutTypesSlice";
+import {
+  editWorkoutType,
+  selectWorkoutTypeById,
+  deleteWorkoutType,
+} from "./workoutTypesSlice";
 
 export const EditWorkoutTypeForm = ({ match }) => {
   const { workoutTypeId } = match.params;
@@ -21,9 +25,13 @@ export const EditWorkoutTypeForm = ({ match }) => {
 
   const onSaveWorkoutTypeClicked = async () => {
     if (name && description) {
-      dispatch(workoutTypeUpdated({ id: workoutTypeId, name, description }));
+      dispatch(editWorkoutType({ id: workoutTypeId, name, description }));
       history.push(`/workoutTypes/${workoutTypeId}`);
     }
+  };
+
+  const onDeleteWorkoutTypeClicked = async () => {
+    dispatch(deleteWorkoutType());
   };
 
   return (
@@ -47,6 +55,9 @@ export const EditWorkoutTypeForm = ({ match }) => {
         />
         <button type="button" onClick={onSaveWorkoutTypeClicked}>
           Save Workout Type
+        </button>
+        <button type="button" onClick={onDeleteWorkoutTypeClicked}>
+          Delete Workout Type
         </button>
       </form>
     </section>

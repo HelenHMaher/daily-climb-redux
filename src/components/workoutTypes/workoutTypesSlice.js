@@ -32,6 +32,14 @@ export const editWorkoutType = createAsyncThunk(
   }
 );
 
+export const deleteWorkoutType = createAsyncThunk(
+  "workoutTypes/deleteWorkoutType",
+  async () => {
+    const response = await axios.delete("/api/workoutTypes/:id");
+    return response;
+  }
+);
+
 export const fetchWorkoutTypes = createAsyncThunk(
   "workoutTypes/fetchWorkoutTypes",
   async () => {
@@ -44,7 +52,6 @@ const workoutTypesSlice = createSlice({
   name: "workoutTypes",
   initialState,
   reducers: {
-    //need to create Thunk for this to update database//
     workoutTypeUpdated(state, action) {
       const { id, name, description } = action.payload;
       const existingWorkoutType = state.entities.undefined.find(
