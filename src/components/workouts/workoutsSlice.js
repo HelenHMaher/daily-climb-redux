@@ -34,16 +34,7 @@ export const fetchWorkouts = createAsyncThunk(
 const workoutsSlice = createSlice({
   name: "workouts",
   initialState,
-  reducers: {
-    workoutUpdated(state, action) {
-      const { id, title, content } = action.payload;
-      const existingWorkout = state.entities[id];
-      if (existingWorkout) {
-        existingWorkout.title = title;
-        existingWorkout.content = content;
-      }
-    },
-  },
+  reducers: {},
   extraReducers: {
     [fetchWorkouts.pending]: (state, action) => {
       state.status = "loading";
@@ -60,15 +51,12 @@ const workoutsSlice = createSlice({
   },
 });
 
-export const { workoutAdded, workoutUpdated } = workoutsSlice.actions;
-
 export default workoutsSlice.reducer;
 
-export const {
-  selectAll: selectAllWorkouts,
-  selectById: selectWorkoutsById,
-  selectIds: selectWorkoutIds,
-} = workoutsAdapter.getSelectors((state) => state.workouts);
+export const selectAllWorkouts = (state) => state.workouts.entities;
+
+export const selectAllWorkoutsById = (state, workoutId) =>
+  state.workouts.entities.undefined.find((workout) => workout.id === workoutId);
 
 export const selectWorkoutsByWorkoutType = createSelector(
   [selectAllWorkouts, (state, workoutTypeId) => workoutTypeId],

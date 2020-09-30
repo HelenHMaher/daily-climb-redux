@@ -6,20 +6,20 @@ import { addNewWorkout } from "./workoutsSlice";
 import { selectAllWorkoutTypes } from "../workoutTypes/workoutTypesSlice";
 
 export const AddWorkoutForm = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [workoutTypeId, setWorkoutTypeId] = useState("");
   const [addRequestStatus, setAddRequestStatus] = useState("idle");
 
   const dispatch = useDispatch();
   const workoutTypes = useSelector(selectAllWorkoutTypes);
 
-  const onTitleChanged = (e) => setTitle(e.target.value);
-  const onContentChanged = (e) => setContent(e.target.value);
+  const onNameChanged = (e) => setName(e.target.value);
+  const onDescriptionChanged = (e) => setDescription(e.target.value);
   const onWorkoutTypeChanged = (e) => setWorkoutTypeId(e.target.value);
 
   const canSave =
-    [title, content, workoutTypeId].every(Boolean) &&
+    [name, description, workoutTypeId].every(Boolean) &&
     addRequestStatus === "idle";
 
   const onSaveWorkoutClicked = async () => {
@@ -27,11 +27,11 @@ export const AddWorkoutForm = () => {
       try {
         setAddRequestStatus("pending");
         const resultAction = await dispatch(
-          addNewWorkout({ title, content, workoutType: workoutTypeId })
+          addNewWorkout({ name, description, workoutType: workoutTypeId })
         );
         unwrapResult(resultAction);
-        setTitle("");
-        setContent("");
+        setName("");
+        setDescription("");
         setWorkoutTypeId("");
       } catch (err) {
         console.error("Failed to save post:", err);
@@ -51,13 +51,13 @@ export const AddWorkoutForm = () => {
     <section>
       <h2>Add New Workouts</h2>
       <form>
-        <label htmlFor="workoutTitle">Workout Title</label>
+        <label htmlFor="workoutName">Workout Name</label>
         <input
           type="text"
-          id="workoutTitle"
-          name="workoutTitle"
-          value={title}
-          onChange={onTitleChanged}
+          id="workoutName"
+          name="workoutName"
+          value={name}
+          onChange={onNameChanged}
         />
         <label htmlFor="workoutType">Workout Type"</label>
         <select
@@ -68,12 +68,12 @@ export const AddWorkoutForm = () => {
           <option value=""></option>
           {workoutTypeOptions}
         </select>
-        <label htmlFor="workoutContent">Content:</label>
+        <label htmlFor="workoutDescription">Description</label>
         <textarea
-          id="workoutContent"
-          name="workoutContent"
-          value={content}
-          onChange={onContentChanged}
+          id="workoutDescription"
+          name="workoutDescription"
+          value={description}
+          onChange={onDescriptionChanged}
         />
         <button type="button" onClick={onSaveWorkoutClicked} disable={!canSave}>
           Save Workout
