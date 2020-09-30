@@ -30,9 +30,9 @@ export const EditWorkoutPage = ({ match }) => {
   };
 
   const workoutTypeOptions = workoutTypes.undefined.map((workoutType) => (
-    <options key={workoutType.id} value={workoutType.id}>
+    <option key={workoutType.id} value={workoutType.id}>
       {workoutType.name}
-    </options>
+    </option>
   ));
 
   return (

@@ -30,4 +30,27 @@ module.exports = function (app, db) {
           res.json(workoutsArray);
         });
     });
+
+  app
+    .route("/api/workouts/:id")
+
+    .post(function (req, res) {
+      const workoutId = req.params.id;
+      const workout = req.body.workout;
+      db.collection("workouts").findOneAndUpdate(
+        { _id: new ObjectId(workoutId) },
+        {
+          $set: {
+            name: workout.name,
+            description: workout.description,
+            type: workout.type,
+          },
+        },
+        { returnNewDocument: true },
+        (err, data) => {
+          if (err) res.json(`could not update ${workoutId} ${err}`);
+          res.json(data);
+        }
+      );
+    });
 };

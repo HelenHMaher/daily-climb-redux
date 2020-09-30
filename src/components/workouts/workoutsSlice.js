@@ -22,6 +22,16 @@ export const addNewWorkout = createAsyncThunk(
   }
 );
 
+export const editWorkout = createAsyncThunk(
+  "workouts/editWorkout",
+  async (initialWorkout) => {
+    const response = await axios.post(`/api/workouts/${initialWorkout.id}`, {
+      workout: initialWorkout,
+    });
+    return response;
+  }
+);
+
 export const fetchWorkouts = createAsyncThunk(
   "workouts/fetchWorkouts",
   async () => {
