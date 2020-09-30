@@ -2,7 +2,6 @@ import {
   createSlice,
   createAsyncThunk,
   createEntityAdapter,
-  createSelector,
 } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -55,11 +54,10 @@ export default workoutsSlice.reducer;
 
 export const selectAllWorkouts = (state) => state.workouts.entities;
 
-export const selectAllWorkoutsById = (state, workoutId) =>
+export const selectWorkoutById = (state, workoutId) =>
   state.workouts.entities.undefined.find((workout) => workout.id === workoutId);
 
-export const selectWorkoutsByWorkoutType = createSelector(
-  [selectAllWorkouts, (state, workoutTypeId) => workoutTypeId],
-  (workouts, workoutTypeId) =>
-    workouts.filter((workouts) => workouts.workoutType === workoutTypeId)
-);
+export const selectWorkoutsByWorkoutType = (state, workoutTypeId) =>
+  state.workouts.entities.undefined.find(
+    (workout) => workout.type === workoutTypeId
+  );

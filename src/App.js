@@ -15,10 +15,12 @@ import { WorkoutsList } from "./components/workouts/WorkoutsList";
 import { AddWorkoutForm } from "./components/workouts/AddWorkoutForm";
 import { SingleWorkoutPage } from "./components/workouts/SingleWorkoutPage";
 import { EditWorkoutPage } from "./components/workouts/EditWorkoutPage";
+
 import { WorkoutTypesList } from "./components/workoutTypes/WorkoutTypesList";
 import { AddWorkoutTypeForm } from "./components/workoutTypes/AddWorkoutTypeForm";
-import { WorkoutTypePage } from "./components/workoutTypes/WorkoutTypePage";
+import { SingleWorkoutTypePage } from "./components/workoutTypes/SingleWorkoutTypePage";
 import { EditWorkoutTypeForm } from "./components/workoutTypes/EditWorkoutTypeForm";
+
 import { UserPage } from "./components/user/UserPage";
 import { News } from "./components/news";
 
@@ -76,7 +78,7 @@ function App() {
               <Route
                 exact
                 path="/workoutTypes/:workoutTypeId"
-                component={WorkoutTypePage}
+                component={SingleWorkoutTypePage}
               />
               <Route
                 exact

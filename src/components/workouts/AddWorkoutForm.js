@@ -27,7 +27,7 @@ export const AddWorkoutForm = () => {
       try {
         setAddRequestStatus("pending");
         const resultAction = await dispatch(
-          addNewWorkout({ name, description, workoutType: workoutTypeId })
+          addNewWorkout({ name, description, type: workoutTypeId })
         );
         unwrapResult(resultAction);
         setName("");
