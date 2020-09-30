@@ -11,7 +11,6 @@ module.exports = function (app, db) {
       db.collection("workoutTypes").insertOne(workoutType, (err, doc) => {
         if (err) res.json(`could not update: ${err}`);
         const entry = {
-          _id: doc.insertedId,
           name: workoutType.workoutType.name,
           description: workoutType.workoutType.description,
         };
@@ -45,16 +44,18 @@ module.exports = function (app, db) {
       const workoutId = req.params.id;
       const workoutType = { workoutType: req.body.workoutType };
       db.collection("workoutTypes").findAndModify(
-        { _id: new ObjectId(workoutId) },
-        {},
-        { new: true, upsert: false },
-        (err, data) => {
-          if (err) res.json(`could not update ${workoutId} ${err}`);
-          const entry = {
+        {
+          query: { _id: new ObjectId(workoutId) },
+          update: {
             name: workoutType.workoutType.name,
             description: workoutType.workoutType.description,
-          };
-          res.json(entry);
+          },
+          new: true,
+          upsert: false,
+        },
+        (err, data) => {
+          if (err) res.json(`could not update ${workoutId} ${err}`);
+          res.json(data);
         }
       );
     })

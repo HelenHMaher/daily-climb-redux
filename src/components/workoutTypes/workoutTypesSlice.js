@@ -34,7 +34,7 @@ export const editWorkoutType = createAsyncThunk(
 
 export const deleteWorkoutType = createAsyncThunk(
   "workoutTypes/deleteWorkoutType",
-  async () => {
+  async (initialWorkoutType) => {
     const response = await axios.delete("/api/workoutTypes/:id");
     return response;
   }
