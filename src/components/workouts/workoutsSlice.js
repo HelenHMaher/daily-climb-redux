@@ -6,9 +6,7 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const workoutsAdapter = createEntityAdapter({
-  sortComparer: (a, b) => b.date.localeCompare(a.date),
-});
+const workoutsAdapter = createEntityAdapter();
 
 const initialState = workoutsAdapter.getInitialState({
   status: "idle",
@@ -18,18 +16,18 @@ const initialState = workoutsAdapter.getInitialState({
 export const addNewWorkout = createAsyncThunk(
   "workouts/addNewWorkout",
   async (initialWorkout) => {
-    const response = await axios.post("/api/workouts", {
+    const response = await axios.post("/api/workouts/", {
       workout: initialWorkout,
     });
-    return response.post;
+    return response;
   }
 );
 
 export const fetchWorkouts = createAsyncThunk(
   "workouts/fetchWorkouts",
   async () => {
-    const response = await axios.get("/api/workouts");
-    return response.workouts;
+    const response = await axios.get("/api/workouts/");
+    return response;
   }
 );
 
