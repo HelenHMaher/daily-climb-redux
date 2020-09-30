@@ -58,6 +58,6 @@ export const selectWorkoutById = (state, workoutId) =>
   state.workouts.entities.undefined.find((workout) => workout.id === workoutId);
 
 export const selectWorkoutsByWorkoutType = (state, workoutTypeId) =>
-  state.workouts.entities.undefined.find(
+  state.workouts.entities.undefined.filter(
     (workout) => workout.type === workoutTypeId
   );

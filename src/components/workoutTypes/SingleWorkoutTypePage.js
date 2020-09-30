@@ -15,11 +15,9 @@ export const SingleWorkoutTypePage = ({ match }) => {
     selectWorkoutsByWorkoutType(state, workoutTypeId)
   );
 
-  console.log(workoutsForWorkoutType);
-
   const workoutTitles = workoutsForWorkoutType.map((workout) => (
     <li key={workout.id}>
-      <Link to={`/workouts/${workout.id}`}>{workout.title}</Link>
+      <Link to={`/workouts/${workout.id}`}>{workout.name}</Link>
     </li>
   ));
 
