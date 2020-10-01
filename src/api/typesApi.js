@@ -21,7 +21,7 @@ module.exports = function (app, db) {
           const workoutTypesArray = workoutTypes.map((entry) => {
             let description = entry["description"];
             let type = {
-              id: entry["_id"],
+              id: entry["id"],
               name: entry["name"],
               description: description ? description : "",
             };
@@ -38,7 +38,7 @@ module.exports = function (app, db) {
       const workoutId = req.params.id;
       const workoutType = req.body.workoutType;
       db.collection("workoutTypes").findOneAndUpdate(
-        { _id: new ObjectId(workoutId) },
+        { id: workoutId },
         {
           $set: {
             name: workoutType.name,
@@ -58,7 +58,7 @@ module.exports = function (app, db) {
     .delete(function (req, res) {
       const workoutId = req.params.id;
       db.collection("workoutTypes").findOneAndDelete(
-        { _id: new ObjectId(workoutId) },
+        { id: workoutId },
         (err, data) => {
           if (err) {
             res.json(`could not delete ${workoutId} ${err}`);

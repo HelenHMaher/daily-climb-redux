@@ -56,11 +56,25 @@ export const fetchWorkoutTypes = createAsyncThunk(
 const workoutTypesSlice = createSlice({
   name: "workoutTypes",
   initialState,
-  reducers: {},
+  reducers: {
+    workoutTypeAdded(state, action) {
+      state.entities.undefined.push(action.payload);
+    },
+    workoutTypeUpdated(state, action) {
+      const { id, name, description } = action.payload;
+      const existingWorkoutType = state.entities.undefined[id];
+      if (existingWorkoutType) {
+        existingWorkoutType.name = name;
+        existingWorkoutType.description = description;
+      }
+    },
+  },
   extraReducers: {
     [fetchWorkoutTypes.fulfilled]: workoutTypesAdapter.setAll,
   },
 });
+
+export const { workoutTypeAdded } = workoutTypesSlice.actions;
 
 export default workoutTypesSlice.reducer;
 

@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import {
   editWorkoutType,
+  workoutTypeUpdated,
   selectWorkoutTypeById,
   deleteWorkoutType,
 } from "./workoutTypesSlice";
@@ -26,6 +27,7 @@ export const EditWorkoutTypeForm = ({ match }) => {
   const onSaveWorkoutTypeClicked = async () => {
     if (name && description) {
       dispatch(editWorkoutType({ id: workoutTypeId, name, description }));
+      dispatch(workoutTypeUpdated({ id: workoutTypeId, name, description }));
       history.push(`/workoutTypes/${workoutTypeId}`);
     }
   };
