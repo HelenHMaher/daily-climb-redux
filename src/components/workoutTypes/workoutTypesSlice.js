@@ -63,11 +63,12 @@ const workoutTypesSlice = createSlice({
     workoutTypeUpdated(state, action) {
       const { id, name, description } = action.payload;
       const existingWorkoutType = state.entities.undefined.filter(
-        (x) => x.id === id
+        (x) => x["id"] === id
       );
-      if (existingWorkoutType.length > 0) {
-        existingWorkoutType.name = name;
-        existingWorkoutType.description = "0";
+      if (existingWorkoutType) {
+        console.log("found");
+        existingWorkoutType[0]["name"] = name;
+        existingWorkoutType[0]["description"] = description;
       }
     },
   },
