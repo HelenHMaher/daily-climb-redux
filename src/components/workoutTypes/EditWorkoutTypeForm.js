@@ -36,6 +36,7 @@ export const EditWorkoutTypeForm = ({ match }) => {
   const onDeleteWorkoutTypeClicked = async () => {
     dispatch(deleteWorkoutType({ id: workoutTypeId }));
     dispatch(workoutTypeDeleted({ id: workoutTypeId }));
+    history.push("/workoutTypes");
   };
 
   return (
