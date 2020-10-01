@@ -71,6 +71,15 @@ const workoutTypesSlice = createSlice({
         existingWorkoutType[0]["description"] = description;
       }
     },
+    workoutTypeDeleted(state, action) {
+      const { id } = action.payload;
+      const array = state.entities.undefined;
+      const existingWorkoutType = array.filter((x) => x["id"] === id);
+      if (existingWorkoutType) {
+        const index = array.indexOf(existingWorkoutType);
+        array.splice(index, 1);
+      }
+    },
   },
   extraReducers: {
     [fetchWorkoutTypes.fulfilled]: workoutTypesAdapter.setAll,
@@ -80,6 +89,7 @@ const workoutTypesSlice = createSlice({
 export const {
   workoutTypeAdded,
   workoutTypeUpdated,
+  workoutTypeDeleted,
 } = workoutTypesSlice.actions;
 
 export default workoutTypesSlice.reducer;

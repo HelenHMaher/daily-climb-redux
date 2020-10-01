@@ -7,6 +7,7 @@ import {
   workoutTypeUpdated,
   selectWorkoutTypeById,
   deleteWorkoutType,
+  workoutTypeDeleted,
 } from "./workoutTypesSlice";
 
 export const EditWorkoutTypeForm = ({ match }) => {
@@ -34,6 +35,7 @@ export const EditWorkoutTypeForm = ({ match }) => {
 
   const onDeleteWorkoutTypeClicked = async () => {
     dispatch(deleteWorkoutType({ id: workoutTypeId }));
+    dispatch(workoutTypeDeleted({ id: workoutTypeId }));
   };
 
   return (
