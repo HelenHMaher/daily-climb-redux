@@ -26,7 +26,12 @@ export const AddWorkoutForm = () => {
     if (canSave) {
       try {
         setAddRequestStatus("pending");
-        const payload = { name, description, id: nanoid() };
+        const payload = {
+          name,
+          description,
+          type: workoutTypeId,
+          id: nanoid(),
+        };
         const resultAction = await dispatch(addNewWorkout(payload));
         unwrapResult(resultAction);
         setName("");

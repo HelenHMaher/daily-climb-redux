@@ -56,13 +56,14 @@ const workoutsSlice = createSlice({
       state.entities.undefied.push(action.payload);
     },
     workoutUpdated(state, action) {
-      const { id, name, description } = action.payload;
-      const exisitingWorkout = state.entities.undefined.filter(
+      const { id, name, type, description } = action.payload;
+      const existingWorkout = state.entities.undefined.filter(
         (x) => x["id"] === id
       );
-      if (exisitingWorkout) {
-        exisitingWorkout[0]["name"] = name;
-        exisitingWorkout[0]["description"] = description;
+      if (existingWorkout) {
+        existingWorkout[0]["name"] = name;
+        existingWorkout[0]["description"] = description;
+        existingWorkout[0]["type"] = type;
       }
     },
     workoutDeleted(state, action) {
@@ -90,6 +91,12 @@ const workoutsSlice = createSlice({
     [addNewWorkout.fulfilled]: workoutsAdapter.addOne,
   },
 });
+
+export const {
+  workoutAdded,
+  workoutUpdated,
+  workoutDeleted,
+} = workoutsSlice.reducer;
 
 export default workoutsSlice.reducer;
 
