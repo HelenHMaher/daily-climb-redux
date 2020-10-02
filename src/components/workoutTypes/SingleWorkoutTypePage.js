@@ -23,11 +23,14 @@ export const SingleWorkoutTypePage = ({ match }) => {
 
   return (
     <section>
-      <h2>{workoutType.name}</h2>
-      <p className="workoutTypeDescription">{workoutType.description}</p>
+      <h2>Workout Type Name: {workoutType.name}</h2>
+      <p className="workoutTypeDescription">
+        Description: {workoutType.description}
+      </p>
       <Link to={`/editWorkoutTypes/${workoutTypeId}`} className="button">
         Edit Workout Type
       </Link>
+      <h3>Workouts</h3>
       <ul>{workoutTitles}</ul>
     </section>
   );

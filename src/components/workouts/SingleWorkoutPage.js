@@ -15,12 +15,14 @@ export const SingleWorkoutPage = ({ match }) => {
 
   return (
     <section>
-      <h2>{workout.name}</h2>
-      <h3>{workoutType.name}</h3>
+      <h2>Workout Name: {workout.name}</h2>
+      <h3>Workout Type: {workoutType.name}</h3>
       <Link to={`/workoutTypes/${workout.type}`} className="button">
-        Details
+        Workout Type Details
       </Link>
-      <p className="workoutDescription">{workout.description}</p>
+      <p className="workoutDescription">
+        Workout Description: {workout.description}
+      </p>
       <Link to={`/editWorkout/${workoutId}`} className="button">
         Edit Workout
       </Link>
