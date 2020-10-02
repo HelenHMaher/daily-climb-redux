@@ -17,7 +17,7 @@ export const SingleWorkoutPage = ({ match }) => {
     <section>
       <h2>{workout.name}</h2>
       <h3>{workoutType.name}</h3>
-      <Link to={`/workoutType/${workout.type}`} className="button">
+      <Link to={`/workoutTypes/${workout.type}`} className="button">
         Details
       </Link>
       <p className="workoutDescription">{workout.description}</p>

@@ -53,7 +53,7 @@ const workoutsSlice = createSlice({
   initialState,
   reducers: {
     workoutAdded(state, action) {
-      state.entities.undefied.push(action.payload);
+      state.entities.undefined.push(action.payload);
     },
     workoutUpdated(state, action) {
       const { id, name, type, description } = action.payload;
@@ -77,7 +77,7 @@ const workoutsSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchWorkouts.pending]: (state, action) => {
+    /*[fetchWorkouts.pending]: (state, action) => {
       state.status = "loading";
     },
     [fetchWorkouts.fulfilled]: (state, action) => {
@@ -87,8 +87,8 @@ const workoutsSlice = createSlice({
     [fetchWorkouts.rejected]: (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
-    },
-    [addNewWorkout.fulfilled]: workoutsAdapter.addOne,
+    },*/
+    [fetchWorkouts.fulfilled]: workoutsAdapter.setAll,
   },
 });
 
@@ -96,7 +96,7 @@ export const {
   workoutAdded,
   workoutUpdated,
   workoutDeleted,
-} = workoutsSlice.reducer;
+} = workoutsSlice.actions;
 
 export default workoutsSlice.reducer;
 
