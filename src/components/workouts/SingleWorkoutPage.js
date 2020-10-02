@@ -46,7 +46,7 @@ export const SingleWorkoutPage = ({ match }) => {
       <Link to={`/workoutTypes/${workout.type}`} className="button">
         Workout Type Details
       </Link>
-      <p clasName="workoutDate">{format(workout.date)}</p>
+      <p className="workoutDate">{workout.date}</p>
       <p className="workoutDescription">
         Workout Description: {workout.description}
       </p>

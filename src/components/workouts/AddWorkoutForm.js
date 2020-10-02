@@ -12,7 +12,7 @@ export const AddWorkoutForm = () => {
   const [description, setDescription] = useState("");
   const [workoutTypeId, setWorkoutTypeId] = useState("");
   const [addRequestStatus, setAddRequestStatus] = useState("idle");
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
 
   const history = useHistory();
   const dispatch = useDispatch();
