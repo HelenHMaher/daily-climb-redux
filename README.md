@@ -1,1 +1,3 @@
----- need to update state as well as the DB
+---- create exercises page
+---- default to home
+---- create user loggin

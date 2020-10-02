@@ -1,5 +1,10 @@
 import React from "react";
 
 export const News = () => {
-  return <h2>News</h2>;
+  return (
+    <section>
+      <h2>News</h2>
+      <p>Welcome to My Daily Climb!!!</p>
+    </section>
+  );
 };
