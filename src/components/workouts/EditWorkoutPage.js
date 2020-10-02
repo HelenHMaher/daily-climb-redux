@@ -33,14 +33,14 @@ export const EditWorkoutPage = ({ match }) => {
       const payload = { id: workoutId, name, description, type };
       dispatch(editWorkout(payload));
       dispatch(workoutUpdated(payload));
-      history.push(`/workout/${workoutId}`);
+      history.push(`/workouts/${workoutId}`);
     }
   };
 
   const onDeleteWorkoutClicked = async () => {
     dispatch(deleteWorkout({ id: workoutId }));
     dispatch(workoutDeleted({ id: workoutId }));
-    history.push("/workout");
+    history.push("/workouts");
   };
 
   const workoutTypeOptions = workoutTypes.undefined.map((workoutType) => (
@@ -79,7 +79,6 @@ export const EditWorkoutPage = ({ match }) => {
         <button type="button" onClick={onDeleteWorkoutClicked}>
           Delete Workout
         </button>
-        }
       </form>
     </section>
   );
