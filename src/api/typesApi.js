@@ -1,5 +1,3 @@
-const ObjectId = require("mongodb").ObjectId;
-
 module.exports = function (app, db) {
   app
     .route("/api/workoutTypes/")

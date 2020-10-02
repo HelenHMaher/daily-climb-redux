@@ -32,6 +32,14 @@ export const editWorkout = createAsyncThunk(
   }
 );
 
+export const deleteWorkout = createAsyncThunk(
+  "workouts/deleteWorkout",
+  async (initialWorkout) => {
+    const response = await axios.delete(`/api/workouts/${initialWorkout.id}`);
+    return response;
+  }
+);
+
 export const fetchWorkouts = createAsyncThunk(
   "workouts/fetchWorkouts",
   async () => {
@@ -43,7 +51,30 @@ export const fetchWorkouts = createAsyncThunk(
 const workoutsSlice = createSlice({
   name: "workouts",
   initialState,
-  reducers: {},
+  reducers: {
+    workoutAdded(state, action) {
+      state.entities.undefied.push(action.payload);
+    },
+    workoutUpdated(state, action) {
+      const { id, name, description } = action.payload;
+      const exisitingWorkout = state.entities.undefined.filter(
+        (x) => x["id"] === id
+      );
+      if (exisitingWorkout) {
+        exisitingWorkout[0]["name"] = name;
+        exisitingWorkout[0]["description"] = description;
+      }
+    },
+    workoutDeleted(state, action) {
+      const { id } = action.payload;
+      const array = state.entities.undefined;
+      const existingWorkout = array.filter((x) => x["id"] === id);
+      if (existingWorkout) {
+        const index = array.indexOf(existingWorkout);
+        array.splice(index, 1);
+      }
+    },
+  },
   extraReducers: {
     [fetchWorkouts.pending]: (state, action) => {
       state.status = "loading";

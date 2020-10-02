@@ -1,5 +1,3 @@
-const ObjectId = require("mongodb").ObjectId;
-
 module.exports = function (app, db) {
   app
     .route("/api/workouts/")
@@ -20,7 +18,7 @@ module.exports = function (app, db) {
           if (err) return res.json(`could not find entries: ${err}`);
           const workoutsArray = workouts.map((entry) => {
             let workout = {
-              id: entry["_id"],
+              id: entry["id"],
               name: entry["name"],
               type: entry["type"],
               description: entry["description"],
@@ -38,7 +36,7 @@ module.exports = function (app, db) {
       const workoutId = req.params.id;
       const workout = req.body.workout;
       db.collection("workouts").findOneAndUpdate(
-        { _id: new ObjectId(workoutId) },
+        { id: workoutId },
         {
           $set: {
             name: workout.name,
@@ -50,6 +48,22 @@ module.exports = function (app, db) {
         (err, data) => {
           if (err) res.json(`could not update ${workoutId} ${err}`);
           res.json(data);
+        }
+      );
+    })
+
+    .delete(function (req, res) {
+      const workoutId = req.params.id;
+      db.collection("workouts").findOneAndDelete(
+        { id: workoutId },
+        (err, data) => {
+          if (err) {
+            res.json(`could not delete ${workoutId} ${err}`);
+          } else {
+            data.value
+              ? res.json(`delete successful`)
+              : res.json(`no workout exists`);
+          }
         }
       );
     });

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { unwrapResult } from "@reduxjs/toolkit";
+import { nanoid, unwrapResult } from "@reduxjs/toolkit";
 
-import { addNewWorkout } from "./workoutsSlice";
+import { addNewWorkout, workoutAdded } from "./workoutsSlice";
 import { selectAllWorkoutTypes } from "../workoutTypes/workoutTypesSlice";
 
 export const AddWorkoutForm = () => {
@@ -26,13 +26,13 @@ export const AddWorkoutForm = () => {
     if (canSave) {
       try {
         setAddRequestStatus("pending");
-        const resultAction = await dispatch(
-          addNewWorkout({ name, description, type: workoutTypeId })
-        );
+        const payload = { name, description, id: nanoid() };
+        const resultAction = await dispatch(addNewWorkout(payload));
         unwrapResult(resultAction);
         setName("");
         setDescription("");
         setWorkoutTypeId("");
+        dispatch(workoutAdded(payload));
       } catch (err) {
         console.error("Failed to save post:", err);
       } finally {

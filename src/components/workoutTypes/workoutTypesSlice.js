@@ -66,7 +66,6 @@ const workoutTypesSlice = createSlice({
         (x) => x["id"] === id
       );
       if (existingWorkoutType) {
-        console.log("found");
         existingWorkoutType[0]["name"] = name;
         existingWorkoutType[0]["description"] = description;
       }

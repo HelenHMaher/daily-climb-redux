@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { selectAllWorkoutTypes } from "../workoutTypes/workoutTypesSlice";
-import { editWorkout, selectWorkoutById } from "./workoutsSlice";
+import {
+  editWorkout,
+  workoutUpdated,
+  deleteWorkout,
+  workoutDeleted,
+  selectWorkoutById,
+} from "./workoutsSlice";
 
 export const EditWorkoutPage = ({ match }) => {
   const { workoutId } = match.params;
@@ -24,9 +30,17 @@ export const EditWorkoutPage = ({ match }) => {
 
   const onSaveWorkoutClicked = async () => {
     if (name && type && description) {
-      dispatch(editWorkout({ id: workoutId, name, description, type }));
+      const payload = { id: workoutId, name, description, type };
+      dispatch(editWorkout(payload));
+      dispatch(workoutUpdated(payload));
       history.push(`/workout/${workoutId}`);
     }
+  };
+
+  const onDeleteWorkoutClicked = async () => {
+    dispatch(deleteWorkout({ id: workoutId }));
+    dispatch(workoutDeleted({ id: workoutId }));
+    history.push("/workout");
   };
 
   const workoutTypeOptions = workoutTypes.undefined.map((workoutType) => (
@@ -62,6 +76,10 @@ export const EditWorkoutPage = ({ match }) => {
         <button type="button" onClick={onSaveWorkoutClicked}>
           Save Workout
         </button>
+        <button type="button" onClick={onDeleteWorkoutClicked}>
+          Delete Workout
+        </button>
+        }
       </form>
     </section>
   );
