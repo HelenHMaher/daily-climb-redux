@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid, unwrapResult } from "@reduxjs/toolkit";
+import { useHistory } from "react-router-dom";
+import { format } from "date-fns";
 
 import { addNewWorkout, workoutAdded } from "./workoutsSlice";
 import { selectAllWorkoutTypes } from "../workoutTypes/workoutTypesSlice";
@@ -10,38 +12,46 @@ export const AddWorkoutForm = () => {
   const [description, setDescription] = useState("");
   const [workoutTypeId, setWorkoutTypeId] = useState("");
   const [addRequestStatus, setAddRequestStatus] = useState("idle");
+  const [date, setDate] = useState(new Date());
 
+  const history = useHistory();
   const dispatch = useDispatch();
   const workoutTypes = useSelector(selectAllWorkoutTypes);
 
   const onNameChanged = (e) => setName(e.target.value);
   const onDescriptionChanged = (e) => setDescription(e.target.value);
   const onWorkoutTypeChanged = (e) => setWorkoutTypeId(e.target.value);
+  const onDateChanged = (e) => setDate(e.target.value);
 
   const canSave =
     [name, description, workoutTypeId].every(Boolean) &&
     addRequestStatus === "idle";
 
+  const payload = {
+    name,
+    description,
+    date,
+    type: workoutTypeId,
+    id: nanoid(),
+  };
+
   const onSaveWorkoutClicked = async () => {
     if (canSave) {
       try {
         setAddRequestStatus("pending");
-        const payload = {
-          name,
-          description,
-          type: workoutTypeId,
-          id: nanoid(),
-        };
+
         const resultAction = await dispatch(addNewWorkout(payload));
         unwrapResult(resultAction);
         setName("");
         setDescription("");
         setWorkoutTypeId("");
+        setDate(format(new Date(), "yyyy-MM-dd"));
         dispatch(workoutAdded(payload));
       } catch (err) {
         console.error("Failed to save post:", err);
       } finally {
         setAddRequestStatus("idle");
+        history.push(`/workouts/${payload.id}`);
       }
     }
   };
@@ -73,6 +83,14 @@ export const AddWorkoutForm = () => {
           <option value=""></option>
           {workoutTypeOptions}
         </select>
+        <label htmlFor="workoutDate">Workout Date</label>
+        <input
+          type="date"
+          id="workoutDate"
+          name="workoutDate"
+          value={date}
+          onChange={onDateChanged}
+        />
         <label htmlFor="workoutDescription">Description</label>
         <textarea
           id="workoutDescription"

@@ -22,6 +22,7 @@ module.exports = function (app, db) {
               name: entry["name"],
               type: entry["type"],
               description: entry["description"],
+              date: entry["date"],
             };
             return workout;
           });
@@ -42,6 +43,7 @@ module.exports = function (app, db) {
             name: workout.name,
             description: workout.description,
             type: workout.type,
+            date: workout.date,
           },
         },
         { returnNewDocument: true },

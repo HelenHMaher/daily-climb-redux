@@ -19,6 +19,7 @@ export const EditWorkoutPage = ({ match }) => {
   const [name, setName] = useState(workout.name);
   const [description, setDescription] = useState(workout.description);
   const [type, setType] = useState(workout.type);
+  const [date, setDate] = useState(workout.date);
 
   const workoutTypes = useSelector(selectAllWorkoutTypes);
 
@@ -27,10 +28,11 @@ export const EditWorkoutPage = ({ match }) => {
   const onNameChanged = (e) => setName(e.target.value);
   const onDescriptionChanged = (e) => setDescription(e.target.value);
   const onTypeChanged = (e) => setType(e.target.value);
+  const onDateChanged = (e) => setDate(e.target.value);
 
   const onSaveWorkoutClicked = async () => {
     if (name && type && description) {
-      const payload = { id: workoutId, name, description, type };
+      const payload = { id: workoutId, name, description, type, date };
       dispatch(editWorkout(payload));
       dispatch(workoutUpdated(payload));
       history.push(`/workouts/${workoutId}`);
@@ -66,6 +68,14 @@ export const EditWorkoutPage = ({ match }) => {
           <option value=""></option>
           {workoutTypeOptions}
         </select>
+        <label htmlFor="workoutDate">Workout Date</label>
+        <input
+          type="date"
+          id="workoutDate"
+          name="workoutDate"
+          value={date}
+          onChange={onDateChanged}
+        />
         <label htmlFor="workoutDescription">Description</label>
         <textarea
           id="workoutDescription"

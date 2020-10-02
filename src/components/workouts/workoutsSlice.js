@@ -56,7 +56,7 @@ const workoutsSlice = createSlice({
       state.entities.undefined.push(action.payload);
     },
     workoutUpdated(state, action) {
-      const { id, name, type, description } = action.payload;
+      const { id, name, type, description, date } = action.payload;
       const existingWorkout = state.entities.undefined.filter(
         (x) => x["id"] === id
       );
@@ -64,6 +64,7 @@ const workoutsSlice = createSlice({
         existingWorkout[0]["name"] = name;
         existingWorkout[0]["description"] = description;
         existingWorkout[0]["type"] = type;
+        existingWorkout[0]["date"] = date;
       }
     },
     workoutDeleted(state, action) {
