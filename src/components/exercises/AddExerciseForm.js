@@ -30,10 +30,6 @@ export const AddExerciseForm = () => {
       dispatch(exerciseAdded(payload));
     } catch (err) {
       console.error("Failed to save post:", err);
-    } finally {
-      // selected workout needs to be saved in the state history.push(`/workouts/${}`)
-      // should this be in the workoutSlice??
-    }
   };
 
   return (

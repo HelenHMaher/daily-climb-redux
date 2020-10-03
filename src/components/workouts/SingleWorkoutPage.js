@@ -8,6 +8,7 @@ import { nanoid, unwrapResult } from "@reduxjs/toolkit";
 import { workoutAdded, addNewWorkout } from "./workoutsSlice";
 import { useHistory } from "react-router-dom";
 import { format } from "date-fns";
+import { AddExerciseForm, ExerciseList } from "../exercises/AddExerciseForm";
 
 export const SingleWorkoutPage = ({ match }) => {
   const { workoutId } = match.params;
@@ -56,6 +57,8 @@ export const SingleWorkoutPage = ({ match }) => {
       <button type="button" onClick={onCopyWorkoutClicked}>
         Copy Workout
       </button>
+      <AddExerciseForm />
+      <ExerciseList />
     </section>
   );
 };

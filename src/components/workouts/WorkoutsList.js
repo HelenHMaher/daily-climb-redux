@@ -27,7 +27,7 @@ export const WorkoutsList = () => {
 
   return (
     <section>
-      <h2>WorkoutsList</h2>
+      <h2>Workouts List</h2>
       <ul>{renderedWorkouts}</ul>
     </section>
   );
