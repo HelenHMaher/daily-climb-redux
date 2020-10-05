@@ -13,9 +13,9 @@ const initialState = exercisesAdapter.getInitialState({
 });
 
 export const addNewExercise = createAsyncThunk(
-  "exercises/addNewExercise",
+  "exercises/createNewExercise",
   async (initialExercise) => {
-    const response = await axios.put("/api/exercises/", {
+    const response = await axios.post("/api/exercises/", {
       exercise: initialExercise,
     });
     return response;

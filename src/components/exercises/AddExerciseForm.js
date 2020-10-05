@@ -8,7 +8,6 @@ export const AddExerciseForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const onNameChanged = (e) => setName(e.target.value);
@@ -30,8 +29,8 @@ export const AddExerciseForm = () => {
       dispatch(exerciseAdded(payload));
     } catch (err) {
       console.error("Failed to save post:", err);
+    }
   };
-
   return (
     <section>
       <h2>Add New Exercise</h2>
