@@ -89,7 +89,8 @@ export const {
 
 export default exerciseSlice.reducer;
 
-export const selectAllExercises = (state) => state.exercises.entities;
+export const selectAllExercises = (state) =>
+  state.exercises ? state.exercises.entities.undefined : [];
 
 export const selectExerciseById = (state, exerciseId) =>
   state.exercises.entities.undefined.find(

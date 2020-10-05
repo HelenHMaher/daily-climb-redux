@@ -6,7 +6,7 @@ import { selectAllExercises } from "./exerciseSlice";
 export const ExerciseList = () => {
   const exercises = useSelector(selectAllExercises);
 
-  const renderedExercises = exercises.undefined.map((exercise) => {
+  const renderedExercises = exercises.map((exercise) => {
     return (
       <li key={exercise.id}>
         <Link to={`exercises/${exercise.id}`}>{exercise.name}</Link>

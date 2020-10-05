@@ -6,6 +6,7 @@ const app = express();
 const mongo = require("mongodb").MongoClient;
 const typesApi = require("./src/api/typesApi");
 const workoutsApi = require("./src/api/workoutsApi");
+const exercisesApi = require("./src/api/exercisesApi");
 
 mongo.connect(
   process.env.MONGO_URI,
@@ -33,6 +34,7 @@ mongo.connect(
 
       typesApi(app, db);
       workoutsApi(app, db);
+      exercisesApi(app, db);
 
       app.listen(process.env.PORT || 3000, () =>
         console.log("Server is running...")

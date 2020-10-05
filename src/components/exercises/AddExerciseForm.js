@@ -22,7 +22,7 @@ export const AddExerciseForm = () => {
   const payload = {
     name,
     description,
-    type,
+    type: workoutTypeId,
     id: nanoid(),
   };
 
