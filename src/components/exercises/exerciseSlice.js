@@ -25,9 +25,17 @@ export const addNewExercise = createAsyncThunk(
 export const editExercise = createAsyncThunk(
   "exercises/editExercises",
   async (initialExercise) => {
-    const response = await axios.post(`/api/exercises/${initialExercise}`, {
+    const response = await axios.post(`/api/exercises/${initialExercise.id}`, {
       exercise: initialExercise,
     });
+    return response;
+  }
+);
+
+export const deleteExercise = createAsyncThunk(
+  "exercises/deleteExercise",
+  async (initialExercise) => {
+    const response = await axios.delete(`/api/exercises/${initialExercise.id}`);
     return response;
   }
 );
