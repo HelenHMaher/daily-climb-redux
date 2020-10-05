@@ -1,23 +1,29 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { unwrapResult } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
+import { nanoid, unwrapResult } from "@reduxjs/toolkit";
 
 import { addNewExercise, exerciseAdded } from "./exerciseSlice";
+import { selectAllWorkoutTypes } from "../workoutTypes/workoutTypesSlice";
 
 export const AddExerciseForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [workoutTypeId, setWorkoutTypeId] = useState("");
 
   const dispatch = useDispatch();
+  const workoutTypes = useSelector(selectAllWorkoutTypes);
 
   const onNameChanged = (e) => setName(e.target.value);
   const onDescriptionChanged = (e) => setDescription(e.target.value);
+  const onWorkoutTypeChanged = (e) => setWorkoutTypeId(e.target.value);
 
-  const canSave = [name, description].every(Boolean);
+  const canSave = [name, workoutTypeId, description].every(Boolean);
 
   const payload = {
     name,
     description,
+    type,
+    id: nanoid(),
   };
 
   const onSaveExerciseClicked = async () => {
@@ -26,11 +32,19 @@ export const AddExerciseForm = () => {
       unwrapResult(resultAction);
       setName("");
       setDescription("");
+      setWorkoutTypeId("");
       dispatch(exerciseAdded(payload));
     } catch (err) {
       console.error("Failed to save post:", err);
     }
   };
+
+  const workoutTypeOptions = workoutTypes.undefined.map((workoutType) => (
+    <option key={workoutType.id} value={workoutType.id}>
+      {workoutType.name}
+    </option>
+  ));
+
   return (
     <section>
       <h2>Add New Exercise</h2>
@@ -43,6 +57,15 @@ export const AddExerciseForm = () => {
           value={name}
           onChange={onNameChanged}
         />
+        <label htmlFor="workoutType">Workout Type</label>
+        <select
+          id="workoutType"
+          value={workoutTypeId}
+          onChange={onWorkoutTypeChanged}
+        >
+          <option value=""></option>
+          {workoutTypeOptions}
+        </select>
         <label htmlFor="exerciseDescription">Exercise Description</label>
         <textarea
           id="exerciseDescription"
