@@ -9,7 +9,7 @@ export const ExerciseList = ({ workoutTypeId }) => {
     selectExerciseByWorkoutType(state, workoutTypeId)
   );
 
-  console.log(exercises);
+  console.log(exercises); //is returning undefined
 
   const renderedExercises = exercises.map((exercise) => {
     return (
