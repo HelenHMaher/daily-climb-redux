@@ -1,10 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectAllExercises } from "./exerciseSlice";
+import { selectExerciseByWorkoutType } from "./exerciseSlice";
+import PropTypes from "prop-types";
 
-export const ExerciseList = () => {
-  const exercises = useSelector(selectAllExercises);
+export const ExerciseList = ({ workoutTypeId }) => {
+  const exercises = useSelector((state) =>
+    selectExerciseByWorkoutType(state, workoutTypeId)
+  );
 
   console.log(exercises);
 
@@ -25,4 +28,8 @@ export const ExerciseList = () => {
       <ul>{renderedExercises}</ul>
     </section>
   );
+};
+
+ExerciseList.propTypes = {
+  workoutTypeId: PropTypes.string.isRequired,
 };
