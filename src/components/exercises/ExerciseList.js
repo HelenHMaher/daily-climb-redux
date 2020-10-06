@@ -6,6 +6,8 @@ import { selectAllExercises } from "./exerciseSlice";
 export const ExerciseList = () => {
   const exercises = useSelector(selectAllExercises);
 
+  console.log(exercises);
+
   const renderedExercises = exercises.map((exercise) => {
     return (
       <li key={exercise.id}>
