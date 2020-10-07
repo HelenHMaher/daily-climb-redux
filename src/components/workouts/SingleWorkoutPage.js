@@ -9,7 +9,7 @@ import { workoutAdded, addNewWorkout } from "./workoutsSlice";
 import { useHistory } from "react-router-dom";
 import { format } from "date-fns";
 import { AddExerciseForm } from "../exercises/AddExerciseForm";
-import { ExerciseList } from "../exercises/ExerciseLista";
+import { ExerciseList } from "../exercises/ExerciseList";
 
 export const SingleWorkoutPage = ({ match }) => {
   const { workoutId } = match.params;

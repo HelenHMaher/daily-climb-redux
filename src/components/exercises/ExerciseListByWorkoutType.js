@@ -32,6 +32,6 @@ export const ExerciseListByWorkoutType = ({ workoutTypeId }) => {
   );
 };
 
-ExerciseList.propTypes = {
+ExerciseListByWorkoutType.propTypes = {
   workoutTypeId: PropTypes.string.isRequired,
 };
