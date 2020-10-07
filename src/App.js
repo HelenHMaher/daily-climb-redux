@@ -23,6 +23,7 @@ import { SingleWorkoutTypePage } from "./components/workoutTypes/SingleWorkoutTy
 import { EditWorkoutTypeForm } from "./components/workoutTypes/EditWorkoutTypeForm";
 
 import { SingleExercisePage } from "./components/exercises/SingleExercisePage";
+import { EditExerciseForm } from "./components/exercises/EditExerciseForm";
 
 import { UserPage } from "./components/user/UserPage";
 import { News } from "./components/news";
@@ -92,6 +93,11 @@ function App() {
                 exact
                 path="/exercises/:exerciseId"
                 component={SingleExercisePage}
+              />
+              <Route
+                exact
+                path="/editExercises/:exerciseId"
+                component={EditExerciseForm}
               />
               <Redirect to="/" />
             </Switch>

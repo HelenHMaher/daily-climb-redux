@@ -18,7 +18,13 @@ export const SingleExercisePage = ({ match }) => {
     <section>
       <h2>Exercise Name: {exercise.name}</h2>
       <p className="exerciseDescription">Description: {exercise.description}</p>
-      <Link to={`/workoutTypes/${exercise.type}`}>{workoutType.name}</Link>
+      <section>
+        <p className="workoutType">Workout Type</p>
+        <Link to={`/workoutTypes/${exercise.type}`}>{workoutType.name}</Link>
+      </section>
+      <Link to={`/editExercises/${exerciseId}`} className="button">
+        Edit Exercise
+      </Link>
     </section>
   );
 };
