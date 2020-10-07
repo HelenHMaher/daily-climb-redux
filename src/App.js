@@ -11,6 +11,7 @@ import {
 
 import { Navbar } from "./app/Navbar";
 import { Login } from "./components/user/Login";
+
 import { WorkoutsList } from "./components/workouts/WorkoutsList";
 import { AddWorkoutForm } from "./components/workouts/AddWorkoutForm";
 import { SingleWorkoutPage } from "./components/workouts/SingleWorkoutPage";
@@ -20,6 +21,8 @@ import { WorkoutTypesList } from "./components/workoutTypes/WorkoutTypesList";
 import { AddWorkoutTypeForm } from "./components/workoutTypes/AddWorkoutTypeForm";
 import { SingleWorkoutTypePage } from "./components/workoutTypes/SingleWorkoutTypePage";
 import { EditWorkoutTypeForm } from "./components/workoutTypes/EditWorkoutTypeForm";
+
+import { SingleExercisePage } from "./components/exercises/SingleExercisePage";
 
 import { UserPage } from "./components/user/UserPage";
 import { News } from "./components/news";
@@ -84,6 +87,11 @@ function App() {
                 exact
                 path="/editWorkoutTypes/:workoutTypeId"
                 component={EditWorkoutTypeForm}
+              />
+              <Route
+                exact
+                path="/exercises/:exerciseId"
+                component={SingleExercisePage}
               />
               <Redirect to="/" />
             </Switch>

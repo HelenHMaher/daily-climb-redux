@@ -16,7 +16,7 @@ export const ExerciseList = ({ workoutTypeId }) => {
   const renderedExercises = exercises.map((exercise) => {
     return (
       <li key={exercise.id}>
-        <Link to={`exercises/${exercise.id}`}>{exercise.name}</Link>
+        <Link to={`/exercises/${exercise.id}`}>{exercise.name}</Link>
         <p className="exerciseDescription">
           {exercise.description.substring(0, 100)}
         </p>
