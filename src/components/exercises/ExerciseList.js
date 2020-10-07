@@ -1,24 +1,24 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectExerciseByWorkoutType } from "./exerciseSlice";
-import PropTypes from "prop-types";
+import { selectAllExercises } from "./exerciseSlice";
+import { selectAllWorkoutTypes } from "../workoutTypes/workoutTypesSlice";
 
-export const ExerciseList = ({ workoutTypeId }) => {
-  const exercises = useSelector((state) =>
-    selectExerciseByWorkoutType(state, workoutTypeId)
-  );
+export const ExerciseList = () => {
+  const exercises = useSelector(selectAllExercises);
 
-  console.log(workoutTypeId);
+  const workoutTypes = useSelector(selectAllWorkoutTypes);
 
-  console.log(exercises); //is returning undefined
+  const renderedExercises = exercises.undefined.map((exercise) => {
+    const workoutType = workoutTypes.undefined.find(
+      (type) => type.id === exercise.type
+    );
 
-  const renderedExercises = exercises.map((exercise) => {
     return (
       <li key={exercise.id}>
         <Link to={`/exercises/${exercise.id}`}>{exercise.name}</Link>
         <p className="exerciseDescription">
-          {exercise.description.substring(0, 100)}
+          ({workoutType.name}) {exercise.description.substring(0, 100)}
         </p>
       </li>
     );
@@ -30,8 +30,4 @@ export const ExerciseList = ({ workoutTypeId }) => {
       <ul>{renderedExercises}</ul>
     </section>
   );
-};
-
-ExerciseList.propTypes = {
-  workoutTypeId: PropTypes.string.isRequired,
 };
