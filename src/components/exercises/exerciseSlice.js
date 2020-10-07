@@ -97,8 +97,7 @@ export const selectExerciseById = (state, exerciseId) =>
     (exercise) => exercise.id === exerciseId
   );
 
-export const selectExerciseByWorkoutType = (state, workoutTypeId) => {
+export const selectExerciseByWorkoutType = (state, workoutTypeId) =>
   state.exercises.entities.undefined.filter(
     (exercise) => exercise.type === workoutTypeId
   );
-};
