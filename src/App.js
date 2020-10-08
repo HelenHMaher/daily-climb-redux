@@ -22,6 +22,7 @@ import { AddWorkoutTypeForm } from "./components/workoutTypes/AddWorkoutTypeForm
 import { SingleWorkoutTypePage } from "./components/workoutTypes/SingleWorkoutTypePage";
 import { EditWorkoutTypeForm } from "./components/workoutTypes/EditWorkoutTypeForm";
 
+import { ExerciseList } from "./components/exercises/ExerciseList";
 import { SingleExercisePage } from "./components/exercises/SingleExercisePage";
 import { EditExerciseForm } from "./components/exercises/EditExerciseForm";
 
@@ -89,6 +90,7 @@ function App() {
                 path="/editWorkoutTypes/:workoutTypeId"
                 component={EditWorkoutTypeForm}
               />
+              <Route exact path="/exercises" component={ExerciseList} />
               <Route
                 exact
                 path="/exercises/:exerciseId"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -7,6 +7,12 @@ import { selectWorkoutsByWorkoutType } from "../workouts/workoutsSlice";
 import { ExerciseListByWorkoutType } from "../exercises/ExerciseListByWorkoutType";
 
 export const SingleWorkoutTypePage = ({ match }) => {
+  const [showExercises, setShowExercises] = useState(true);
+  const [showWorkouts, setShowWorkouts] = useState(true);
+
+  const clickShowExercises = () => setShowExercises(!showExercises);
+  const clickShowWorkouts = () => setShowWorkouts(!showWorkouts);
+
   const { workoutTypeId } = match.params;
   const workoutType = useSelector((state) =>
     selectWorkoutTypeById(state, workoutTypeId)
@@ -19,6 +25,9 @@ export const SingleWorkoutTypePage = ({ match }) => {
   const workoutTitles = workoutsForWorkoutType.map((workout) => (
     <li key={workout.id}>
       <Link to={`/workouts/${workout.id}`}>{workout.name}</Link>
+      <p className="workoutDescription">
+        {workout.description.substring(0, 100)}
+      </p>
     </li>
   ));
 
@@ -31,7 +40,13 @@ export const SingleWorkoutTypePage = ({ match }) => {
       <Link to={`/editWorkoutTypes/${workoutTypeId}`} className="button">
         Edit Workout Type
       </Link>
-      {/*show either workouts or exercise templates*/}
+      <button type="button" onClick={clickShowExercises}>
+        {showExercises ? "Hide" : "Show"} Exercises
+      </button>
+      <button type="button" onClick={clickShowWorkouts}>
+        {showWorkouts ? "Hide" : "Show"} Workouts
+      </button>
+      <h3>Exercises</h3>
       <ExerciseListByWorkoutType workoutTypeId={workoutTypeId} />
       <h3>Workouts</h3>
       <ul>{workoutTitles}</ul>
