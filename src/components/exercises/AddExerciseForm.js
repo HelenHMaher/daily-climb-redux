@@ -5,6 +5,8 @@ import { nanoid, unwrapResult } from "@reduxjs/toolkit";
 import { addNewExercise, exerciseAdded } from "./exerciseSlice";
 import { selectAllWorkoutTypes } from "../workoutTypes/workoutTypesSlice";
 
+//add props so can specify workouttype from redirect from Single Workout Type Page
+
 export const AddExerciseForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");

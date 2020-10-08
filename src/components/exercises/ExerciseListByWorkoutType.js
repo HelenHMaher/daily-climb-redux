@@ -9,10 +9,6 @@ export const ExerciseListByWorkoutType = ({ workoutTypeId }) => {
     selectExerciseByWorkoutType(state, workoutTypeId)
   );
 
-  console.log(workoutTypeId);
-
-  console.log(exercises); //is returning undefined
-
   const renderedExercises = exercises.map((exercise) => {
     return (
       <li key={exercise.id}>

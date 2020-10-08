@@ -14,6 +14,8 @@ export const SingleExercisePage = ({ match }) => {
     selectWorkoutTypeById(state, exercise.type)
   );
 
+  //add button to add to workout --either to existing workout or create new workout!!
+
   return (
     <section>
       <h2>Exercise Name: {exercise.name}</h2>
