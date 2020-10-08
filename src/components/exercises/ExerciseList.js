@@ -17,6 +17,12 @@ export const ExerciseList = () => {
   const displayAllExercises = () => setDisplayAll(!displayAll);
   const onTypeChanged = (e) => setType(e.target.value);
 
+  const workoutTypeOptions = workoutTypes.undefined.map((workoutType) => (
+    <option key={workoutType.id} value={workoutType.id}>
+      {workoutType.name}
+    </option>
+  ));
+
   const renderedExercises = exercises.map((exercise) => {
     const workoutType = workoutTypes.undefined.find(
       (type) => type.id === exercise.type
@@ -47,6 +53,14 @@ export const ExerciseList = () => {
       <section>
         <AddExerciseForm />
         <h2>Exercise List: </h2>
+        <button type="button" onClick={displayAllExercises}>
+          Display All Workout Types
+        </button>
+        <label htmlFor="workoutType">Workout Type</label>
+        <select id="workoutType" value={type} onChange={onTypeChanged}>
+          <option value=""></option>
+          {workoutTypeOptions}
+        </select>
         <ExerciseListByWorkoutType workoutTypeId={type} />
       </section>
     );
