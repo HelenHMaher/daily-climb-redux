@@ -26,7 +26,6 @@ export const ExerciseListByWorkoutType = ({ workoutTypeId }) => {
 
   return (
     <section>
-      <h2>Exercise List</h2>
       <ul>{renderedExercises}</ul>
     </section>
   );
