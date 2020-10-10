@@ -31,6 +31,8 @@ export const AddExerciseEntry = ({ workout, exercise }) => {
   const onSaveSetClicked = () => {
     const newSet = { reps: currentSetReps, weight: currentSetWeight };
     setSetArray(setArray.push(newSet));
+    setCurrentSetReps("");
+    setCurrentSetWeight("");
   };
 
   const onSaveExerciseClicked = () => {
@@ -40,6 +42,35 @@ export const AddExerciseEntry = ({ workout, exercise }) => {
   return (
     <section>
       <h2>Add New Exercise</h2>
+      <label htmlFor="reps">Reps</label>
+      <input
+        type="text"
+        id="reps"
+        name="reps"
+        value={currentSetReps}
+        onChange={onCurrentSetRepsChanged}
+      />
+      <label htmlFor="weight">Weight</label>
+      <input
+        type="text"
+        id="weight"
+        name="weight"
+        value={currentSetWeight}
+        onChange={onCurrentSetWeightChanged}
+      />
+      <button type="button" onClick={onSaveSetClicked}>
+        Save Set
+      </button>
+      <label htmlFor="notes">Notes</label>
+      <textarea
+        id="notes"
+        name="notes"
+        value={notes}
+        onChange={onNotesChanged}
+      />
+      <button type="button" onClick={onSaveExerciseClicked}>
+        Save Exercises
+      </button>
     </section>
   );
 };

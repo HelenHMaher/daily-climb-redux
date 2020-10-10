@@ -52,6 +52,9 @@ const workoutsSlice = createSlice({
   name: "workouts",
   initialState,
   reducers: {
+    exerciseAdded(state, action) {
+      const //needs more work
+    },
     workoutAdded(state, action) {
       state.entities.undefined.push(action.payload);
     },
