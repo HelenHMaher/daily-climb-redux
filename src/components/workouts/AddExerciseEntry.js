@@ -15,6 +15,7 @@
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
 import { exerciseAdded } from "./workoutsSlice";
 
 export const AddExerciseEntry = ({ workout, exercise }) => {
@@ -35,8 +36,15 @@ export const AddExerciseEntry = ({ workout, exercise }) => {
     setCurrentSetWeight("");
   };
 
+  const exerciseObject = {
+    sets: setArray,
+    notes,
+    date: new Date().toISOString(),
+    id: nanoid(),
+  };
+
   const onSaveExerciseClicked = () => {
-    dispatch(exerciseAdded({ sets: setArray, notes }));
+    dispatch(exerciseAdded({ exerciseObject, workout }));
   };
 
   return (

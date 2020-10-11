@@ -53,7 +53,13 @@ const workoutsSlice = createSlice({
   initialState,
   reducers: {
     exerciseAdded(state, action) {
-      const //needs more work
+      const { exerciseObject, workout } = action.payload;
+      const existingWorkout = state.entities.undefined.filter(
+        (x) => x["id"] === workout
+      );
+      if (existingWorkout) {
+        existingWorkout.exercises[exerciseObject]++;
+      }
     },
     workoutAdded(state, action) {
       state.entities.undefined.push(action.payload);
