@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import { format } from "date-fns";
 
 import { AddExerciseEntry } from "./AddExerciseEntry";
+import { ListExercises } from "./ListExercises";
 
 export const SingleWorkoutPage = ({ match }) => {
   const { workoutId } = match.params;
@@ -56,6 +57,7 @@ export const SingleWorkoutPage = ({ match }) => {
         Edit Workout
       </Link>
       <AddExerciseEntry workout={workoutId} />
+      <ListExercises />
       <button type="button" onClick={onCopyWorkoutClicked}>
         Copy Workout
       </button>

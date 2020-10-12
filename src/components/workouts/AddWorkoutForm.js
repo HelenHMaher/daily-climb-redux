@@ -33,6 +33,7 @@ export const AddWorkoutForm = () => {
     date,
     type: workoutTypeId,
     id: nanoid(),
+    exercises: [],
   };
 
   const onSaveWorkoutClicked = async () => {

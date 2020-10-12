@@ -23,6 +23,7 @@ module.exports = function (app, db) {
               type: entry["type"],
               description: entry["description"],
               date: entry["date"],
+              exercises: entry["exercises"],
             };
             return workout;
           });
