@@ -48,6 +48,16 @@ export const fetchWorkouts = createAsyncThunk(
   }
 );
 
+export const addExercise = createAsyncThunk(
+  "workouts/addExercise",
+  async (exerciseObject, workout) => {
+    const response = await axios.put(`/api/workouts/exercises/${workout}`, {
+      exercise: exerciseObject,
+    });
+    return response;
+  }
+);
+
 const workoutsSlice = createSlice({
   name: "workouts",
   initialState,

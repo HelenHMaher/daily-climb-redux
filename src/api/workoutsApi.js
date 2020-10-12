@@ -69,4 +69,17 @@ module.exports = function (app, db) {
         }
       );
     });
+  app.route("api/workouts/exercises/:id").put(function (req, res) {
+    const workoutId = req.params.id;
+    const exercise = req.body.exercise;
+    db.collection("workouts").findOneAndUpdate(
+      { id: workoutId },
+      { $push: { exercises: { exercise } } },
+      { returnNewDocument: true },
+      (err, data) => {
+        if (err) res.json(`could not add exercise to ${workoutId} ${err}`);
+        res.json(data);
+      }
+    );
+  });
 };
