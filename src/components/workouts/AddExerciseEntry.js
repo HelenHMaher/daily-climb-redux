@@ -16,9 +16,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-import { exerciseAdded } from "./workoutsSlice";
+import { exerciseAdded, addExercise } from "./workoutsSlice";
 
-export const AddExerciseEntry = ({ workout, exercise }) => {
+export const AddExerciseEntry = ({ workout }) => {
   const dispatch = useDispatch();
   const [setArray, setSetArray] = useState([]);
   const [currentSetReps, setCurrentSetReps] = useState("");
@@ -45,6 +45,7 @@ export const AddExerciseEntry = ({ workout, exercise }) => {
 
   const onSaveExerciseClicked = () => {
     dispatch(exerciseAdded({ exerciseObject, workout }));
+    dispatch(addExercise({ exerciseObject, workout }));
   };
 
   return (

@@ -45,7 +45,7 @@ export const ExerciseList = () => {
         <button type="button" onClick={displayAllExercises}>
           Display By Workout Type
         </button>
-        <ul>{renderedExercises}</ul>}
+        <ul>{renderedExercises}</ul>
       </section>
     );
   } else {

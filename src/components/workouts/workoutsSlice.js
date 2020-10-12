@@ -116,6 +116,7 @@ export const {
   workoutAdded,
   workoutUpdated,
   workoutDeleted,
+  exerciseAdded,
 } = workoutsSlice.actions;
 
 export default workoutsSlice.reducer;
