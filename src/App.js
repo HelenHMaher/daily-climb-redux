@@ -9,7 +9,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import { Navbar } from "./app/Navbar";
+import { Navbar } from "./app/Navbar/Navbar.js";
 import { Login } from "./components/user/Login";
 
 import { WorkoutsList } from "./components/workouts/WorkoutsList";
