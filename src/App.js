@@ -35,73 +35,75 @@ function App() {
       <>
         <GlobalStyles />
         <Router>
-          <Navbar />
-          <div className="App">
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={() => (
-                  <React.Fragment>
-                    <News />
-                  </React.Fragment>
-                )}
-              />
-              <Route
-                exact
-                path="/workouts"
-                render={() => (
-                  <>
-                    <AddWorkoutForm />
-                    <WorkoutsList />
-                  </>
-                )}
-              />
-              <Route
-                exact
-                path="/workouts/:workoutId"
-                component={SingleWorkoutPage}
-              />
-              <Route
-                exact
-                path="/editWorkout/:workoutId"
-                component={EditWorkoutPage}
-              />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/profile/:userId" component={UserPage} />
-              <Route
-                exact
-                path="/workoutTypes"
-                render={() => (
-                  <>
-                    {" "}
-                    <AddWorkoutTypeForm /> <WorkoutTypesList />{" "}
-                  </>
-                )}
-              />
-              <Route
-                exact
-                path="/workoutTypes/:workoutTypeId"
-                component={SingleWorkoutTypePage}
-              />
-              <Route
-                exact
-                path="/editWorkoutTypes/:workoutTypeId"
-                component={EditWorkoutTypeForm}
-              />
-              <Route exact path="/exercises" component={ExerciseList} />
-              <Route
-                exact
-                path="/exercises/:exerciseId"
-                component={SingleExercisePage}
-              />
-              <Route
-                exact
-                path="/editExercises/:exerciseId"
-                component={EditExerciseForm}
-              />
-              <Redirect to="/" />
-            </Switch>
+          <div className="Container">
+            <Navbar />
+            <div className="App">
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  render={() => (
+                    <React.Fragment>
+                      <News />
+                    </React.Fragment>
+                  )}
+                />
+                <Route
+                  exact
+                  path="/workouts"
+                  render={() => (
+                    <>
+                      <AddWorkoutForm />
+                      <WorkoutsList />
+                    </>
+                  )}
+                />
+                <Route
+                  exact
+                  path="/workouts/:workoutId"
+                  component={SingleWorkoutPage}
+                />
+                <Route
+                  exact
+                  path="/editWorkout/:workoutId"
+                  component={EditWorkoutPage}
+                />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/profile/:userId" component={UserPage} />
+                <Route
+                  exact
+                  path="/workoutTypes"
+                  render={() => (
+                    <>
+                      {" "}
+                      <AddWorkoutTypeForm /> <WorkoutTypesList />{" "}
+                    </>
+                  )}
+                />
+                <Route
+                  exact
+                  path="/workoutTypes/:workoutTypeId"
+                  component={SingleWorkoutTypePage}
+                />
+                <Route
+                  exact
+                  path="/editWorkoutTypes/:workoutTypeId"
+                  component={EditWorkoutTypeForm}
+                />
+                <Route exact path="/exercises" component={ExerciseList} />
+                <Route
+                  exact
+                  path="/exercises/:exerciseId"
+                  component={SingleExercisePage}
+                />
+                <Route
+                  exact
+                  path="/editExercises/:exerciseId"
+                  component={EditExerciseForm}
+                />
+                <Redirect to="/" />
+              </Switch>
+            </div>
           </div>
         </Router>
       </>

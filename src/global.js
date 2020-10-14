@@ -9,13 +9,14 @@ html {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   color: white;
-  background: url(${climbGear});
+  background-image: url(${climbGear});
+  background-attachment: fixed;
   background-size: cover;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   justify-content: center;
-  align-items: center;
+  
   height: 100vh;
   width: 100vw;
 }
@@ -31,6 +32,10 @@ html {
     color: black;
   }
 
+}
+
+.Container {
+  align-items: center;
 }
 
 `;
