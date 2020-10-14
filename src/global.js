@@ -31,11 +31,100 @@ html {
   h2 {
     color: black;
   }
+  ul {
+    list-style: none;
+  }
+  li::before {
+    content: 	"\u25b6";
+    color: rgba(50,50,50,.7);
+    margin-right: 10px;
+  }
+
+  a {
+    color: rgba(50, 50, 50, 1);
+    text-decoration: none;
+    margin: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+
+    &:hover {
+      color: rgba(0, 0, 0, 1);
+    }
+  }
+
+  input {
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid;
+    border-color: rgba(50, 50, 50, 0.7);
+    border-radius: 5px;
+    padding: 0px 10px;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    &:focus {
+      transform: scale(1.01);
+      border-color: black;
+      color: black;
+    }
+  }
+
+  textarea {
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid;
+    border-color: rgba(50, 50, 50, 0.7);
+    border-radius: 5px;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    &:focus {
+      transform: scale(1.01);
+      border-color: black;
+      color: black;
+    }
+  }
+
+  select {
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid;
+    border-color: rgba(50, 50, 50, 0.7);
+    border-radius: 5px;
+    padding: 0px 10px;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    &:focus {
+      transform: scale(1.01);
+      border-color: black;
+      color: black;
+    }
+  }
 
 }
 
 .Container {
   align-items: center;
 }
+
+
+
+button {
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid;
+    border-color: rgba(50, 50, 50, 0.7);
+    border-radius: 5px;
+    padding: 0px 10px;
+    height: 40px;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    &:hover {
+      transform: scale(1.01);
+      border-color: black;
+      color: black;
+    }
+    &:active {
+      transform: scale(0.9);
+    }
+  }
 
 `;

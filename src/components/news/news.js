@@ -11,6 +11,10 @@ export const News = () => {
         this stage of development, user data will not be secure and may be
         deleted at any time.
       </p>
+      <ul>
+        <li>Here is an item</li>
+        <li>Here is an item</li>
+      </ul>
     </StyledNews>
   );
 };
