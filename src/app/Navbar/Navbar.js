@@ -15,7 +15,7 @@ export const Navbar = () => {
         <div className="navHeader">
           <h1>My Daily Climb</h1>
           <button className="button" onClick={logout}>
-            LogOut
+            LogIn
           </button>
         </div>
         <div className="navContent">

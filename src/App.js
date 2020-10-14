@@ -43,7 +43,6 @@ function App() {
                 path="/"
                 render={() => (
                   <React.Fragment>
-                    <Login />
                     <News />
                   </React.Fragment>
                 )}

@@ -15,23 +15,22 @@ html {
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
   width: 100vw;
 }
-.App {
-  margin: 5px;
-  background: rgba(128, 128, 128, .5);
-  border-radius: 5px;
-  padding: 5px;
-  min-width: 320px;
-}
 
-.App-header {
-  padding: 0 5px;
-  line-height: 20px;
-  font-size: 50px;
-  @media (max-width: ${({ theme }) => theme.mobile}) {
-    font-size: 30px;
+.App {
+  margin: 20px 5px 50px 5px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  padding: 10px 20px;
+  min-width: 320px;
+  color: rgba(50, 50, 50, 1);
+  h2 {
+    color: black;
   }
+
 }
 
 `;
