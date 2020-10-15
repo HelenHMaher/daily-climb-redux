@@ -32,24 +32,30 @@ export const SingleWorkoutTypePage = ({ match }) => {
   ));
 
   return (
-    <section>
-      <h2>Workout Type Name: {workoutType.name}</h2>
-      <p className="workoutTypeDescription">
-        Description: {workoutType.description}
-      </p>
+    <section className="singleComponent">
+      <div className="singleHeader">
+        <h2>{workoutType.name}</h2>
+      </div>
+      <div className="singlebody">
+        <p className="workoutTypeDescription">{workoutType.description}</p>
+      </div>
       <Link to={`/editWorkoutTypes/${workoutTypeId}`} className="button">
-        Edit Workout Type
+        Edit
       </Link>
+      <h3>Exercises</h3>
       <button type="button" onClick={clickShowExercises}>
         {showExercises ? "Hide" : "Show"} Exercises
       </button>
+      {showExercises ? (
+        <ExerciseListByWorkoutType workoutTypeId={workoutTypeId} />
+      ) : (
+        <></>
+      )}
+      <h3>Workouts</h3>
       <button type="button" onClick={clickShowWorkouts}>
         {showWorkouts ? "Hide" : "Show"} Workouts
       </button>
-      <h3>Exercises</h3>
-      <ExerciseListByWorkoutType workoutTypeId={workoutTypeId} />
-      <h3>Workouts</h3>
-      <ul>{workoutTitles}</ul>
+      {showWorkouts ? <ul>{workoutTitles}</ul> : <></>}
     </section>
   );
 };

@@ -17,17 +17,18 @@ export const SingleExercisePage = ({ match }) => {
   //add button to add to workout --either to existing workout or create new workout!!
 
   return (
-    <section className="component">
+    <section className="singleComponent">
       <div className="singleHeader">
         <h2>{exercise.name}</h2>
-        <span>Workout Type:</span>{" "}
+        {"("}
         <Link to={`/workoutTypes/${exercise.type}`}>{workoutType.name}</Link>
+        {")"}
       </div>
       <div className="singleBody">
         <p className="exerciseDescription">{exercise.description}</p>
       </div>
       <Link to={`/editExercises/${exerciseId}`} className="button">
-        Edit Exercise
+        Edit
       </Link>
     </section>
   );

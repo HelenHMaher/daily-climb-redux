@@ -43,25 +43,23 @@ export const SingleWorkoutPage = ({ match }) => {
   };
 
   return (
-    <section>
-      <h2>Workout Name: {workout.name}</h2>
-      <h3>Workout Type: {workoutType.name}</h3>
-      <Link to={`/workoutTypes/${workout.type}`} className="button">
-        Workout Type Details
-      </Link>
-      <p className="workoutDate">{workout.date}</p>
-      <p className="workoutDescription">
-        Workout Description: {workout.description}
-      </p>
+    <section className="singleComponent">
+      <div className="singleHeader">
+        <h2>{workout.name}</h2>
+        <p className="workoutDate">{workout.date}</p>
+        {"("}
+        <Link to={`/workoutTypes/${workout.type}`}>{workoutType.name}</Link>
+        {")"}
+      </div>
+      <div className="singleBody">
+        <p className="workoutDescription">{workout.description}</p>
+      </div>
       <Link to={`/editWorkout/${workoutId}`} className="button">
-        Edit Workout
+        Edit
       </Link>
-      <AddExerciseEntry workout={workoutId} />
-      <ListExercises />
       <button type="button" onClick={onCopyWorkoutClicked}>
-        Copy Workout
+        Create Copy
       </button>
-      {/*TO ADD EXERCISE push button FIND EXERCISE or CREATE EXERCISE*/}
     </section>
   );
 };

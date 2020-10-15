@@ -60,6 +60,22 @@ html {
     padding: 20px;
   }
 
+  .singleComponent {
+    color: white;
+    padding: 20px;
+    background: rgba(50,50,50,.7);
+    button, .button {
+      background: rgba(255, 255, 255, 1);
+      border-color: rgba(50, 50, 50, 1);
+      &:hover {
+        border-color: rgba(190, 190, 190, 1);
+      }
+    }
+    h2 {
+      color: white;
+      }
+  }
+
   #workoutType {
     font-style: italic;
   }
@@ -175,7 +191,6 @@ label {
   font-weight: 500;
   padding: 10px;
 }
-
 
 button, .button {
     background: rgba(255, 255, 255, 0.7);

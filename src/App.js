@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 
 import { Navbar } from "./app/Navbar/Navbar.js";
+import { Footer } from "./app/Footer";
 import { Login } from "./components/user/Login";
 
 import { WorkoutsTitle } from "./components/workouts/WorkoutsTitle";
@@ -149,6 +150,7 @@ function App() {
                 />
                 <Redirect to="/" />
               </Switch>
+              <Footer />
             </div>
           </div>
         </Router>
