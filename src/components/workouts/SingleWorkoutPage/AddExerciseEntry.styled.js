@@ -7,4 +7,7 @@ export const StyledAddExerciseEntry = styled.section`
     border-radius: 5px;
     border: 2px solid black;
   }
+  #showNewExercise {
+    margin-top: 20px;
+  }
 `;

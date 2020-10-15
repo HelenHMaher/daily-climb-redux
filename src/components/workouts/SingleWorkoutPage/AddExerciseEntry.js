@@ -40,11 +40,13 @@ export const AddExerciseEntry = ({ workout }) => {
 
   if (!addNewExercise) {
     return (
-      <section className="component">
-        <button type="button" onClick={toggleAddNewExercise}>
-          Add New Exercise
-        </button>
-      </section>
+      <StyledAddExerciseEntry>
+        <section id="showNewExercise">
+          <button type="button" onClick={toggleAddNewExercise}>
+            Add New Exercise
+          </button>
+        </section>
+      </StyledAddExerciseEntry>
     );
   } else {
     return (
