@@ -44,12 +44,21 @@ html {
     color: rgba(50, 50, 50, 1);
     text-decoration: none;
     margin: 5px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 700;
 
     &:hover {
       color: rgba(0, 0, 0, 1);
+      margin-left: 10px;
     }
+  }
+
+  #workoutType {
+    font-style: italic;
+  }
+
+  .description {
+    margin-left: 40px;
   }
 
   input {
@@ -105,15 +114,18 @@ html {
   align-items: center;
 }
 
+label {
+  font-weight: 500;
+  padding: 10px;
+}
 
 
 button {
     background: rgba(255, 255, 255, 0.7);
     border: 2px solid;
     border-color: rgba(50, 50, 50, 0.7);
-    border-radius: 5px;
-    padding: 0px 10px;
-    height: 40px;
+    border-radius: 20px;
+    padding: 5px 15px;
     font: inherit;
     cursor: pointer;
     outline: none;

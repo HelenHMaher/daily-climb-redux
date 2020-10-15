@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { selectAllWorkouts } from "./workoutsSlice";
 import { selectAllWorkoutTypes } from "../workoutTypes/workoutTypesSlice";
+import { format, parseISO } from "date-fns";
 
 export const WorkoutsList = () => {
   const workouts = useSelector(selectAllWorkouts);
@@ -17,9 +18,14 @@ export const WorkoutsList = () => {
 
     return (
       <li key={workout.id}>
+        {" "}
+        <span id="workoutDate">
+          {format(parseISO(workout.date), "MMM d, yyyy")}
+        </span>
         <Link to={`/workouts/${workout.id}`}>{workout.name}</Link>
-        <p className="workoutDescription">
-          ({workoutType.name}) {workout.description.substring(0, 100)}
+        <p className="description">
+          <span id="workoutType">({workoutType.name})</span>{" "}
+          {workout.description.substring(0, 100)}
         </p>
       </li>
     );
@@ -27,7 +33,7 @@ export const WorkoutsList = () => {
 
   return (
     <section>
-      <h2>Workouts List</h2>
+      <h2>Workout History</h2>
       <ul>{renderedWorkouts}</ul>
     </section>
   );

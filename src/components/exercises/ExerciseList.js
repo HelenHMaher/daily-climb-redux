@@ -30,8 +30,9 @@ export const ExerciseList = () => {
     return (
       <li key={exercise.id}>
         <Link to={`/exercises/${exercise.id}`}>{exercise.name}</Link>
-        <p className="exerciseDescription">
-          ({workoutType.name}) {exercise.description.substring(0, 100)}
+        <p className="description">
+          <span id="workoutType">({workoutType.name})</span>{" "}
+          {exercise.description.substring(0, 100)}
         </p>
       </li>
     );
@@ -41,9 +42,9 @@ export const ExerciseList = () => {
     return (
       <section>
         <AddExerciseForm />
-        <h2>Exercise List: All Exercises</h2>
+        <h2>Exercises</h2>
         <button type="button" onClick={displayAllExercises}>
-          Display By Workout Type
+          Sort By Type
         </button>
         <ul>{renderedExercises}</ul>
       </section>
@@ -52,11 +53,11 @@ export const ExerciseList = () => {
     return (
       <section>
         <AddExerciseForm />
-        <h2>Exercise List: </h2>
+        <h2>Exercises</h2>
         <button type="button" onClick={displayAllExercises}>
-          Display All Workout Types
+          Display All
         </button>
-        <label htmlFor="workoutType">Workout Type</label>
+        <label htmlFor="workoutType">Type</label>
         <select id="workoutType" value={type} onChange={onTypeChanged}>
           <option value=""></option>
           {workoutTypeOptions}
