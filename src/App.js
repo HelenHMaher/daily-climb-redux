@@ -22,7 +22,7 @@ import { EditWorkoutPage } from "./components/workouts/EditWorkoutPage";
 import { WorkoutTypesTitle } from "./components/workoutTypes/WorkoutTypesTitle";
 import { WorkoutTypesList } from "./components/workoutTypes/WorkoutTypesList";
 import { AddWorkoutTypeForm } from "./components/workoutTypes/AddWorkoutTypeForm";
-import { SingleWorkoutTypePage } from "./components/workoutTypes/SingleWorkoutTypePage";
+import { SingleWorkoutTypePage } from "./components/workoutTypes/SingleWorkoutType/SingleWorkoutTypePage";
 import { EditWorkoutTypeForm } from "./components/workoutTypes/EditWorkoutTypeForm";
 
 import { ExercisesTitle } from "./components/exercises/ExercisesTitle";
