@@ -2,15 +2,16 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { selectWorkoutById } from "./workoutsSlice";
-import { selectWorkoutTypeById } from "../workoutTypes/workoutTypesSlice";
+import { selectWorkoutById } from "../workoutsSlice";
+import { selectWorkoutTypeById } from "../../workoutTypes/workoutTypesSlice";
 import { nanoid, unwrapResult } from "@reduxjs/toolkit";
-import { workoutAdded, addNewWorkout } from "./workoutsSlice";
+import { workoutAdded, addNewWorkout } from "../workoutsSlice";
 import { useHistory } from "react-router-dom";
 import { format } from "date-fns";
 
 import { AddExerciseEntry } from "./AddExerciseEntry";
 import { ListExercises } from "./ListExercises";
+import { StyledSingleWorkoutPage } from "./SingleWorkoutPage.styled";
 
 export const SingleWorkoutPage = ({ match }) => {
   const { workoutId } = match.params;
@@ -43,23 +44,29 @@ export const SingleWorkoutPage = ({ match }) => {
   };
 
   return (
-    <section className="singleComponent">
-      <div className="singleHeader">
-        <h2>{workout.name}</h2>
-        <p className="workoutDate">{workout.date}</p>
-        {"("}
-        <Link to={`/workoutTypes/${workout.type}`}>{workoutType.name}</Link>
-        {")"}
-      </div>
-      <div className="singleBody">
-        <p className="workoutDescription">{workout.description}</p>
-      </div>
-      <Link to={`/editWorkout/${workoutId}`} className="button">
-        Edit
-      </Link>
-      <button type="button" onClick={onCopyWorkoutClicked}>
-        Create Copy
-      </button>
-    </section>
+    <StyledSingleWorkoutPage>
+      <section className="singleComponent">
+        <div id="special">
+          <div className="singleHeader">
+            <h2>{workout.name}</h2>
+            <p className="workoutDate">{workout.date}</p>
+            {"("}
+            <Link to={`/workoutTypes/${workout.type}`}>{workoutType.name}</Link>
+            {")"}
+          </div>
+          <div className="singleBody">
+            <p className="workoutDescription">{workout.description}</p>
+          </div>
+          <Link to={`/editWorkout/${workoutId}`} className="button">
+            Edit
+          </Link>
+          <button type="button" onClick={onCopyWorkoutClicked}>
+            Create Copy
+          </button>
+        </div>
+        <AddExerciseEntry />
+        <ListExercises />
+      </section>
+    </StyledSingleWorkoutPage>
   );
 };

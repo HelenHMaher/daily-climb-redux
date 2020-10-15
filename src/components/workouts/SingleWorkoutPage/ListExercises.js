@@ -3,5 +3,9 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export const ListExercises = () => {
-  return <section>Exercises</section>;
+  return (
+    <section>
+      <h2>Exercises</h2>
+    </section>
+  );
 };

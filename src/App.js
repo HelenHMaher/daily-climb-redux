@@ -16,7 +16,7 @@ import { Login } from "./components/user/Login";
 import { WorkoutsTitle } from "./components/workouts/WorkoutsTitle";
 import { WorkoutsList } from "./components/workouts/WorkoutsList";
 import { AddWorkoutForm } from "./components/workouts/AddWorkoutForm";
-import { SingleWorkoutPage } from "./components/workouts/SingleWorkoutPage";
+import { SingleWorkoutPage } from "./components/workouts/SingleWorkoutPage/SingleWorkoutPage";
 import { EditWorkoutPage } from "./components/workouts/EditWorkoutPage";
 
 import { WorkoutTypesTitle } from "./components/workoutTypes/WorkoutTypesTitle";

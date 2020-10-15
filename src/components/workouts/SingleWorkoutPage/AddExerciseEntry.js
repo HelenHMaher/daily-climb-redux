@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-import { exerciseAdded, addExercise } from "./workoutsSlice";
+import { exerciseAdded, addExercise } from "../workoutsSlice";
+
+import { StyledAddExerciseEntry } from "./AddExerciseEntry.styled";
 
 export const AddExerciseEntry = ({ workout }) => {
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ export const AddExerciseEntry = ({ workout }) => {
   };
 
   return (
-    <section>
+    <StyledAddExerciseEntry>
       <form>
         <section className="formSection">
           <h3>Add New Exercise</h3>
@@ -77,6 +79,6 @@ export const AddExerciseEntry = ({ workout }) => {
           </div>
         </section>
       </form>
-    </section>
+    </StyledAddExerciseEntry>
   );
 };
