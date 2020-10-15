@@ -52,37 +52,45 @@ export const AddExerciseForm = () => {
       <h2 className="formTitle">New Exercise</h2>
       <form>
         <section className="formSection">
-          <label hmtlFor="exerciseName">Exercise Name</label>
-          <input
-            type="text"
-            id="exerciseName"
-            name="exerciseName"
-            value={name}
-            onChange={onNameChanged}
-          />
-          <label htmlFor="workoutType">Workout Type</label>
-          <select
-            id="workoutType"
-            value={workoutTypeId}
-            onChange={onWorkoutTypeChanged}
-          >
-            <option value=""></option>
-            {workoutTypeOptions}
-          </select>
-          <textarea
-            id="exerciseDescription"
-            name="exerciseDescription"
-            value={description}
-            onChange={onDescriptionChanged}
-            placeholder="Description..."
-          />
-          <button
-            type="button"
-            onClick={onSaveExerciseClicked}
-            disable={!canSave}
-          >
-            Save Exercise
-          </button>
+          <div className="formDiv">
+            <label hmtlFor="exerciseName">Name</label>
+            <input
+              type="text"
+              id="exerciseName"
+              name="exerciseName"
+              value={name}
+              onChange={onNameChanged}
+            />
+          </div>
+          <div className="formDiv">
+            <label htmlFor="workoutType">Type</label>
+            <select
+              id="workoutType"
+              value={workoutTypeId}
+              onChange={onWorkoutTypeChanged}
+            >
+              <option value=""></option>
+              {workoutTypeOptions}
+            </select>
+          </div>
+          <div className="formDiv">
+            <textarea
+              id="exerciseDescription"
+              name="exerciseDescription"
+              value={description}
+              onChange={onDescriptionChanged}
+              placeholder="Description..."
+            />
+          </div>
+          <div className="formDiv">
+            <button
+              type="button"
+              onClick={onSaveExerciseClicked}
+              disable={!canSave}
+            >
+              Save
+            </button>
+          </div>
         </section>
       </form>
     </section>

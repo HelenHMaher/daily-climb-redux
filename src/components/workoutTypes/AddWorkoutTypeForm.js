@@ -38,28 +38,34 @@ export const AddWorkoutTypeForm = () => {
       <h2 className="formTitle">New Workout Type</h2>
       <form>
         <section className="formSection">
-          <label htmlFor="workoutTypeName">Workout Type Name</label>
-          <input
-            type="text"
-            id="workoutTypeName"
-            name="workoutTypeName"
-            value={name}
-            onChange={onNameChanged}
-          />
-          <textarea
-            id="workoutTypeDescription"
-            name="workoutTypeDescription"
-            value={description}
-            onChange={onDescriptionChanged}
-            placeholder="Description..."
-          />
-          <button
-            type="button"
-            onClick={onSaveWorkoutTypeClicked}
-            disable={!canSave}
-          >
-            Save Workout Type
-          </button>
+          <div className="formDiv">
+            <label htmlFor="workoutTypeName">Name</label>
+            <input
+              type="text"
+              id="workoutTypeName"
+              name="workoutTypeName"
+              value={name}
+              onChange={onNameChanged}
+            />
+          </div>
+          <div className="formDiv">
+            <textarea
+              id="workoutTypeDescription"
+              name="workoutTypeDescription"
+              value={description}
+              onChange={onDescriptionChanged}
+              placeholder="Description..."
+            />
+          </div>
+          <div className="formDiv">
+            <button
+              type="button"
+              onClick={onSaveWorkoutTypeClicked}
+              disable={!canSave}
+            >
+              Save
+            </button>
+          </div>
         </section>
       </form>
     </section>

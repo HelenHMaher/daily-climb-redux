@@ -118,8 +118,13 @@ html {
     padding: 20px 20px 0px 20px;
   }
 
+  .formDiv {
+    margin-bottom: 10px;
+  }
+
   .formSection {
     padding: 20px;
+    display: block;
 
     select {
       background: white;
@@ -141,6 +146,7 @@ form {
       }
     }
     label {
+      padding: 0px;
       color: white;
     }
 
@@ -152,7 +158,7 @@ form {
 
 label {
   font-weight: 500;
-  padding-right: 10px;
+  padding: 10px;
 }
 
 

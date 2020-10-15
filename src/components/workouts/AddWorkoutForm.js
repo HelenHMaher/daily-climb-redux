@@ -68,45 +68,55 @@ export const AddWorkoutForm = () => {
       <h2 className="formTitle">New Workout</h2>
       <form>
         <section className="formSection">
-          <label htmlFor="workoutName">Workout Name</label>
-          <input
-            type="text"
-            id="workoutName"
-            name="workoutName"
-            value={name}
-            onChange={onNameChanged}
-          />
-          <label htmlFor="workoutType">Workout Type</label>
-          <select
-            id="workoutType"
-            value={workoutTypeId}
-            onChange={onWorkoutTypeChanged}
-          >
-            <option value=""></option>
-            {workoutTypeOptions}
-          </select>
-          <label htmlFor="workoutDate">Workout Date</label>
-          <input
-            type="date"
-            id="workoutDate"
-            name="workoutDate"
-            value={date}
-            onChange={onDateChanged}
-          />
-          <textarea
-            id="workoutDescription"
-            name="workoutDescription"
-            value={description}
-            onChange={onDescriptionChanged}
-            placeholder="Description..."
-          />
-          <button
-            type="button"
-            onClick={onSaveWorkoutClicked}
-            disable={!canSave}
-          >
-            Save Workout
-          </button>
+          <div className="formDiv">
+            <label htmlFor="workoutName">Name</label>
+            <input
+              type="text"
+              id="workoutName"
+              name="workoutName"
+              value={name}
+              onChange={onNameChanged}
+            />
+          </div>
+          <div className="formDiv">
+            <label htmlFor="workoutType">Type</label>
+            <select
+              id="workoutType"
+              value={workoutTypeId}
+              onChange={onWorkoutTypeChanged}
+            >
+              <option value=""></option>
+              {workoutTypeOptions}
+            </select>
+          </div>
+          <div className="formDiv">
+            <label htmlFor="workoutDate">Date</label>
+            <input
+              type="date"
+              id="workoutDate"
+              name="workoutDate"
+              value={date}
+              onChange={onDateChanged}
+            />
+          </div>
+          <div className="formDiv">
+            <textarea
+              id="workoutDescription"
+              name="workoutDescription"
+              value={description}
+              onChange={onDescriptionChanged}
+              placeholder="Description..."
+            />
+          </div>
+          <div className="formDiv">
+            <button
+              type="button"
+              onClick={onSaveWorkoutClicked}
+              disable={!canSave}
+            >
+              Save
+            </button>
+          </div>
         </section>
       </form>
     </section>
