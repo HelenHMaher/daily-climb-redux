@@ -36,7 +36,7 @@ html {
   ul {
     list-style: none;
   }
-  
+
   li::before {
     content: 	"\u25b6";
     color: rgba(50,50,50,.7);
@@ -177,7 +177,7 @@ label {
 }
 
 
-button {
+button, .button {
     background: rgba(255, 255, 255, 0.7);
     border: 2px solid;
     border-color: rgba(50, 50, 50, 0.7);

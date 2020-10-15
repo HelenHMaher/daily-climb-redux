@@ -40,7 +40,7 @@ export const ExerciseList = () => {
   if (displayAll === true) {
     return (
       <section className="component">
-        <h2>Exercises</h2>
+        <h2>List of Exercises</h2>
         <button type="button" onClick={displayAllExercises}>
           Sort By Type
         </button>
@@ -50,7 +50,7 @@ export const ExerciseList = () => {
   } else {
     return (
       <section className="component">
-        <h2>Exercises</h2>
+        <h2>List of Exercises</h2>
         <button type="button" onClick={displayAllExercises}>
           Display All
         </button>

@@ -66,12 +66,22 @@ function App() {
                 <Route
                   exact
                   path="/workouts/:workoutId"
-                  component={SingleWorkoutPage}
+                  render={(routeProps) => (
+                    <>
+                      <WorkoutsTitle />
+                      <SingleWorkoutPage {...routeProps} />
+                    </>
+                  )}
                 />
                 <Route
                   exact
                   path="/editWorkout/:workoutId"
-                  component={EditWorkoutPage}
+                  render={(routeProps) => (
+                    <>
+                      <WorkoutsTitle />
+                      <EditWorkoutPage {...routeProps} />
+                    </>
+                  )}
                 />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/profile/:userId" component={UserPage} />
@@ -89,12 +99,22 @@ function App() {
                 <Route
                   exact
                   path="/workoutTypes/:workoutTypeId"
-                  component={SingleWorkoutTypePage}
+                  render={(routeProps) => (
+                    <>
+                      <WorkoutTypesTitle />
+                      <SingleWorkoutTypePage {...routeProps} />
+                    </>
+                  )}
                 />
                 <Route
                   exact
                   path="/editWorkoutTypes/:workoutTypeId"
-                  component={EditWorkoutTypeForm}
+                  render={(routeProps) => (
+                    <>
+                      <WorkoutTypesTitle />
+                      <EditWorkoutTypeForm {...routeProps} />
+                    </>
+                  )}
                 />
                 <Route
                   exact
@@ -110,12 +130,22 @@ function App() {
                 <Route
                   exact
                   path="/exercises/:exerciseId"
-                  component={SingleExercisePage}
+                  render={(routeProps) => (
+                    <>
+                      <ExercisesTitle />
+                      <SingleExercisePage {...routeProps} />
+                    </>
+                  )}
                 />
                 <Route
                   exact
                   path="/editExercises/:exerciseId"
-                  component={EditExerciseForm}
+                  render={(routeProps) => (
+                    <>
+                      <ExercisesTitle />
+                      <EditExerciseForm {...routeProps} />
+                    </>
+                  )}
                 />
                 <Redirect to="/" />
               </Switch>
