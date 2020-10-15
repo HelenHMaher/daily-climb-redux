@@ -52,7 +52,7 @@ html {
 
     &:hover {
       color: rgba(0, 0, 0, 1);
-      margin-left: 10px;
+      margin: 0px 10px;
     }
   }
 

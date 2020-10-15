@@ -7,6 +7,7 @@ import { StyledAddExerciseEntry } from "./AddExerciseEntry.styled";
 
 export const AddExerciseEntry = ({ workout }) => {
   const dispatch = useDispatch();
+  const [addNewExercise, setAddNewExercise] = useState(false);
   const [setArray, setSetArray] = useState([]);
   const [currentSetReps, setCurrentSetReps] = useState("");
   const [currentSetWeight, setCurrentSetWeight] = useState("");
@@ -15,6 +16,8 @@ export const AddExerciseEntry = ({ workout }) => {
   const onCurrentSetRepsChanged = (e) => setCurrentSetReps(e.target.value);
   const onCurrentSetWeightChanged = (e) => setCurrentSetWeight(e.target.value);
   const onNotesChanged = (e) => setNotes(e.target.value);
+
+  const toggleAddNewExercise = () => setAddNewExercise(!addNewExercise);
 
   const onSaveSetClicked = () => {
     const newSet = { reps: currentSetReps, weight: currentSetWeight };
@@ -35,50 +38,65 @@ export const AddExerciseEntry = ({ workout }) => {
     dispatch(addExercise({ exerciseObject, workout }));
   };
 
-  return (
-    <StyledAddExerciseEntry>
-      <form>
-        <section className="formSection">
-          <h3>Add New Exercise</h3>
-          <div className="formDiv">
-            <label htmlFor="reps">Reps</label>
-            <input
-              type="text"
-              id="reps"
-              name="reps"
-              value={currentSetReps}
-              onChange={onCurrentSetRepsChanged}
-            />
-          </div>
-          <div className="formDiv">
-            <label htmlFor="weight">Weight</label>
-            <input
-              type="text"
-              id="weight"
-              name="weight"
-              value={currentSetWeight}
-              onChange={onCurrentSetWeightChanged}
-            />
-          </div>
-          <div className="formDiv">
-            <button type="button" onClick={onSaveSetClicked}>
-              Save Set
-            </button>
-          </div>
-          <div className="formDiv">
-            <label htmlFor="notes">Notes</label>
-            <textarea
-              id="notes"
-              name="notes"
-              value={notes}
-              onChange={onNotesChanged}
-            />
-            <button type="button" onClick={onSaveExerciseClicked}>
-              Save Exercises
-            </button>
-          </div>
-        </section>
-      </form>
-    </StyledAddExerciseEntry>
-  );
+  if (!addNewExercise) {
+    return (
+      <section className="component">
+        <button type="button" onClick={toggleAddNewExercise}>
+          Add New Exercise
+        </button>
+      </section>
+    );
+  } else {
+    return (
+      <StyledAddExerciseEntry>
+        <form id="specialEntry">
+          <section className="formSection">
+            <section className="formHeader">
+              <h3>Add New Exercise</h3>
+              <button type="button" onClick={toggleAddNewExercise}>
+                Hide
+              </button>
+            </section>
+            <div className="formDiv">
+              <label htmlFor="reps">Reps</label>
+              <input
+                type="text"
+                id="reps"
+                name="reps"
+                value={currentSetReps}
+                onChange={onCurrentSetRepsChanged}
+              />
+            </div>
+            <div className="formDiv">
+              <label htmlFor="weight">Weight</label>
+              <input
+                type="text"
+                id="weight"
+                name="weight"
+                value={currentSetWeight}
+                onChange={onCurrentSetWeightChanged}
+              />
+            </div>
+            <div className="formDiv">
+              <button type="button" onClick={onSaveSetClicked}>
+                Save Set
+              </button>
+            </div>
+            <div className="formDiv">
+              <label htmlFor="notes">Notes</label>
+              <textarea
+                id="notes"
+                name="notes"
+                value={notes}
+                onChange={onNotesChanged}
+              />
+              <button type="button" onClick={onSaveExerciseClicked}>
+                Save Exercises
+              </button>
+            </div>
+          </section>
+        </form>
+      </StyledAddExerciseEntry>
+    );
+  }
 };
