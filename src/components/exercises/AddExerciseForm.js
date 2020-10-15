@@ -49,39 +49,41 @@ export const AddExerciseForm = () => {
 
   return (
     <section>
-      <h2>Add New Exercise</h2>
+      <h2 className="formTitle">New Exercise</h2>
       <form>
-        <label hmtlFor="exerciseName">Exercise Name</label>
-        <input
-          type="text"
-          id="exerciseName"
-          name="exerciseName"
-          value={name}
-          onChange={onNameChanged}
-        />
-        <label htmlFor="workoutType">Workout Type</label>
-        <select
-          id="workoutType"
-          value={workoutTypeId}
-          onChange={onWorkoutTypeChanged}
-        >
-          <option value=""></option>
-          {workoutTypeOptions}
-        </select>
-        <label htmlFor="exerciseDescription">Exercise Description</label>
-        <textarea
-          id="exerciseDescription"
-          name="exerciseDescription"
-          value={description}
-          onChange={onDescriptionChanged}
-        />
-        <button
-          type="button"
-          onClick={onSaveExerciseClicked}
-          disable={!canSave}
-        >
-          Save Exercise
-        </button>
+        <section className="formSection">
+          <label hmtlFor="exerciseName">Exercise Name</label>
+          <input
+            type="text"
+            id="exerciseName"
+            name="exerciseName"
+            value={name}
+            onChange={onNameChanged}
+          />
+          <label htmlFor="workoutType">Workout Type</label>
+          <select
+            id="workoutType"
+            value={workoutTypeId}
+            onChange={onWorkoutTypeChanged}
+          >
+            <option value=""></option>
+            {workoutTypeOptions}
+          </select>
+          <textarea
+            id="exerciseDescription"
+            name="exerciseDescription"
+            value={description}
+            onChange={onDescriptionChanged}
+            placeholder="Description..."
+          />
+          <button
+            type="button"
+            onClick={onSaveExerciseClicked}
+            disable={!canSave}
+          >
+            Save Exercise
+          </button>
+        </section>
       </form>
     </section>
   );

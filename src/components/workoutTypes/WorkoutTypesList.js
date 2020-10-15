@@ -14,7 +14,7 @@ export const WorkoutTypesList = () => {
   ));
 
   return (
-    <section>
+    <section className="component">
       <h2>Workout Types</h2>
       <ul>{renderedWorkoutTypes}</ul>
     </section>

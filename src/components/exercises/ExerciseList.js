@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { selectAllExercises } from "./exerciseSlice";
 import { selectAllWorkoutTypes } from "../workoutTypes/workoutTypesSlice";
 
-import { AddExerciseForm } from "./AddExerciseForm";
 import { ExerciseListByWorkoutType } from "./ExerciseListByWorkoutType";
 
 export const ExerciseList = () => {
@@ -40,8 +39,7 @@ export const ExerciseList = () => {
 
   if (displayAll === true) {
     return (
-      <section>
-        <AddExerciseForm />
+      <section className="component">
         <h2>Exercises</h2>
         <button type="button" onClick={displayAllExercises}>
           Sort By Type
@@ -51,8 +49,7 @@ export const ExerciseList = () => {
     );
   } else {
     return (
-      <section>
-        <AddExerciseForm />
+      <section className="component">
         <h2>Exercises</h2>
         <button type="button" onClick={displayAllExercises}>
           Display All

@@ -32,7 +32,7 @@ export const WorkoutsList = () => {
   });
 
   return (
-    <section>
+    <section className="component">
       <h2>Workout History</h2>
       <ul>{renderedWorkouts}</ul>
     </section>

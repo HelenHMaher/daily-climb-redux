@@ -25,7 +25,6 @@ html {
   margin: 20px 5px 50px 5px;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 5px;
-  padding: 10px 20px;
   min-width: 320px;
   color: rgba(50, 50, 50, 1);
   h2 {
@@ -53,6 +52,10 @@ html {
     }
   }
 
+  .component {
+    padding: 20px;
+  }
+
   #workoutType {
     font-style: italic;
   }
@@ -62,9 +65,9 @@ html {
   }
 
   input {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 1);
     border: 2px solid;
-    border-color: rgba(50, 50, 50, 0.7);
+    border-color: rgba(50, 50, 50, 1);
     border-radius: 5px;
     padding: 0px 10px;
     font: inherit;
@@ -72,22 +75,25 @@ html {
     outline: none;
     &:focus {
       transform: scale(1.01);
-      border-color: black;
+      border-color: rgba(190, 190, 190, 1);
       color: black;
     }
   }
 
   textarea {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 1);
     border: 2px solid;
-    border-color: rgba(50, 50, 50, 0.7);
+    border-color: rgba(50, 50, 50, 1);
     border-radius: 5px;
+    width: 500px;
+    height: 150px;
+    resize: none;
     font: inherit;
     cursor: pointer;
     outline: none;
     &:focus {
       transform: scale(1.01);
-      border-color: black;
+      border-color: rgba(190, 190, 190, 1);
       color: black;
     }
   }
@@ -108,7 +114,37 @@ html {
     }
   }
 
+  .formTitle {
+    padding: 20px 20px 0px 20px;
+  }
+
+  .formSection {
+    padding: 20px;
+
+    select {
+      background: white;
+      border-color: rgba(50, 50, 50, 1);
+      &:active {
+        border-color: rgba(190, 190, 190, 1);
+    }
+  }
+
 }
+
+form {
+    background: rgba(50,50,50,.7);
+    button {
+      background: rgba(255, 255, 255, 1);
+      border-color: rgba(50, 50, 50, 1);
+      &:hover {
+        border-color: rgba(190, 190, 190, 1);
+      }
+    }
+    label {
+      color: white;
+    }
+
+  }
 
 .Container {
   align-items: center;
@@ -116,7 +152,7 @@ html {
 
 label {
   font-weight: 500;
-  padding: 10px;
+  padding-right: 10px;
 }
 
 
