@@ -49,9 +49,9 @@ export const AddExerciseForm = () => {
 
   return (
     <section>
-      <h2 className="formTitle">New Exercise</h2>
       <form>
         <section className="formSection">
+          <h3>Add New Exercise</h3>
           <div className="formDiv">
             <label hmtlFor="exerciseName">Name</label>
             <input

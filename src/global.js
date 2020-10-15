@@ -22,17 +22,21 @@ html {
 }
 
 .App {
+  display: block;
   margin: 20px 5px 50px 5px;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 5px;
-  min-width: 320px;
+  min-width: 250px;
   color: rgba(50, 50, 50, 1);
+
   h2 {
     color: black;
   }
+
   ul {
     list-style: none;
   }
+  
   li::before {
     content: 	"\u25b6";
     color: rgba(50,50,50,.7);
@@ -65,6 +69,8 @@ html {
   }
 
   input {
+    width: 200px;
+    height: 20px;
     background: rgba(255, 255, 255, 1);
     border: 2px solid;
     border-color: rgba(50, 50, 50, 1);
@@ -86,7 +92,7 @@ html {
     border-color: rgba(50, 50, 50, 1);
     border-radius: 5px;
     width: 500px;
-    height: 150px;
+    height: 100px;
     resize: none;
     font: inherit;
     cursor: pointer;
@@ -114,17 +120,25 @@ html {
     }
   }
 
-  .formTitle {
+  .pageTitle {
     padding: 20px 20px 0px 20px;
+    color: black;
   }
 
   .formDiv {
     margin-bottom: 10px;
+    margin-right: 10px;
+    display: inline-block;
   }
 
   .formSection {
-    padding: 20px;
-    display: block;
+    padding: 10px 20px;
+    display: inline-block;
+    max-width: 550px;
+
+    h3 {
+      color: white;
+    }
 
     select {
       background: white;
@@ -146,6 +160,7 @@ form {
       }
     }
     label {
+      display: block;
       padding: 0px;
       color: white;
     }
@@ -180,5 +195,5 @@ button {
       transform: scale(0.9);
     }
   }
-
+}
 `;

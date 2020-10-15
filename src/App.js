@@ -12,16 +12,19 @@ import {
 import { Navbar } from "./app/Navbar/Navbar.js";
 import { Login } from "./components/user/Login";
 
+import { WorkoutsTitle } from "./components/workouts/WorkoutsTitle";
 import { WorkoutsList } from "./components/workouts/WorkoutsList";
 import { AddWorkoutForm } from "./components/workouts/AddWorkoutForm";
 import { SingleWorkoutPage } from "./components/workouts/SingleWorkoutPage";
 import { EditWorkoutPage } from "./components/workouts/EditWorkoutPage";
 
+import { WorkoutTypesTitle } from "./components/workoutTypes/WorkoutTypesTitle";
 import { WorkoutTypesList } from "./components/workoutTypes/WorkoutTypesList";
 import { AddWorkoutTypeForm } from "./components/workoutTypes/AddWorkoutTypeForm";
 import { SingleWorkoutTypePage } from "./components/workoutTypes/SingleWorkoutTypePage";
 import { EditWorkoutTypeForm } from "./components/workoutTypes/EditWorkoutTypeForm";
 
+import { ExercisesTitle } from "./components/exercises/ExercisesTitle";
 import { ExerciseList } from "./components/exercises/ExerciseList";
 import { AddExerciseForm } from "./components/exercises/AddExerciseForm";
 import { SingleExercisePage } from "./components/exercises/SingleExercisePage";
@@ -54,6 +57,7 @@ function App() {
                   path="/workouts"
                   render={() => (
                     <>
+                      <WorkoutsTitle />
                       <AddWorkoutForm />
                       <WorkoutsList />
                     </>
@@ -76,6 +80,7 @@ function App() {
                   path="/workoutTypes"
                   render={() => (
                     <>
+                      <WorkoutTypesTitle />
                       <AddWorkoutTypeForm />
                       <WorkoutTypesList />
                     </>
@@ -96,6 +101,7 @@ function App() {
                   path="/exercises"
                   render={() => (
                     <>
+                      <ExercisesTitle />
                       <AddExerciseForm />
                       <ExerciseList />
                     </>

@@ -35,9 +35,9 @@ export const AddWorkoutTypeForm = () => {
 
   return (
     <section>
-      <h2 className="formTitle">New Workout Type</h2>
       <form>
         <section className="formSection">
+          <h3>New Workout Type</h3>
           <div className="formDiv">
             <label htmlFor="workoutTypeName">Name</label>
             <input

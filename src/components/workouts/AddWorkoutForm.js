@@ -65,9 +65,9 @@ export const AddWorkoutForm = () => {
 
   return (
     <section>
-      <h2 className="formTitle">New Workout</h2>
       <form>
         <section className="formSection">
+          <h3>Add New Workout</h3>
           <div className="formDiv">
             <label htmlFor="workoutName">Name</label>
             <input
@@ -76,6 +76,16 @@ export const AddWorkoutForm = () => {
               name="workoutName"
               value={name}
               onChange={onNameChanged}
+            />
+          </div>
+          <div className="formDiv">
+            <label htmlFor="workoutDate">Date</label>
+            <input
+              type="date"
+              id="workoutDate"
+              name="workoutDate"
+              value={date}
+              onChange={onDateChanged}
             />
           </div>
           <div className="formDiv">
@@ -88,16 +98,6 @@ export const AddWorkoutForm = () => {
               <option value=""></option>
               {workoutTypeOptions}
             </select>
-          </div>
-          <div className="formDiv">
-            <label htmlFor="workoutDate">Date</label>
-            <input
-              type="date"
-              id="workoutDate"
-              name="workoutDate"
-              value={date}
-              onChange={onDateChanged}
-            />
           </div>
           <div className="formDiv">
             <textarea
