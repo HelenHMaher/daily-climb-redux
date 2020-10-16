@@ -8,7 +8,7 @@ export const ListExercises = ({ workout }) => {
   const exerciseTypes = useSelector(selectAllExercises);
 
   const renderedExercises = workout.exercises.map((exercise) => {
-    const exerciseType = exerciseTypes.undefined.find(
+    const exerciseType = exerciseTypes.find(
       (type) => type.id === exercise.exercise
     );
 

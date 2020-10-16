@@ -71,7 +71,7 @@ const workoutsSlice = createSlice({
         (x) => x["id"] === workout
       );
       if (existingWorkout) {
-        existingWorkout.exercises[exerciseObject]++;
+        existingWorkout[0]["exercises"].push(exerciseObject);
       }
     },
     workoutAdded(state, action) {

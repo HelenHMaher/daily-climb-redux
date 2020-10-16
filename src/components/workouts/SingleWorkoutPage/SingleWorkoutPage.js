@@ -30,6 +30,7 @@ export const SingleWorkoutPage = ({ match }) => {
     type: workout.type,
     id: nanoid(),
     date: format(new Date(), "yyyy-MM-dd"),
+    exercises: workout.exercises,
   };
 
   const onCopyWorkoutClicked = async () => {

@@ -27,8 +27,6 @@ export const PushExercisePage = ({ match }) => {
 
   const pushExercise = async () => {
     try {
-      //const resultAction = await dispatch(addExercise(payload));
-      //unwrapResult(resultAction);
       dispatch(exerciseAdded(payload));
     } catch (err) {
       console.error("Failed to add exercise:", err);
