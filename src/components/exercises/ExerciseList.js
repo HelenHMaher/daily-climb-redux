@@ -66,7 +66,7 @@ export const ExerciseList = ({ match }) => {
           <option value=""></option>
           {workoutTypeOptions}
         </select>
-        <ExerciseListByWorkoutType workoutTypeId={type} />
+        <ExerciseListByWorkoutType workoutTypeId={type} workoutId={workoutId} />
       </section>
     );
   }
