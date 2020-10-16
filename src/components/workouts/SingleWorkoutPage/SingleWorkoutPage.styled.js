@@ -9,6 +9,9 @@ export const StyledSingleWorkoutPage = styled.div`
     h2 {
       color: black;
     }
+    a:hover {
+      color: rgba(50, 50, 50, 0.7);
+    }
     button,
     .button {
       background: rgba(255, 255, 255, 0.7);

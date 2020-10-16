@@ -63,13 +63,22 @@ html {
   .singleComponent {
     color: white;
     padding: 20px;
-    background: rgba(50,50,50,.7);
+    background: rgba(10, 10, 10, 0.7);
     button, .button {
       background: rgba(255, 255, 255, 1);
       border-color: rgba(50, 50, 50, 1);
       &:hover {
         border-color: rgba(190, 190, 190, 1);
       }
+    }
+    a {
+      color: black;
+      &:hover {
+        color: rgba(200, 200, 200, 1);
+      }
+    }
+    li::before {
+      color: black;
     }
     h2 {
       color: white;
@@ -167,7 +176,7 @@ html {
 }
 
 form {
-    background: rgba(50,50,50,.7);
+    background: rgba(10, 10, 10, 0.7);
     button {
       background: rgba(255, 255, 255, 1);
       border-color: rgba(50, 50, 50, 1);
