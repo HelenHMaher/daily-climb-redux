@@ -33,6 +33,7 @@ import { EditExerciseForm } from "./components/exercises/EditExerciseForm";
 
 import { WorkoutExerciseTitle } from "./components/workouts/AddWorkoutExercises/WorkoutExerciseTitle";
 import { PushExercisePage } from "./components/workouts/AddWorkoutExercises/PushExercisePage";
+import { ExerciseInstance } from "./components/workouts/AddWorkoutExercises/ExerciseInstance";
 
 import { UserPage } from "./components/user/UserPage";
 import { News } from "./components/news";
@@ -106,6 +107,15 @@ function App() {
                   render={(routeProps) => (
                     <>
                       <PushExercisePage {...routeProps} />
+                    </>
+                  )}
+                />
+                <Route
+                  exact
+                  path="/workouts/:workoutId/exercises/:exerciseId/instance/:instanceId"
+                  render={(routeProps) => (
+                    <>
+                      <ExerciseInstance {...routeProps} />
                     </>
                   )}
                 />

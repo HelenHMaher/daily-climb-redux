@@ -14,7 +14,12 @@ export const ListExercises = ({ workout }) => {
 
     return (
       <li key={exercise.id}>
-        {exerciseType.name}
+        <Link
+          to={`/workouts/${workout.id}/exercises/${exerciseType.id}/instance/${exercise.id}`}
+          className="button"
+        >
+          {exerciseType.name}
+        </Link>
         <p className="description">
           {exerciseType.description.substring(0, 100)}
         </p>

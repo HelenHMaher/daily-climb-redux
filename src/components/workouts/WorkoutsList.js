@@ -7,10 +7,13 @@ import { format, parseISO } from "date-fns";
 
 export const WorkoutsList = () => {
   const workouts = useSelector(selectAllWorkouts);
+  const orderedWorkouts = workouts.undefined.sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
 
   const workoutTypes = useSelector(selectAllWorkoutTypes);
 
-  const renderedWorkouts = workouts.undefined.map((workout) => {
+  const renderedWorkouts = orderedWorkouts.map((workout) => {
     const workoutType = workoutTypes.undefined.find(
       (type) => type.id === workout.type
     );
