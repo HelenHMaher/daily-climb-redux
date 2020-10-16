@@ -70,12 +70,12 @@ module.exports = function (app, db) {
         }
       );
     });
-  app.route("api/workouts/:id/exercises").put(function (req, res) {
+  app.route("/api/workouts/:id/exercises").put(function (req, res) {
     const workoutId = req.params.id;
     const exercise = req.body.exercise;
     db.collection("workouts").findOneAndUpdate(
       { id: workoutId },
-      { $push: { exercises: { exercise } } },
+      { $push: { exercises: exercise } },
       { returnNewDocument: true },
       (err, data) => {
         if (err) res.json(`could not add exercise to ${workoutId} ${err}`);
