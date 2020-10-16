@@ -1,15 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-import { selectWorkoutById } from "../workoutsSlice";
 import { selectWorkoutTypeById } from "../../workoutTypes/workoutTypesSlice";
 import { nanoid, unwrapResult } from "@reduxjs/toolkit";
-import { workoutAdded, addNewWorkout } from "../workoutsSlice";
-import { useHistory } from "react-router-dom";
+import {
+  workoutAdded,
+  addNewWorkout,
+  selectWorkoutById,
+} from "../workoutsSlice";
 import { format } from "date-fns";
 
-import { ListExercises } from "../AddWorkoutExercises/ListExercises";
+import { ListExercises } from "./ListExercises";
 import { StyledSingleWorkoutPage } from "./SingleWorkoutPage.styled";
 
 export const SingleWorkoutPage = ({ match }) => {
@@ -63,10 +65,7 @@ export const SingleWorkoutPage = ({ match }) => {
             Create Copy
           </button>
         </div>
-        <Link to={`/workouts/${workoutId}/exercises`} className="button">
-          Add New Exercise
-        </Link>
-        <ListExercises />
+        <ListExercises workout={workout} />
       </section>
     </StyledSingleWorkoutPage>
   );

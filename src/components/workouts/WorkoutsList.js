@@ -7,7 +7,6 @@ import { format, parseISO } from "date-fns";
 
 export const WorkoutsList = () => {
   const workouts = useSelector(selectAllWorkouts);
-  console.log(workouts);
 
   const workoutTypes = useSelector(selectAllWorkoutTypes);
 
