@@ -21,13 +21,12 @@ export const ExerciseInstance = ({ match }) => {
   const [notes, setNotes] = useState(instance.notes);
 
   const onNotesChanged = (e) => setNotes(e.target.value);
-  const onEditNotesClicked = setEditNotes(!editNotes);
+  const onEditNotesClicked = () => setEditNotes(!editNotes);
 
-  const onSaveExerciseClicked = async () => {
+  const onSaveExerciseClicked = () => {
     console.log("clicked");
     setEditNotes(!editNotes);
   };
-
   if (!editNotes) {
     return (
       <section className="singleComponent">
@@ -58,6 +57,9 @@ export const ExerciseInstance = ({ match }) => {
               />
               <button type="button" onClick={onSaveExerciseClicked}>
                 Save Changes
+              </button>
+              <button type="button" onClick={onEditNotesClicked}>
+                Cancel
               </button>
             </div>
           </section>
