@@ -1,10 +1,20 @@
----- default to home
+User
 ---- create user loggin
---- sort workouts by date and show Month breaks
 
---- ability to edit/delete exercises from workout
---- add reps and set toggles to workouts
+Exercise Instance
+--- ability to edit/delete
+--- add reps and sets
+--- add images
+--- what gets cleared when copying a workout??
 
+Workouts
+--- display workouts on calender rather than in a list
 --- only every show 20 entries at a time (OR show whole month)
 
+Mobile
 ---make mobile friendly
+---create burger menu for mobile version
+
+misc.
+---default to home on refresh
+---make width stay constant or only make unilateral jumps with screen width
