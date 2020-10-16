@@ -1,12 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { StyledNavbar } from "./Navbar.styled";
 
 //import {selectCurrentUser} from '../featurs/users/usersSlice';
 
 export const Navbar = () => {
-  const logout = () => {
-    return console.log("logout");
+  const history = useHistory();
+  const login = () => {
+    console.log("login");
+    history.push("/login");
   };
 
   return (
@@ -14,7 +16,7 @@ export const Navbar = () => {
       <section>
         <div className="navHeader">
           <h1>My Daily Climb</h1>
-          <button className="button" onClick={logout}>
+          <button className="button" onClick={login}>
             LogIn
           </button>
         </div>

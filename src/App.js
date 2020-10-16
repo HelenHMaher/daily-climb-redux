@@ -57,7 +57,7 @@ function App() {
                   )}
                 />
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/profile/:userId" component={UserPage} />
+                <Route exact path="/profile" component={UserPage} />
                 <Route
                   exact
                   path="/workouts"

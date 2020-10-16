@@ -9,8 +9,8 @@ export const News = () => {
         <p name="postDate">Oct. 14, 2020</p>
         <p name="post">
           Welcome to the Beta Version of My Daily Climb. Please be aware that in
-          this stage of development, user data will not be secure and may be
-          deleted at any time.
+          this stage of development, data will not be secure and may be deleted
+          at any time.
         </p>
       </section>
     </StyledNews>
