@@ -90,10 +90,21 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/workouts/:workoutId/exercises/:exerciseId"
+                  path="/workouts/:workoutId/exercises"
                   render={(routeProps) => (
                     <>
                       <WorkoutExerciseTitle />
+                      <AddExerciseForm {...routeProps} />
+                      <ExerciseList {...routeProps} />
+                    </>
+                  )}
+                />
+                <Route
+                  exact
+                  path="/workouts/:workoutId/exercises/:exerciseId"
+                  render={(routeProps) => (
+                    <>
+                      <SingleExercisePage {...routeProps} />
                     </>
                   )}
                 />
@@ -131,7 +142,7 @@ function App() {
                 <Route
                   exact
                   path="/exercises"
-                  render={({ routeProps }) => (
+                  render={(routeProps) => (
                     <>
                       <ExercisesTitle />
                       <AddExerciseForm {...routeProps} />
