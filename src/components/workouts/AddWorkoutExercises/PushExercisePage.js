@@ -1,13 +1,17 @@
+import { nanoid, unwrapResult } from "@reduxjs/toolkit";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
 import { selectExerciseById } from "../../exercises/exerciseSlice";
 import { selectWorkoutTypeById } from "../../workoutTypes/workoutTypesSlice";
 
+import { addExercise, exerciseAdded } from "../workoutsSlice";
+
 export const PushExercisePage = ({ match }) => {
   const { exerciseId, workoutId } = match.params;
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const exercise = useSelector((state) =>
     selectExerciseById(state, exerciseId)
@@ -16,8 +20,21 @@ export const PushExercisePage = ({ match }) => {
     selectWorkoutTypeById(state, exercise.type)
   );
 
-  const pushExercise = () => {
-    history.push(`/workouts/${workoutId}`);
+  const payload = {
+    exerciseObject: { exercise: exerciseId, id: nanoid(), notes: "incomplete" },
+    workout: workoutId,
+  };
+
+  const pushExercise = async () => {
+    try {
+      //const resultAction = await dispatch(addExercise(payload));
+      //unwrapResult(resultAction);
+      dispatch(exerciseAdded(payload));
+    } catch (err) {
+      console.error("Failed to add exercise:", err);
+    } finally {
+      history.push(`/workouts/${workoutId}`);
+    }
   };
 
   return (

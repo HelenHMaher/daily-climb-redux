@@ -8,7 +8,9 @@ import { selectAllWorkoutTypes } from "../workoutTypes/workoutTypesSlice";
 
 //add props so can specify workouttype from redirect from Single Workout Type Page
 
-export const AddExerciseForm = () => {
+export const AddExerciseForm = ({ match }) => {
+  const workoutId = match.params.workoutId ? match.params.workoutId : "";
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [workoutTypeId, setWorkoutTypeId] = useState("");
@@ -30,6 +32,10 @@ export const AddExerciseForm = () => {
     id: nanoid(),
   };
 
+  const link = workoutId
+    ? `/workouts/${workoutId}/exercises/${payload.id}`
+    : `/exercises/${payload.id}`;
+
   const onSaveExerciseClicked = async () => {
     try {
       const resultAction = await dispatch(addNewExercise(payload));
@@ -41,7 +47,7 @@ export const AddExerciseForm = () => {
     } catch (err) {
       console.error("Failed to save post:", err);
     } finally {
-      history.push(`/exercises/${payload.id}`);
+      history.push(link);
     }
   };
 
