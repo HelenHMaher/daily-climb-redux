@@ -17,7 +17,7 @@ export const PushExercisePage = ({ match }) => {
   );
 
   const pushExercise = () => {
-    history.pushState(`/workouts/${workoutId}`);
+    history.push(`/workouts/${workoutId}`);
   };
 
   return (
