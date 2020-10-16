@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledExerciseInstance = styled.section`
   #specialEntry {
+    padding: 10px;
     background: rgba(50, 50, 50, 0.5);
     margin-top: 20px;
     border-radius: 5px;

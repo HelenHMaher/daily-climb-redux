@@ -31,9 +31,11 @@ export const ListExercises = ({ workout }) => {
   return (
     <section>
       <h2>Exercises</h2>
-      <Link to={`/workouts/${workout.id}/exercises`} className="button">
-        Add New Exercise
-      </Link>
+      <div className="component">
+        <Link to={`/workouts/${workout.id}/exercises`} className="button">
+          Add New Exercise
+        </Link>
+      </div>
       <ul>{renderedExercises}</ul>
     </section>
   );

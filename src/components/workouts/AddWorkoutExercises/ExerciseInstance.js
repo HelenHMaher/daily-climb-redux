@@ -21,50 +21,65 @@ export const ExerciseInstance = ({ match }) => {
   const [notes, setNotes] = useState(instance.notes);
 
   const onNotesChanged = (e) => setNotes(e.target.value);
-  const onEditNotesClicked = () => setEditNotes(!editNotes);
+  const onEditNotesClicked = () => {
+    setEditNotes(!editNotes);
+    setNotes(instance.notes);
+  };
 
   const onSaveExerciseClicked = () => {
     console.log("clicked");
     setEditNotes(!editNotes);
   };
-  if (!editNotes) {
-    return (
+
+  const displayNotes = (
+    <section className="component">
+      <h4>Notes</h4>
+      <p className="notes">{instance.notes}</p>
+      <button type="button" onClick={onEditNotesClicked}>
+        Edit
+      </button>
+    </section>
+  );
+
+  const displayEditNotes = (
+    <section className="formSection">
+      <form id="specialEntry">
+        <div className="formDiv">
+          <label htmlFor="notes">Notes</label>
+          <textarea
+            id="notes"
+            name="notes"
+            value={notes}
+            onChange={onNotesChanged}
+          />
+          <button type="button" onClick={onSaveExerciseClicked}>
+            Save Changes
+          </button>
+          <button type="button" onClick={onEditNotesClicked}>
+            Cancel
+          </button>
+        </div>
+      </form>
+    </section>
+  );
+
+  const notesDisplay = !editNotes ? displayNotes : displayEditNotes;
+
+  return (
+    <StyledExerciseInstance>
+      <section className="component">
+        <h2>{workout.name}</h2>
+      </section>
       <section className="singleComponent">
         <h2>{exercise.name}</h2>
         <p className="exerciseDescription">{exercise.description}</p>
-        <h4>Notes</h4>
-        <p className="notes">{instance.notes}</p>
-        <button type="button" onClick={onEditNotesClicked}>
-          Edit
-        </button>
+
+        {notesDisplay}
+
         <Link to={`/workouts/${workoutId}`} className="button">
-          Back
+          Back to Workout
         </Link>
       </section>
-    );
-  } else {
-    return (
-      <StyledExerciseInstance>
-        <form id="specialEntry">
-          <section className="formSection">
-            <div className="formDiv">
-              <label htmlFor="notes">Notes</label>
-              <textarea
-                id="notes"
-                name="notes"
-                value={notes}
-                onChange={onNotesChanged}
-              />
-              <button type="button" onClick={onSaveExerciseClicked}>
-                Save Changes
-              </button>
-              <button type="button" onClick={onEditNotesClicked}>
-                Cancel
-              </button>
-            </div>
-          </section>
-        </form>
-      </StyledExerciseInstance>
-    );
-  }
+    </StyledExerciseInstance>
+  );
 };
