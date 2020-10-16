@@ -9,8 +9,8 @@ import { workoutAdded, addNewWorkout } from "../workoutsSlice";
 import { useHistory } from "react-router-dom";
 import { format } from "date-fns";
 
-import { AddExerciseEntry } from "./AddExerciseEntry";
-import { ListExercises } from "./ListExercises";
+import { AddExerciseEntry } from "../AddWorkoutExercises/AddExerciseEntry";
+import { ListExercises } from "../AddWorkoutExercises/ListExercises";
 import { StyledSingleWorkoutPage } from "./SingleWorkoutPage.styled";
 
 export const SingleWorkoutPage = ({ match }) => {

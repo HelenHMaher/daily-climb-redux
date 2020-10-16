@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid, unwrapResult } from "@reduxjs/toolkit";
+import { useHistory } from "react-router-dom";
 
 import { addNewExercise, exerciseAdded } from "./exerciseSlice";
 import { selectAllWorkoutTypes } from "../workoutTypes/workoutTypesSlice";
@@ -12,6 +13,7 @@ export const AddExerciseForm = () => {
   const [description, setDescription] = useState("");
   const [workoutTypeId, setWorkoutTypeId] = useState("");
 
+  const history = useHistory();
   const dispatch = useDispatch();
   const workoutTypes = useSelector(selectAllWorkoutTypes);
 
@@ -38,6 +40,8 @@ export const AddExerciseForm = () => {
       dispatch(exerciseAdded(payload));
     } catch (err) {
       console.error("Failed to save post:", err);
+    } finally {
+      history.push(`/exercises/${payload.id}`);
     }
   };
 

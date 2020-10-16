@@ -31,6 +31,8 @@ import { AddExerciseForm } from "./components/exercises/AddExerciseForm";
 import { SingleExercisePage } from "./components/exercises/SingleExercisePage";
 import { EditExerciseForm } from "./components/exercises/EditExerciseForm";
 
+import { WorkoutExerciseTitle } from "./components/workouts/AddWorkoutExercises/WorkoutExerciseTitle";
+
 import { UserPage } from "./components/user/UserPage";
 import { News } from "./components/news";
 
@@ -53,6 +55,8 @@ function App() {
                     </React.Fragment>
                   )}
                 />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/profile/:userId" component={UserPage} />
                 <Route
                   exact
                   path="/workouts"
@@ -84,8 +88,15 @@ function App() {
                     </>
                   )}
                 />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/profile/:userId" component={UserPage} />
+                <Route
+                  exact
+                  path="/workouts/:workoutId/exercises/:exerciseId"
+                  render={(routeProps) => (
+                    <>
+                      <WorkoutExerciseTitle />
+                    </>
+                  )}
+                />
                 <Route
                   exact
                   path="/workoutTypes"
@@ -120,11 +131,11 @@ function App() {
                 <Route
                   exact
                   path="/exercises"
-                  render={() => (
+                  render={({ routeProps }) => (
                     <>
                       <ExercisesTitle />
-                      <AddExerciseForm />
-                      <ExerciseList />
+                      <AddExerciseForm {...routeProps} />
+                      <ExerciseList {...routeProps} />
                     </>
                   )}
                 />

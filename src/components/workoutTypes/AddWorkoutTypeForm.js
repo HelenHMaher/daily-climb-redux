@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { unwrapResult, nanoid } from "@reduxjs/toolkit";
+import { useHistory } from "react-router-dom";
 
 import { addNewWorkoutType, workoutTypeAdded } from "./workoutTypesSlice";
 
@@ -14,12 +15,14 @@ export const AddWorkoutTypeForm = () => {
   const onDescriptionChanged = (e) => setDescription(e.target.value);
 
   const canSave = name && addRequestStatus === "idle";
+  const history = useHistory();
+
+  const payload = { name, description, id: nanoid() };
 
   const onSaveWorkoutTypeClicked = async () => {
     if (canSave) {
       try {
         setAddRequestStatus("pending");
-        const payload = { name, description, id: nanoid() };
         const resultAction = await dispatch(addNewWorkoutType(payload));
         unwrapResult(resultAction);
         setName("");
@@ -29,6 +32,7 @@ export const AddWorkoutTypeForm = () => {
         console.error("Failed to save workout type:", err);
       } finally {
         setAddRequestStatus("idle");
+        history.push(`/workoutTypes/${payload.id}`);
       }
     }
   };

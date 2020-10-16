@@ -40,7 +40,6 @@ export const AddWorkoutForm = () => {
     if (canSave) {
       try {
         setAddRequestStatus("pending");
-
         const resultAction = await dispatch(addNewWorkout(payload));
         unwrapResult(resultAction);
         setName("");

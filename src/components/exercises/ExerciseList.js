@@ -6,7 +6,9 @@ import { selectAllWorkoutTypes } from "../workoutTypes/workoutTypesSlice";
 
 import { ExerciseListByWorkoutType } from "./ExerciseListByWorkoutType";
 
-export const ExerciseList = () => {
+export const ExerciseList = ({ match }) => {
+  const workoutId = match.params.workoutId ? match.params.workoutId : "";
+
   const [displayAll, setDisplayAll] = useState(true);
   const [type, setType] = useState("");
   const exercises = useSelector(selectAllExercises);
@@ -26,9 +28,14 @@ export const ExerciseList = () => {
     const workoutType = workoutTypes.undefined.find(
       (type) => type.id === exercise.type
     );
+
+    const link = workoutId
+      ? `/workouts/${workoutId}/exercises/${exercise.id}`
+      : `/exercises/${exercise.id}`;
+
     return (
       <li key={exercise.id}>
-        <Link to={`/exercises/${exercise.id}`}>{exercise.name}</Link>
+        <Link to={link}>{exercise.name}</Link>
         <p className="description">
           <span id="workoutType">({workoutType.name})</span>{" "}
           {exercise.description.substring(0, 100)}
