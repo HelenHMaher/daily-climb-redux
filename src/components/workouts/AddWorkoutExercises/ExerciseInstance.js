@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectExerciseById } from "../../exercises/exerciseSlice";
 import { selectWorkoutById } from "../workoutsSlice";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { instanceUpdated } from "../workoutsSlice";
 
 import { StyledExerciseInstance } from "./ExerciseInstance.styled";
 
@@ -26,9 +27,16 @@ export const ExerciseInstance = ({ match }) => {
     setNotes(instance.notes);
   };
 
-  const onSaveExerciseClicked = () => {
-    console.log("clicked");
-    setEditNotes(!editNotes);
+  const payload = { workoutId, notes, instanceId };
+
+  const onSaveExerciseClicked = async () => {
+    try {
+      dispatch(instanceUpdated(payload));
+    } catch (err) {
+      console.error("Failed to update exercise instance:", err);
+    } finally {
+      setEditNotes(!editNotes);
+    }
   };
 
   const displayNotes = (

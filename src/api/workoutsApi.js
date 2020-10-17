@@ -70,15 +70,16 @@ module.exports = function (app, db) {
         }
       );
     });
-  app.route("/api/workouts/:id/exercises").put(function (req, res) {
+  app.route("/api/workouts/:id/instance").put(function (req, res) {
     const workoutId = req.params.id;
-    const exercise = req.body.exercise;
+    const instance = req.body.instance;
     db.collection("workouts").findOneAndUpdate(
       { id: workoutId },
-      { $push: { exercises: exercise } },
+      { $push: { exercises: instance } },
       { returnNewDocument: true },
       (err, data) => {
-        if (err) res.json(`could not add exercise to ${workoutId} ${err}`);
+        if (err)
+          res.json(`could not add exercise instance to ${workoutId} ${err}`);
         res.json(data);
       }
     );

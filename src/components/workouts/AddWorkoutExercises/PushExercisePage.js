@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import { selectExerciseById } from "../../exercises/exerciseSlice";
 import { selectWorkoutTypeById } from "../../workoutTypes/workoutTypesSlice";
 
-import { addExercise, exerciseAdded } from "../workoutsSlice";
+import { addInstance, instanceAdded } from "../workoutsSlice";
 
 export const PushExercisePage = ({ match }) => {
   const { exerciseId, workoutId } = match.params;
@@ -27,9 +27,9 @@ export const PushExercisePage = ({ match }) => {
 
   const pushExercise = async () => {
     try {
-      const resultAction = await dispatch(addExercise(payload));
+      const resultAction = await dispatch(addInstance(payload));
       unwrapResult(resultAction);
-      dispatch(exerciseAdded(payload));
+      dispatch(instanceAdded(payload));
     } catch (err) {
       console.error("Failed to add exercise:", err);
     } finally {

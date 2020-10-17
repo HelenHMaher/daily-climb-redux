@@ -48,13 +48,13 @@ export const fetchWorkouts = createAsyncThunk(
   }
 );
 
-export const addExercise = createAsyncThunk(
+export const addInstance = createAsyncThunk(
   "workouts/addExercise",
   async (payload) => {
     const response = await axios.put(
-      `/api/workouts/${payload.workout}/exercises`,
+      `/api/workouts/${payload.workout}/instance`,
       {
-        exercise: payload.exerciseObject,
+        instance: payload.exerciseObject,
       }
     );
     return response;
@@ -65,13 +65,25 @@ const workoutsSlice = createSlice({
   name: "workouts",
   initialState,
   reducers: {
-    exerciseAdded(state, action) {
+    instanceAdded(state, action) {
       const { exerciseObject, workout } = action.payload;
       const existingWorkout = state.entities.undefined.filter(
         (x) => x["id"] === workout
       );
       if (existingWorkout) {
         existingWorkout[0]["exercises"].push(exerciseObject);
+      }
+    },
+    instanceUpdated(state, action) {
+      const { notes, workoutId, instanceId } = action.payload;
+      const workout = state.entities.undefined.filter(
+        (x) => x["id"] === workoutId
+      );
+      const instance = workout[0]["exercises"].filter(
+        (x) => x["id"] === instanceId
+      );
+      if (instance) {
+        instance[0]["notes"] = notes;
       }
     },
     workoutAdded(state, action) {
@@ -119,7 +131,8 @@ export const {
   workoutAdded,
   workoutUpdated,
   workoutDeleted,
-  exerciseAdded,
+  instanceAdded,
+  instanceUpdated,
 } = workoutsSlice.actions;
 
 export default workoutsSlice.reducer;
