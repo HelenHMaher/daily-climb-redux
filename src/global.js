@@ -116,7 +116,7 @@ html {
     border: 2px solid;
     border-color: rgba(50, 50, 50, 1);
     border-radius: 5px;
-    width: 500px;
+    width: 350px;
     height: 100px;
     resize: none;
     font: inherit;
