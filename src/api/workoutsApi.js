@@ -70,18 +70,48 @@ module.exports = function (app, db) {
         }
       );
     });
-  app.route("/api/workouts/:id/instance").put(function (req, res) {
-    const workoutId = req.params.id;
-    const instance = req.body.instance;
-    db.collection("workouts").findOneAndUpdate(
-      { id: workoutId },
-      { $push: { exercises: instance } },
-      { returnNewDocument: true },
-      (err, data) => {
-        if (err)
-          res.json(`could not add exercise instance to ${workoutId} ${err}`);
-        res.json(data);
+  app
+    .route("/api/workouts/:id/instance")
+
+    .put(function (req, res) {
+      const workoutId = req.params.id;
+      const instance = req.body.instance;
+      db.collection("workouts").findOneAndUpdate(
+        { id: workoutId },
+        { $push: { exercises: instance } },
+        { returnNewDocument: true },
+        (err, data) => {
+          if (err)
+            res.json(`could not add exercise instance to ${workoutId} ${err}`);
+          res.json(data);
+        }
+      );
+    });
+
+  app
+    .route("/api/workouts/:workoutId/instance/:instanceId")
+
+    .post(function (req, res) {
+      const workoutId = req.params.workoutId;
+      const instanceId = req.params.instanceId;
+      const deleteInstance = req.body.delete;
+      const notes = req.body.notes;
+      if (deleteInstance) {
+        db.collection("workouts").findOneAndUpdate({ id: workoutId });
+      } else {
+        db.collection("workouts").findOneAndUpdate(
+          { id: workoutId },
+          { $set: { "exercises.$[element].notes": notes } },
+          { arrayFilters: [{ "element.id": instanceId }] },
+          { returnNewDocument: true },
+          (err, data) => {
+            if (err)
+              res.json(
+                `could not update exercise instance in ${workoutId} ${err}`
+              );
+            res.json(data);
+          }
+        );
       }
-    );
-  });
+    });
 };

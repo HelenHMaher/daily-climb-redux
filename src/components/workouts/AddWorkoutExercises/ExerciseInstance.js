@@ -3,9 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectExerciseById } from "../../exercises/exerciseSlice";
 import { selectWorkoutById } from "../workoutsSlice";
 import { Link, useHistory } from "react-router-dom";
-import { instanceUpdated, instanceDeleted } from "../workoutsSlice";
+import {
+  instanceUpdated,
+  editInstance,
+  instanceDeleted,
+} from "../workoutsSlice";
 
 import { StyledExerciseInstance } from "./ExerciseInstance.styled";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 export const ExerciseInstance = ({ match }) => {
   const { workoutId, exerciseId, instanceId } = match.params;
@@ -28,10 +33,12 @@ export const ExerciseInstance = ({ match }) => {
     setNotes(instance.notes);
   };
 
-  const payload = { workoutId, notes, instanceId };
+  const payload = { workoutId, notes, instanceId, deleteExercise: false };
 
   const onSaveExerciseClicked = async () => {
     try {
+      const resultAction = await dispatch(editInstance(payload));
+      unwrapResult(resultAction);
       dispatch(instanceUpdated(payload));
     } catch (err) {
       console.error("Failed to update exercise instance:", err);
@@ -42,6 +49,9 @@ export const ExerciseInstance = ({ match }) => {
 
   const onDeleteExerciseClicked = async () => {
     try {
+      payload["deleteExercise"] = true;
+      const resultAction = await dispatch(editInstance(payload));
+      unwrapResult(resultAction);
       dispatch(instanceDeleted(payload));
     } catch (err) {
       console.log("Failed to delete exercise instance:", err);

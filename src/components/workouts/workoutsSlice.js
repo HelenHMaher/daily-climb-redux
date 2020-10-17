@@ -49,12 +49,26 @@ export const fetchWorkouts = createAsyncThunk(
 );
 
 export const addInstance = createAsyncThunk(
-  "workouts/addExercise",
+  "workouts/addInstance",
   async (payload) => {
     const response = await axios.put(
       `/api/workouts/${payload.workout}/instance`,
       {
         instance: payload.exerciseObject,
+      }
+    );
+    return response;
+  }
+);
+
+export const editInstance = createAsyncThunk(
+  "workouts/editInstance",
+  async (payload) => {
+    const response = await axios.post(
+      `/api/workouts/${payload.workout}/instance/${payload.instance}`,
+      {
+        delete: payload.deleteExercise,
+        notes: payload.notes,
       }
     );
     return response;
