@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectExerciseById } from "../../exercises/exerciseSlice";
 import { selectWorkoutById } from "../workoutsSlice";
-import { Link } from "react-router-dom";
-import { instanceUpdated } from "../workoutsSlice";
+import { Link, useHistory } from "react-router-dom";
+import { instanceUpdated, instanceDeleted } from "../workoutsSlice";
 
 import { StyledExerciseInstance } from "./ExerciseInstance.styled";
 
 export const ExerciseInstance = ({ match }) => {
   const { workoutId, exerciseId, instanceId } = match.params;
   const dispatch = useDispatch();
+  const history = useHistory();
   const exercise = useSelector((state) =>
     selectExerciseById(state, exerciseId)
   );
@@ -36,6 +37,16 @@ export const ExerciseInstance = ({ match }) => {
       console.error("Failed to update exercise instance:", err);
     } finally {
       setEditNotes(!editNotes);
+    }
+  };
+
+  const onDeleteExerciseClicked = async () => {
+    try {
+      dispatch(instanceDeleted(payload));
+    } catch (err) {
+      console.log("Failed to delete exercise instance:", err);
+    } finally {
+      history.push(`/workouts/${workoutId}`);
     }
   };
 
@@ -81,6 +92,9 @@ export const ExerciseInstance = ({ match }) => {
       <section className="singleComponent">
         <h2>{exercise.name}</h2>
         <p className="exerciseDescription">{exercise.description}</p>
+        <button type="button" onClick={onDeleteExerciseClicked}>
+          Delete Exercise
+        </button>
 
         {notesDisplay}
 

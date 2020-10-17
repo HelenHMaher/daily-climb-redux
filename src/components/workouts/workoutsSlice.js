@@ -86,6 +86,18 @@ const workoutsSlice = createSlice({
         instance[0]["notes"] = notes;
       }
     },
+    instanceDeleted(state, action) {
+      const { workoutId, instanceId } = action.payload;
+      const workout = state.entities.undefined.filter(
+        (x) => x["id"] === workoutId
+      );
+      const array = workout[0]["exercises"];
+      const instance = array.filter((x) => x["id"] === instanceId);
+      if (instance) {
+        const index = array.indexOf(instance);
+        array.splice(index, 1);
+      }
+    },
     workoutAdded(state, action) {
       state.entities.undefined.push(action.payload);
     },
@@ -133,6 +145,7 @@ export const {
   workoutDeleted,
   instanceAdded,
   instanceUpdated,
+  instanceDeleted,
 } = workoutsSlice.actions;
 
 export default workoutsSlice.reducer;
