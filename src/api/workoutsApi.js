@@ -103,7 +103,6 @@ module.exports = function (app, db) {
           { id: workoutId },
           { $set: { "exercises.$[element].notes": notes } },
           { arrayFilters: [{ "element.id": instanceId }] },
-          { returnNewDocument: true },
           (err, data) => {
             if (err)
               res.json(
