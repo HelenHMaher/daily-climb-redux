@@ -9,11 +9,12 @@ Exercise Instance
 
 Workouts
 --- display workouts on calender rather than in a list
---- only every show 20 entries at a time (OR show whole month)
+--- only ever show 20 entries at a time (OR show whole month)
 
 Mobile
 ---make mobile friendly
 ---create burger menu for mobile version
+--UI workflow
 
 misc.
 ---default to home on refresh
