@@ -95,7 +95,7 @@ function App() {
                   path="/workouts/:workoutId/exercises"
                   render={(routeProps) => (
                     <>
-                      <WorkoutExerciseTitle />
+                      <WorkoutExerciseTitle {...routeProps} />
                       <AddExerciseForm {...routeProps} />
                       <ExerciseList {...routeProps} />
                     </>
