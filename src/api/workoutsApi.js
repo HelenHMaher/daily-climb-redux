@@ -98,6 +98,7 @@ module.exports = function (app, db) {
       const notes = req.body.notes;
       if (deleteInstance) {
         db.collection("workouts").findOneAndUpdate({ id: workoutId });
+        console.log("not updated");
       } else {
         db.collection("workouts").findOneAndUpdate(
           { id: workoutId },
@@ -108,6 +109,7 @@ module.exports = function (app, db) {
               res.json(
                 `could not update exercise instance in ${workoutId} ${err}`
               );
+            console.log(notes);
             res.json(data);
           }
         );

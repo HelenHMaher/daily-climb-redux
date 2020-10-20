@@ -34,6 +34,7 @@ export const ExerciseInstance = ({ match }) => {
   };
 
   const payload = { workoutId, notes, instanceId, deleteExercise: false };
+  console.log(instanceId, workoutId);
 
   const onSaveExerciseClicked = async () => {
     try {
