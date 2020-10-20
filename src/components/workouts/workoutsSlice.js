@@ -65,7 +65,7 @@ export const editInstance = createAsyncThunk(
   "workouts/editInstance",
   async (payload) => {
     const response = await axios.post(
-      `/api/workouts/${payload.workout}/instance/${payload.instance}`,
+      `/api/workouts/${payload.workoutId}/instance/${payload.instanceId}`,
       {
         delete: payload.deleteExercise,
         notes: payload.notes,
