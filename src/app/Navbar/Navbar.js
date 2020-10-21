@@ -1,25 +1,11 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { StyledNavbar } from "./Navbar.styled";
 
-//import {selectCurrentUser} from '../featurs/users/usersSlice';
-
 export const Navbar = () => {
-  const history = useHistory();
-  const logout = () => {
-    console.log("logout");
-    history.push("/logout");
-  };
-
   return (
     <StyledNavbar>
       <section>
-        <div className="navHeader">
-          <h1>My Daily Climb</h1>
-          <button className="button" onClick={logout}>
-            LogOut
-          </button>
-        </div>
         <div className="navContent">
           <div className="navLinks">
             <Link to="/">Home</Link>

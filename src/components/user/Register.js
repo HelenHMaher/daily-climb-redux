@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
-export const Login = () => {
+export const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
 
   const onUsernameChanged = (e) => setUsername(e.target.value);
   const onPasswordChanged = (e) => setPassword(e.target.value);
+  const onConfirmChanged = (e) => setConfirm(e.target.value);
+
+  const canSubmit = confirm === password;
 
   const clickSubmit = () => {
-    console.log(`${username} attempted to log in`);
+    console.log(`${username} attempted to register`);
   };
 
   return (
@@ -36,12 +39,18 @@ export const Login = () => {
             />
           </div>
           <div className="formDiv">
-            <button type="button" onClick={clickSubmit}>
+            <label htmlFor="confirm">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm"
+              value={confirm}
+              onChange={onConfirmChanged}
+            />
+          </div>
+          <div className="formDiv">
+            <button type="button" onClick={clickSubmit} disable={!canSubmit}>
               Submit
             </button>
-            <Link to={`/register`} className="button">
-              Register
-            </Link>
           </div>
         </section>
       </form>

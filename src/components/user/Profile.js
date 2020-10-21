@@ -4,7 +4,8 @@ export const Profile = () => {
   return (
     <section className="component">
       <h2>Profile</h2>
-      <p>Login and user profile features not yet available.</p>
+      <p>Username:</p>
+      <p>Member Since:</p>
     </section>
   );
 };

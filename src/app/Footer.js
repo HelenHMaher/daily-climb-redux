@@ -1,5 +1,10 @@
 import React from "react";
+import { StyledFooter } from "./Footer.styled";
 
 export const Footer = () => {
-  return <p className="component">Helen Maher 2020</p>;
+  return (
+    <StyledFooter>
+      <p className="footer">Helen Maher 2020</p>
+    </StyledFooter>
+  );
 };

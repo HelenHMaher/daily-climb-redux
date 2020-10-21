@@ -11,6 +11,7 @@ import {
 
 import { Navbar } from "./app/Navbar/Navbar.js";
 import { Footer } from "./app/Footer";
+import { Header } from "./app/Header";
 import { Login } from "./components/user/Login";
 
 import { WorkoutsTitle } from "./components/workouts/WorkoutsTitle";
@@ -45,6 +46,7 @@ function App() {
         <GlobalStyles />
         <Router>
           <div className="Container">
+            <Header />
             <Navbar />
             <div className="App">
               <Switch>
@@ -182,8 +184,8 @@ function App() {
                 />
                 <Redirect to="/" />
               </Switch>
-              <Footer />
             </div>
+            <Footer />
           </div>
         </Router>
       </>
