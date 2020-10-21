@@ -35,10 +35,19 @@ import { WorkoutExerciseTitle } from "./components/workouts/AddWorkoutExercises/
 import { PushExercisePage } from "./components/workouts/AddWorkoutExercises/PushExercisePage";
 import { ExerciseInstance } from "./components/workouts/AddWorkoutExercises/ExerciseInstance";
 
+import store from "./app/store";
+import { fetchWorkoutTypes } from "./components/workoutTypes/workoutTypesSlice";
+import { fetchWorkouts } from "./components/workouts/workoutsSlice";
+import { fetchExercises } from "./components/exercises/exerciseSlice";
+
 import { Profile } from "./components/user/Profile";
 import { News } from "./components/news";
 
 function App() {
+  store.dispatch(fetchWorkoutTypes());
+  store.dispatch(fetchWorkouts());
+  store.dispatch(fetchExercises());
+
   return (
     <ThemeProvider theme={theme}>
       <>

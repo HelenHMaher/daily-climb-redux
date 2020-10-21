@@ -35,3 +35,5 @@ const userSlice = createSlice({
 });
 
 export const { userUpdated } = userSlice.actions;
+
+export default userSlice.reducer;
