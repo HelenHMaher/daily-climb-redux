@@ -1,7 +1,4 @@
 import React from "react";
-import { GlobalStyles } from "./global";
-import { ThemeProvider } from "styled-components";
-import { theme } from "./theme";
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,8 +7,6 @@ import {
 } from "react-router-dom";
 
 import { Navbar } from "./app/Navbar/Navbar.js";
-import { Footer } from "./app/Footer";
-import { Header } from "./app/Header";
 
 import { WorkoutsTitle } from "./components/workouts/WorkoutsTitle";
 import { WorkoutsList } from "./components/workouts/WorkoutsList";
@@ -49,155 +44,146 @@ function BaseApp() {
   store.dispatch(fetchExercises());
 
   return (
-    <ThemeProvider theme={theme}>
-      <>
-        <GlobalStyles />
-        <Router>
-          <div className="Container">
-            <Header />
-            <Navbar />
-            <div className="App">
-              <Switch>
-                <Route
-                  exact
-                  path="/"
-                  render={() => (
-                    <React.Fragment>
-                      <News />
-                    </React.Fragment>
-                  )}
-                />
-                <Route exact path="/profile" component={Profile} />
-                <Route
-                  exact
-                  path="/workouts"
-                  render={() => (
-                    <>
-                      <WorkoutsTitle />
-                      <AddWorkoutForm />
-                      <WorkoutsList />
-                    </>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/workouts/:workoutId"
-                  render={(routeProps) => (
-                    <>
-                      <WorkoutsTitle />
-                      <SingleWorkoutPage {...routeProps} />
-                    </>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/editWorkout/:workoutId"
-                  render={(routeProps) => (
-                    <>
-                      <WorkoutsTitle />
-                      <EditWorkoutPage {...routeProps} />
-                    </>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/workouts/:workoutId/exercises"
-                  render={(routeProps) => (
-                    <>
-                      <WorkoutExerciseTitle {...routeProps} />
-                      <AddExerciseForm {...routeProps} />
-                      <ExerciseList {...routeProps} />
-                    </>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/workouts/:workoutId/exercises/:exerciseId"
-                  render={(routeProps) => (
-                    <>
-                      <PushExercisePage {...routeProps} />
-                    </>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/workouts/:workoutId/exercises/:exerciseId/instance/:instanceId"
-                  render={(routeProps) => (
-                    <>
-                      <ExerciseInstance {...routeProps} />
-                    </>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/workoutTypes"
-                  render={() => (
-                    <>
-                      <WorkoutTypesTitle />
-                      <AddWorkoutTypeForm />
-                      <WorkoutTypesList />
-                    </>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/workoutTypes/:workoutTypeId"
-                  render={(routeProps) => (
-                    <>
-                      <WorkoutTypesTitle />
-                      <SingleWorkoutTypePage {...routeProps} />
-                    </>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/editWorkoutTypes/:workoutTypeId"
-                  render={(routeProps) => (
-                    <>
-                      <WorkoutTypesTitle />
-                      <EditWorkoutTypeForm {...routeProps} />
-                    </>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/exercises"
-                  render={(routeProps) => (
-                    <>
-                      <ExercisesTitle />
-                      <AddExerciseForm {...routeProps} />
-                      <ExerciseList {...routeProps} />
-                    </>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/exercises/:exerciseId"
-                  render={(routeProps) => (
-                    <>
-                      <ExercisesTitle />
-                      <SingleExercisePage {...routeProps} />
-                    </>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/editExercises/:exerciseId"
-                  render={(routeProps) => (
-                    <>
-                      <ExercisesTitle />
-                      <EditExerciseForm {...routeProps} />
-                    </>
-                  )}
-                />
-                <Redirect to="/" />
-              </Switch>
-            </div>
-            <Footer />
-          </div>
-        </Router>
-      </>
-    </ThemeProvider>
+    <div className="App">
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <React.Fragment>
+                <News />
+              </React.Fragment>
+            )}
+          />
+          <Route exact path="/profile" component={Profile} />
+          <Route
+            exact
+            path="/workouts"
+            render={() => (
+              <>
+                <WorkoutsTitle />
+                <AddWorkoutForm />
+                <WorkoutsList />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/workouts/:workoutId"
+            render={(routeProps) => (
+              <>
+                <WorkoutsTitle />
+                <SingleWorkoutPage {...routeProps} />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/editWorkout/:workoutId"
+            render={(routeProps) => (
+              <>
+                <WorkoutsTitle />
+                <EditWorkoutPage {...routeProps} />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/workouts/:workoutId/exercises"
+            render={(routeProps) => (
+              <>
+                <WorkoutExerciseTitle {...routeProps} />
+                <AddExerciseForm {...routeProps} />
+                <ExerciseList {...routeProps} />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/workouts/:workoutId/exercises/:exerciseId"
+            render={(routeProps) => (
+              <>
+                <PushExercisePage {...routeProps} />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/workouts/:workoutId/exercises/:exerciseId/instance/:instanceId"
+            render={(routeProps) => (
+              <>
+                <ExerciseInstance {...routeProps} />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/workoutTypes"
+            render={() => (
+              <>
+                <WorkoutTypesTitle />
+                <AddWorkoutTypeForm />
+                <WorkoutTypesList />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/workoutTypes/:workoutTypeId"
+            render={(routeProps) => (
+              <>
+                <WorkoutTypesTitle />
+                <SingleWorkoutTypePage {...routeProps} />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/editWorkoutTypes/:workoutTypeId"
+            render={(routeProps) => (
+              <>
+                <WorkoutTypesTitle />
+                <EditWorkoutTypeForm {...routeProps} />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/exercises"
+            render={(routeProps) => (
+              <>
+                <ExercisesTitle />
+                <AddExerciseForm {...routeProps} />
+                <ExerciseList {...routeProps} />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/exercises/:exerciseId"
+            render={(routeProps) => (
+              <>
+                <ExercisesTitle />
+                <SingleExercisePage {...routeProps} />
+              </>
+            )}
+          />
+          <Route
+            exact
+            path="/editExercises/:exerciseId"
+            render={(routeProps) => (
+              <>
+                <ExercisesTitle />
+                <EditExerciseForm {...routeProps} />
+              </>
+            )}
+          />
+          <Redirect to="/" />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import RegisterForm from "./RegisterFrom";
+import { RegisterForm } from "./RegisterForm";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
