@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const Register = () => {
+export const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
