@@ -6,9 +6,9 @@ import { StyledNavbar } from "./Navbar.styled";
 
 export const Navbar = () => {
   const history = useHistory();
-  const login = () => {
-    console.log("login");
-    history.push("/login");
+  const logout = () => {
+    console.log("logout");
+    history.push("/logout");
   };
 
   return (
@@ -16,8 +16,8 @@ export const Navbar = () => {
       <section>
         <div className="navHeader">
           <h1>My Daily Climb</h1>
-          <button className="button" onClick={login}>
-            LogIn
+          <button className="button" onClick={logout}>
+            LogOut
           </button>
         </div>
         <div className="navContent">

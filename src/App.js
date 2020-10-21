@@ -35,7 +35,7 @@ import { WorkoutExerciseTitle } from "./components/workouts/AddWorkoutExercises/
 import { PushExercisePage } from "./components/workouts/AddWorkoutExercises/PushExercisePage";
 import { ExerciseInstance } from "./components/workouts/AddWorkoutExercises/ExerciseInstance";
 
-import { UserPage } from "./components/user/UserPage";
+import { Profile } from "./components/user/Profile";
 import { News } from "./components/news";
 
 function App() {
@@ -57,8 +57,7 @@ function App() {
                     </React.Fragment>
                   )}
                 />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/profile" component={UserPage} />
+                <Route exact path="/profile" component={Profile} />
                 <Route
                   exact
                   path="/workouts"
