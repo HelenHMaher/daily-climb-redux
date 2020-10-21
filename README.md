@@ -2,7 +2,7 @@ User
 ---- create user loggin
 
 Exercise Instance
---- ability to edit/delete
+--- ability to DELETE??
 --- add reps and sets
 --- add images
 --- what gets cleared when copying a workout??

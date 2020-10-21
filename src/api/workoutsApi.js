@@ -97,8 +97,18 @@ module.exports = function (app, db) {
       const deleteInstance = req.body.delete;
       const notes = req.body.notes;
       if (deleteInstance) {
-        db.collection("workouts").findOneAndUpdate({ id: workoutId });
-        console.log("not updated");
+        db.collection("workouts").findOneAndUpdate(
+          { id: workoutId },
+          { $pull: { exercises: { id: instanceId } } },
+          (err, data) => {
+            if (err)
+              res.json(
+                `could not delete exercise instance in ${workoutId} ${err}`
+              );
+            console.log(`deleted: ${instanceId}`);
+            res.json(data);
+          }
+        );
       } else {
         db.collection("workouts").findOneAndUpdate(
           { id: workoutId },
@@ -109,7 +119,7 @@ module.exports = function (app, db) {
               res.json(
                 `could not update exercise instance in ${workoutId} ${err}`
               );
-            console.log(notes);
+            console.log(`updated: ${notes}`);
             res.json(data);
           }
         );

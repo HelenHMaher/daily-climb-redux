@@ -52,11 +52,10 @@ export const ExerciseInstance = ({ match }) => {
       payload["deleteExercise"] = true;
       const resultAction = await dispatch(editInstance(payload));
       unwrapResult(resultAction);
+      history.push(`/workouts/${workoutId}`);
       dispatch(instanceDeleted(payload));
     } catch (err) {
       console.log("Failed to delete exercise instance:", err);
-    } finally {
-      history.push(`/workouts/${workoutId}`);
     }
   };
 
