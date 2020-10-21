@@ -8,6 +8,8 @@ import { fetchWorkoutTypes } from "./components/workoutTypes/workoutTypesSlice";
 import { fetchWorkouts } from "./components/workouts/workoutsSlice";
 import { fetchExercises } from "./components/exercises/exerciseSlice";
 
+//fetch calls do NOT need to happen here
+
 store.dispatch(fetchWorkoutTypes());
 store.dispatch(fetchWorkouts());
 store.dispatch(fetchExercises());

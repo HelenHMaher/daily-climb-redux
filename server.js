@@ -8,6 +8,8 @@ const typesApi = require("./src/api/typesApi");
 const workoutsApi = require("./src/api/workoutsApi");
 const exercisesApi = require("./src/api/exercisesApi");
 
+//user id token json web token
+
 mongo.connect(
   process.env.MONGO_URI,
   { useUnifiedTopology: true },
