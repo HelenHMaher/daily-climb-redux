@@ -4,7 +4,7 @@ module.exports = function (app, db) {
 
     .post((req, res) => {
       const user = req.body.user;
-      db.collection("user").insertOne(user, (err, data) => {
+      db.collection("users").insertOne(user, (err, data) => {
         if (err) res.json(`could not update: ${err}`);
         console.log(data.ops);
         res.redirect("/");
@@ -13,7 +13,7 @@ module.exports = function (app, db) {
 
     .get((req, res) => {
       const user = req.body.userId;
-      db.collection("user")
+      db.collection("users")
         .find({ id: user })
         .toArray((err, users) => {
           if (err) return res.json(`could not find entries: ${err}`);

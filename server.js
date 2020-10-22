@@ -7,6 +7,7 @@ const mongo = require("mongodb").MongoClient;
 const typesApi = require("./src/api/typesApi");
 const workoutsApi = require("./src/api/workoutsApi");
 const exercisesApi = require("./src/api/exercisesApi");
+const userApi = require("./src/api/userApi");
 
 //user id token json web token
 
@@ -34,6 +35,7 @@ mongo.connect(
         res.sendFile(path.join(__dirname, "build", "index.html"));
       });
 
+      userApi(app, db);
       typesApi(app, db);
       workoutsApi(app, db);
       exercisesApi(app, db);

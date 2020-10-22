@@ -31,9 +31,6 @@ const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    userAdded(state, action) {
-      state.entities.undefined.push(action.payload);
-    },
     userUpdated(state, action) {
       const { username, id, password } = action.payload;
       const existingUser = state.entities;
@@ -47,6 +44,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { userAdded, userUpdated } = userSlice.actions;
+export const { userUpdated } = userSlice.actions;
 
 export default userSlice.reducer;
