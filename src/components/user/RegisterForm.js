@@ -1,4 +1,6 @@
+import { nanoid, unwrapResult } from "@reduxjs/toolkit";
 import React, { useState } from "react";
+import { addNewUser, userAdded } from "./userSlice";
 
 export const RegisterForm = () => {
   const [username, setUsername] = useState("");
@@ -9,10 +11,23 @@ export const RegisterForm = () => {
   const onPasswordChanged = (e) => setPassword(e.target.value);
   const onConfirmChanged = (e) => setConfirm(e.target.value);
 
+  const payload = { username, password, id: nanoid() };
+
   const canSubmit = confirm === password;
 
-  const clickSubmit = () => {
-    console.log(`${username} attempted to register`);
+  const clickSubmit = async () => {
+    try {
+      const resultAction = await dispatchEvent(addNewUser(payload));
+      unwrapResult(resultAction);
+      setUsername("");
+      setPassword("");
+      setConfirm("");
+      dispatchEvent(userAdded(payload));
+    } catch (err) {
+      console.error("Failed to add user:", err);
+    } finally {
+      console.log(`${username} attempted to register`);
+    }
   };
 
   return (

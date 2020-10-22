@@ -12,21 +12,34 @@ const initialState = userAdapter.getInitialState({
   error: null,
 });
 
+export const addNewUser = createAsyncThunk(
+  "user/createNewUser",
+  async (initialUser) => {
+    const response = await axios.post("/api/users/", {
+      user: initialUser,
+    });
+    return response;
+  }
+);
+
 export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
-  const response = await axios.get("/api/user/");
+  const response = await axios.get("/api/users/");
   return response;
 });
 
 const userSlice = createSlice({
-  name: "user",
+  name: "users",
   initialState,
   reducers: {
+    userAdded(state, action) {
+      state.entities.undefined.push(action.payload);
+    },
     userUpdated(state, action) {
-      const { username, email, password } = action.payload;
+      const { username, id, password } = action.payload;
       const existingUser = state.entities;
       existingUser["username"] = username;
       existingUser["password"] = password;
-      existingUser["email"] = email;
+      existingUser["id"] = id;
     },
     extraReducers: {
       [fetchUser.fulfilled]: userAdapter.setAll,
@@ -34,6 +47,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { userUpdated } = userSlice.actions;
+export const { userAdded, userUpdated } = userSlice.actions;
 
 export default userSlice.reducer;
