@@ -1,18 +1,16 @@
 const express = require("express");
+const session = require("express-session");
 const favicon = require("express-favicon");
 const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
 const mongo = require("mongodb").MongoClient;
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
-
-const User = require("./src/models/user");
 
 const typesApi = require("./src/api/typesApi");
 const workoutsApi = require("./src/api/workoutsApi");
 const exercisesApi = require("./src/api/exercisesApi");
 const userApi = require("./src/api/userApi");
+const auth = require("./src/api/auth");
 
 //user id token json web token
 
@@ -41,20 +39,16 @@ mongo.connect(
       });
 
       app.use(
-        require("express-session")({
-          secret: "Wheiondkfjodap",
+        session({
+          secret: "Here by my session and it is DOPE REALLY THE DOPE TRAIN",
           resave: false,
           saveUninitialized: false,
         })
       );
 
-      app.use(passport.initialize());
-      app.use(passport.session());
-      passport.use(new LocalStrategy(User.authenticate()));
-      passport.serializeUser(User.serializeUser());
-      passport.deserializeUser(User.deserializeUser());
-
+      auth(app, db);
       userApi(app, db);
+
       typesApi(app, db);
       workoutsApi(app, db);
       exercisesApi(app, db);

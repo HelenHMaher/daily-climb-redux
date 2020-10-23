@@ -22,8 +22,8 @@ export const addNewUser = createAsyncThunk(
   }
 );
 
-export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
-  const response = await axios.get("/api/users/");
+export const fetchUser = createAsyncThunk("user/fetchUser", async (userId) => {
+  const response = await axios.get(`/api/users/${userId}`);
   return response;
 });
 
