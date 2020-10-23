@@ -2,7 +2,6 @@ import { nanoid, unwrapResult } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import { addNewUser } from "./userSlice";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 
 export const RegisterForm = () => {
   const [username, setUsername] = useState("");

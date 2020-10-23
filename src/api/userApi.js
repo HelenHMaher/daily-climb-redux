@@ -8,7 +8,6 @@ module.exports = function (app, db) {
     .post((req, res) => {
       const newUser = new User({
         username: req.body.user.username,
-        userId: req.body.user.userId,
       });
       User.register(newUser, req.body.user.password, function (err, user) {
         if (err) {
@@ -16,21 +15,22 @@ module.exports = function (app, db) {
           return res.render("register");
         }
         passport.authenticate("local")(req, res, function () {
-          res.redirect(`/users/${newUser.userId}`);
+          res.redirect(`/`);
         });
       });
-    })
-
+    });
+  /*
     .route("/api/users/login/")
 
     .post((req, res) => {
-      passport.authenticate("local", {
-        successRedirect: `/users/${req.body.user.userId}`,
-        failureRedirect: "/users/login",
+      const userId = req.body.user.userId;
+      passport.authenticate("local")(req, res, function () {
+        res.redirect(`/users/${userId}`);
       });
     })
 
     .route("/api/users/:userId")
 
     .get((req, res) => {});
+    */
 };
