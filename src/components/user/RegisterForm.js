@@ -2,6 +2,7 @@ import { nanoid, unwrapResult } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import { addNewUser } from "./userSlice";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 export const RegisterForm = () => {
   const [username, setUsername] = useState("");
@@ -13,7 +14,7 @@ export const RegisterForm = () => {
   const onConfirmChanged = (e) => setConfirm(e.target.value);
 
   const dispatch = useDispatch();
-  const payload = { username, password, id: nanoid() };
+  const payload = { username, password, userId: nanoid() };
 
   const canSubmit = confirm === password;
 

@@ -15,7 +15,7 @@ const initialState = userAdapter.getInitialState({
 export const addNewUser = createAsyncThunk(
   "user/createNewUser",
   async (initialUser) => {
-    const response = await axios.post("/api/users/", {
+    const response = await axios.post("/api/users/register/", {
       user: initialUser,
     });
     return response;
@@ -32,10 +32,9 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     userUpdated(state, action) {
-      const { username, id, password } = action.payload;
+      const { username, id } = action.payload;
       const existingUser = state.entities;
       existingUser["username"] = username;
-      existingUser["password"] = password;
       existingUser["id"] = id;
     },
     extraReducers: {

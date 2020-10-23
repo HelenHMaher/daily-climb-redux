@@ -1,23 +1,36 @@
+const User = require("../models/user");
+const passport = require("passport");
+
 module.exports = function (app, db) {
   app
-    .route("/api/users/")
+    .route("/api/users/register/")
 
     .post((req, res) => {
-      const user = req.body.user;
-      db.collection("users").insertOne(user, (err, data) => {
-        if (err) res.json(`could not update: ${err}`);
-        console.log(data.ops);
-        res.redirect("/");
+      const newUser = new User({
+        username: req.body.user.username,
+        userId: req.body.user.userId,
+      });
+      User.register(newUser, req.body.user.password, function (err, user) {
+        if (err) {
+          console.log("ERROR", err.message);
+          return res.render("register");
+        }
+        passport.authenticate("local")(req, res, function () {
+          res.redirect(`/users/${newUser.userId}`);
+        });
       });
     })
 
-    .get((req, res) => {
-      const user = req.body.userId;
-      db.collection("users")
-        .find({ id: user })
-        .toArray((err, users) => {
-          if (err) return res.json(`could not find entries: ${err}`);
-          res.json(users);
-        });
-    });
+    .route("/api/users/login/")
+
+    .post((req, res) => {
+      passport.authenticate("local", {
+        successRedirect: `/users/${req.body.user.userId}`,
+        failureRedirect: "/users/login",
+      });
+    })
+
+    .route("/api/users/:userId")
+
+    .get((req, res) => {});
 };

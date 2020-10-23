@@ -4,6 +4,11 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
 const mongo = require("mongodb").MongoClient;
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+
+const User = require("./src/models/user");
+
 const typesApi = require("./src/api/typesApi");
 const workoutsApi = require("./src/api/workoutsApi");
 const exercisesApi = require("./src/api/exercisesApi");
@@ -34,6 +39,20 @@ mongo.connect(
       app.get("/", function (req, res, next) {
         res.sendFile(path.join(__dirname, "build", "index.html"));
       });
+
+      app.use(
+        require("express-session")({
+          secret: "Wheiondkfjodap",
+          resave: false,
+          saveUninitialized: false,
+        })
+      );
+
+      app.use(passport.initialize());
+      app.use(passport.session());
+      passport.use(new LocalStrategy(User.authenticate()));
+      passport.serializeUser(User.serializeUser());
+      passport.deserializeUser(User.deserializeUser());
 
       userApi(app, db);
       typesApi(app, db);
