@@ -46,3 +46,5 @@ const userSlice = createSlice({
 export const { userUpdated } = userSlice.actions;
 
 export default userSlice.reducer;
+
+//say=Hi&to=Mom in string!!

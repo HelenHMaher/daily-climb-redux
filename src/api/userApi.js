@@ -18,45 +18,39 @@ module.exports = function (app, db) {
     })
   );
 
-  app.post(
-    "/api/users/register/",
-    function (req, res, next) {
-      db.collection("profiles").findOne(
-        { username: req.body.user.username },
-        (err, user) => {
-          if (err) {
-            next(err);
-          } else if (user) {
-            console.log("username has already been taken");
-            res.redirect("/");
-          } else {
-            const hash = bcrypt.hashSync(req.body.user.password, 12);
-            db.collection("profiles").insertOne(
-              {
-                userId: req.body.user.userId,
-                username: req.body.user.username,
-                password: hash,
-              },
-              (err, doc) => {
-                if (err) {
-                  res.redirect("/");
-                } else {
-                  console.log(
-                    "new user " + req.body.user.username + " logged in"
-                  );
-                  next(null, user);
-                }
+  app.post("/api/users/register/", function (req, res, next) {
+    db.collection("profiles").findOne(
+      { username: req.body.user.username },
+      (err, user) => {
+        if (err) {
+          next(err);
+        } else if (user) {
+          console.log("username has already been taken");
+          res.redirect("/");
+        } else {
+          const hash = bcrypt.hashSync(req.body.user.password, 12);
+          db.collection("profiles").insertOne(
+            {
+              userId: req.body.user.userId,
+              username: req.body.user.username,
+              password: hash,
+            },
+            (err, user) => {
+              if (err) {
+                res.redirect("/");
+              } else {
+                console.log(
+                  "new user " + req.body.user.username + " logged in"
+                );
+                res.redirect("/");
               }
-            );
-          }
+            }
+          );
         }
-      );
-    },
-    passport.authenticate("local"),
-    function (req, res) {
-      console.log(req.user.userId);
-    }
-  );
+      }
+    );
+  });
+
   app.get("/api/users/:userId", passport.authenticate("local"), function (
     req,
     res
