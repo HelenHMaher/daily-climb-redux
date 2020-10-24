@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { RegisterForm } from "./RegisterForm";
+import { unwrapResult } from "@reduxjs/toolkit";
+import store from "../../app/store";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "../user/userSlice";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
@@ -9,8 +13,18 @@ export const Login = () => {
   const onUsernameChanged = (e) => setUsername(e.target.value);
   const onPasswordChanged = (e) => setPassword(e.target.value);
 
-  const clickSubmit = () => {
-    console.log(`${username} attempted to log in`);
+  const dispatch = useDispatch();
+
+  const clickSubmit = async () => {
+    try {
+      store.dispatch(fetchUser(username));
+      setUsername("");
+      setPassword("");
+    } catch (err) {
+      console.log("Failed to login user:", err);
+    } finally {
+      console.log(`${username} attempted to log in`);
+    }
   };
 
   const toggleRegister = () => {

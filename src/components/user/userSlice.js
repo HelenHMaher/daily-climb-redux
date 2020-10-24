@@ -22,10 +22,13 @@ export const addNewUser = createAsyncThunk(
   }
 );
 
-export const fetchUser = createAsyncThunk("user/fetchUser", async (userId) => {
-  const response = await axios.get(`/api/users/${userId}`);
-  return response;
-});
+export const fetchUser = createAsyncThunk(
+  "user/fetchUser",
+  async (username) => {
+    const response = await axios.get(`/api/users/${username}`);
+    return response;
+  }
+);
 
 const userSlice = createSlice({
   name: "users",
@@ -37,9 +40,9 @@ const userSlice = createSlice({
       existingUser["username"] = username;
       existingUser["id"] = id;
     },
-    extraReducers: {
-      [fetchUser.fulfilled]: userAdapter.setAll,
-    },
+  },
+  extraReducers: {
+    [fetchUser.fulfilled]: userAdapter.setAll,
   },
 });
 

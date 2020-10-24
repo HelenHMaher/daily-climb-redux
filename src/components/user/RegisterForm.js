@@ -1,7 +1,8 @@
 import { nanoid, unwrapResult } from "@reduxjs/toolkit";
 import React, { useState } from "react";
-import { addNewUser } from "./userSlice";
+import { addNewUser, fetchUser } from "./userSlice";
 import { useDispatch } from "react-redux";
+import store from "../../app/store";
 
 export const RegisterForm = () => {
   const [username, setUsername] = useState("");
@@ -24,6 +25,7 @@ export const RegisterForm = () => {
       setUsername("");
       setPassword("");
       setConfirm("");
+      store.dispatch(fetchUser(username));
     } catch (err) {
       console.error("Failed to add user:", err);
     } finally {

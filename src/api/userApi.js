@@ -18,12 +18,12 @@ module.exports = function (app, db) {
     })
   );
 
-  app.post("/api/users/register/", function (req, res, next) {
+  app.post("/api/users/register/", function (req, res) {
     db.collection("profiles").findOne(
       { username: req.body.user.username },
       (err, user) => {
         if (err) {
-          next(err);
+          console.log("error: " + err);
         } else if (user) {
           console.log("username has already been taken");
           res.redirect("/");
@@ -51,13 +51,16 @@ module.exports = function (app, db) {
     );
   });
 
-  app.get("/api/users/:userId", passport.authenticate("local"), function (
-    req,
-    res
-  ) {
+  app.get("/api/users/:username", function (req, res) {
     db.collection("profiles").findOne(
-      { userId: req.params.userId },
-      { password: 0, _id: 0 }
+      { username: req.params.username },
+      (err, data) => {
+        if (err) {
+          res.json(`could not get ${req.params.username} ${err}`);
+        } else {
+          res.json(data);
+        }
+      }
     );
   });
 };
