@@ -12,9 +12,10 @@ module.exports = function (app, db) {
   }
 
   app.post(
-    "/api/users/login/",
+    "/api/users/authenticate/",
     passport.authenticate("local", function (req, res) {
-      db.collection("profiles").findOne({ userId: req.params.userId });
+      console.log("you are here");
+      res.json({ username: res.user.username });
     })
   );
 
@@ -26,26 +27,27 @@ module.exports = function (app, db) {
           console.log("error: " + err);
         } else if (user) {
           console.log("username has already been taken");
-          res.redirect("/");
+          res.json(user.username);
         } else {
-          const hash = bcrypt.hashSync(req.body.user.password, 12);
-          db.collection("profiles").insertOne(
-            {
-              userId: req.body.user.userId,
-              username: req.body.user.username,
-              password: hash,
-            },
-            (err, user) => {
-              if (err) {
-                res.redirect("/");
-              } else {
-                console.log(
-                  "new user " + req.body.user.username + " logged in"
-                );
-                res.redirect("/");
+          bcrypt.hash(req.body.user.password, 12, (err, hash) => {
+            db.collection("profiles").insertOne(
+              {
+                userId: req.body.user.userId,
+                username: req.body.user.username,
+                password: hash,
+              },
+              (err, user) => {
+                if (err) {
+                  res.redirect("/");
+                } else {
+                  console.log(
+                    "new user " + req.body.user.username + " logged in"
+                  );
+                  res.redirect("/");
+                }
               }
-            }
-          );
+            );
+          });
         }
       }
     );

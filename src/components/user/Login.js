@@ -4,6 +4,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import store from "../../app/store";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../user/userSlice";
+import axios from "axios";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
@@ -17,6 +18,11 @@ export const Login = () => {
 
   const clickSubmit = async () => {
     try {
+      const response = await axios.post(
+        "/api/users/authenticate/",
+        `username=${username}&password=${password}`
+      );
+      console.log(response + ": has been returned");
       store.dispatch(fetchUser(username));
       setUsername("");
       setPassword("");
