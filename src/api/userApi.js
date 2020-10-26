@@ -5,19 +5,26 @@ module.exports = function (app, db) {
   function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
       console.log("logged in");
+      next();
     } else {
       console.log("not logged in");
-      res.redirect("/");
     }
   }
 
   app.post(
     "/api/users/authenticate/",
-    passport.authenticate("local", function (req, res) {
-      console.log("you are here");
-      res.json({ username: res.user.username });
+    passport.authenticate("local", {
+      successRedirect: "/",
+      failureRedirect: "/heartbeat",
     })
   );
+
+  /*function (req, res) {
+      console.log("you are here");
+      console.log(`req: ${req} res:${res}`);
+      res.json(req.user);
+    })
+  );*/
 
   app.post("/api/users/register/", function (req, res) {
     db.collection("profiles").findOne(

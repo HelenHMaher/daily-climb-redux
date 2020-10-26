@@ -46,6 +46,63 @@ mongo.connect(
         })
       );
 
+      /*app.use(passport.initialize());
+      app.use(passport.session());
+
+      passport.serializeUser(function (user, done) {
+        console.log("serialize User");
+        console.log(user);
+        done(null, user.userId);
+      });
+
+      passport.deserializeUser(function (id, done) {
+        db.collection("profiles").findOne({ userId: id }, (err, user) => {
+          console.log("deserialize user");
+          done(err, user);
+        });
+      });
+
+      passport.use(
+        new LocalStrategy((username, password, done) => {
+          db.collection("profiles").findOne(
+            { username: username },
+            (err, user) => {
+              if (err) {
+                console.log(
+                  "User " + username + " attempted to log in (error)."
+                );
+                return done(err);
+              }
+              if (!user) {
+                console.log(
+                  "unknown user " + username + " attempted to log in."
+                );
+                return done(null, false);
+              }
+              if (!bcrypt.compareSync(password, user.password)) {
+                console.log(
+                  "User " +
+                    username +
+                    " attempted to log in (invalid password)."
+                );
+                return done(null, false);
+              }
+              console.log("User " + username + " logged in.");
+              return done(null, user);
+            }
+          );
+        })
+      );
+
+      app.post(
+        "/api/users/authenticate/",
+        passport.authenticate("local", function (req, res) {
+          console.log("you are here");
+          console.log(`req: ${req} res:${res}`);
+          res.json(req.user);
+        })
+      );*/
+
       auth(app, db);
       userApi(app, db);
 

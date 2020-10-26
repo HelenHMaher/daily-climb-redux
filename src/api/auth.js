@@ -8,11 +8,14 @@ module.exports = (app, db) => {
   app.use(passport.session());
 
   passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    console.log("serialize User");
+    console.log(user);
+    done(null, user.userId);
   });
 
   passport.deserializeUser(function (id, done) {
     db.collection("profiles").findOne({ userId: id }, (err, user) => {
+      console.log("deserialize user");
       done(err, user);
     });
   });
