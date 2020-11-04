@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { RegisterForm } from "./RegisterForm";
+import { RegisterForm } from "../components/user/RegisterForm";
 import { unwrapResult } from "@reduxjs/toolkit";
-import store from "../../app/store";
+import store from "../app/store";
 import { useDispatch } from "react-redux";
-import { fetchUser } from "../user/userSlice";
+import { fetchUser } from "../components/user/userSlice";
 import axios from "axios";
 
 export const Login = () => {

@@ -6,39 +6,39 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import { Navbar } from "./app/Navbar/Navbar.js";
+import { Navbar } from "../app/Navbar/Navbar.js";
 
-import { WorkoutsTitle } from "./components/workouts/WorkoutsTitle";
-import { WorkoutsList } from "./components/workouts/WorkoutsList";
-import { AddWorkoutForm } from "./components/workouts/AddWorkoutForm";
-import { SingleWorkoutPage } from "./components/workouts/SingleWorkoutPage/SingleWorkoutPage";
-import { EditWorkoutPage } from "./components/workouts/EditWorkoutPage";
+import { WorkoutsTitle } from "../components/workouts/WorkoutsTitle";
+import { WorkoutsList } from "../components/workouts/WorkoutsList";
+import { AddWorkoutForm } from "../components/workouts/AddWorkoutForm";
+import { SingleWorkoutPage } from "../components/workouts/SingleWorkoutPage/SingleWorkoutPage";
+import { EditWorkoutPage } from "../components/workouts/EditWorkoutPage";
 
-import { WorkoutTypesTitle } from "./components/workoutTypes/WorkoutTypesTitle";
-import { WorkoutTypesList } from "./components/workoutTypes/WorkoutTypesList";
-import { AddWorkoutTypeForm } from "./components/workoutTypes/AddWorkoutTypeForm";
-import { SingleWorkoutTypePage } from "./components/workoutTypes/SingleWorkoutType/SingleWorkoutTypePage";
-import { EditWorkoutTypeForm } from "./components/workoutTypes/EditWorkoutTypeForm";
+import { WorkoutTypesTitle } from "../components/workoutTypes/WorkoutTypesTitle";
+import { WorkoutTypesList } from "../components/workoutTypes/WorkoutTypesList";
+import { AddWorkoutTypeForm } from "../components/workoutTypes/AddWorkoutTypeForm";
+import { SingleWorkoutTypePage } from "../components/workoutTypes/SingleWorkoutType/SingleWorkoutTypePage";
+import { EditWorkoutTypeForm } from "../components/workoutTypes/EditWorkoutTypeForm";
 
-import { ExercisesTitle } from "./components/exercises/ExercisesTitle";
-import { ExerciseList } from "./components/exercises/ExerciseList";
-import { AddExerciseForm } from "./components/exercises/AddExerciseForm";
-import { SingleExercisePage } from "./components/exercises/SingleExercisePage";
-import { EditExerciseForm } from "./components/exercises/EditExerciseForm";
+import { ExercisesTitle } from "../components/exercises/ExercisesTitle";
+import { ExerciseList } from "../components/exercises/ExerciseList";
+import { AddExerciseForm } from "../components/exercises/AddExerciseForm";
+import { SingleExercisePage } from "../components/exercises/SingleExercisePage";
+import { EditExerciseForm } from "../components/exercises/EditExerciseForm";
 
-import { WorkoutExerciseTitle } from "./components/workouts/AddWorkoutExercises/WorkoutExerciseTitle";
-import { PushExercisePage } from "./components/workouts/AddWorkoutExercises/PushExercisePage";
-import { ExerciseInstance } from "./components/workouts/AddWorkoutExercises/ExerciseInstance";
+import { WorkoutExerciseTitle } from "../components/workouts/AddWorkoutExercises/WorkoutExerciseTitle";
+import { PushExercisePage } from "../components/workouts/AddWorkoutExercises/PushExercisePage";
+import { ExerciseInstance } from "../components/workouts/AddWorkoutExercises/ExerciseInstance";
 
-import store from "./app/store";
-import { fetchWorkoutTypes } from "./components/workoutTypes/workoutTypesSlice";
-import { fetchWorkouts } from "./components/workouts/workoutsSlice";
-import { fetchExercises } from "./components/exercises/exerciseSlice";
+import store from "../app/store";
+import { fetchWorkoutTypes } from "../components/workoutTypes/workoutTypesSlice";
+import { fetchWorkouts } from "../components/workouts/workoutsSlice";
+import { fetchExercises } from "../components/exercises/exerciseSlice";
 
-import { Profile } from "./components/user/Profile";
-import { News } from "./components/news";
+import { Profile } from "../components/user/Profile";
+import { News } from "../components/news";
 
-function BaseApp() {
+function Dash() {
   store.dispatch(fetchWorkoutTypes());
   store.dispatch(fetchWorkouts());
   store.dispatch(fetchExercises());
@@ -52,9 +52,9 @@ function BaseApp() {
             exact
             path="/"
             render={() => (
-              <React.Fragment>
+              <>
                 <News />
-              </React.Fragment>
+              </>
             )}
           />
           <Route exact path="/profile" component={Profile} />
@@ -187,4 +187,4 @@ function BaseApp() {
   );
 }
 
-export default BaseApp;
+export default Dash;

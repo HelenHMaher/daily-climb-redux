@@ -3,8 +3,8 @@ import { GlobalStyles } from "./global";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
 
-import BaseApp from "./BaseApp";
-import { Login } from "./components/user/Login";
+import Dash from "./views/Dash";
+import { Login } from "./views/Login";
 
 import { Footer } from "./app/Footer";
 import { Header } from "./app/Header";
@@ -14,15 +14,15 @@ import { Header } from "./app/Header";
 //this is where the userapi is used
 
 function App() {
-  const user = false;
-  const Display = user ? BaseApp : Login;
+  const user = true;
+
   return (
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyles />
         <div className="Container">
           <Header />
-          <Display />
+          {user ? <Dash /> : <Login />}
           <Footer />
         </div>
       </>
