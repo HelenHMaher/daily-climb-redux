@@ -46,7 +46,7 @@ mongo.connect(
         })
       );
 
-      auth(app, db);
+      //auth(app, db);
       userApi(app, db);
 
       typesApi(app, db);
